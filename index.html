@@ -285,12 +285,42 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
 .addon-card p{font-size:13px;color:var(--gray-500);margin-bottom:16px;flex:1}
 
 /* ===== PRODUCTS PAGE ===== */
-.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
-.product-card .card-img{height:220px;background:linear-gradient(135deg,#f0f4f8 0%,#e2e8f0 100%);display:flex;align-items:center;justify-content:center;font-size:48px;color:var(--blue);overflow:hidden;border-bottom:1px solid rgba(0,0,0,0.06)}.product-card .card-img img{width:100%;height:100%;object-fit:contain;padding:20px;mix-blend-mode:multiply}
 .cart-item-type-badge{font-size:10px;font-weight:700;letter-spacing:0.5px;color:var(--blue);background:var(--blue-light,#e8f0fe);padding:2px 6px;border-radius:4px;text-transform:uppercase;flex-shrink:0}
-.product-card .card-body h3{font-size:17px;margin-bottom:4px}
-.product-card .card-body .price{font-size:20px;font-weight:700;color:var(--blue);margin-bottom:8px}
-.product-card .card-body p{font-size:14px;color:var(--gray-500);margin-bottom:16px;line-height:1.5}
+.products-intro{max-width:800px;margin:0 auto 64px;text-align:center}
+.products-intro p{font-size:18px;color:var(--gray-700);line-height:1.8}
+.why-ro{background:var(--gray-50);padding:48px;border-radius:var(--radius-xl);margin-bottom:64px}
+.why-ro h3{font-size:24px;margin-bottom:20px;text-align:center}
+.why-ro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:32px}
+.why-ro-item{text-align:center}
+.why-ro-item .icon-wrap{width:56px;height:56px;background:var(--blue-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.why-ro-item .icon-wrap svg{width:28px;height:28px;color:var(--blue)}
+.why-ro-item h4{font-size:16px;margin-bottom:6px}
+.why-ro-item p{font-size:14px;color:var(--gray-500);line-height:1.6}
+.product-showcase{margin-bottom:64px}
+.product-showcase-item{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:48px 0;border-bottom:1px solid var(--gray-200)}
+.product-showcase-item:last-child{border-bottom:none}
+.product-showcase-item:nth-child(even){direction:rtl}
+.product-showcase-item:nth-child(even)>*{direction:ltr}
+.product-showcase-item .product-image{background:linear-gradient(135deg,#f0f4f8 0%,#e2e8f0 100%);border-radius:var(--radius-xl);padding:32px;display:flex;align-items:center;justify-content:center;min-height:300px}
+.product-showcase-item .product-image img{max-width:100%;max-height:260px;object-fit:contain;mix-blend-mode:multiply}
+.product-showcase-item .product-info h3{font-size:26px;margin-bottom:4px}
+.product-showcase-item .product-info .product-subtitle{font-size:14px;color:var(--teal);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px}
+.product-showcase-item .product-info p{font-size:15px;color:var(--gray-700);line-height:1.7;margin-bottom:20px}
+.spec-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.spec-pill{background:var(--gray-50);border:1px solid var(--gray-200);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;color:var(--gray-700)}
+.spec-pill.highlight{background:var(--blue-light);border-color:var(--blue);color:var(--blue)}
+.products-cta-banner{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);border-radius:var(--radius-xl);padding:48px;text-align:center;color:#fff}
+.products-cta-banner h3{font-size:28px;color:#fff;margin-bottom:12px}
+.products-cta-banner p{font-size:17px;opacity:0.9;margin-bottom:28px;max-width:600px;margin-left:auto;margin-right:auto}
+.products-cta-banner .btn{background:#fff;color:var(--blue);font-weight:700}
+.products-cta-banner .btn:hover{background:var(--gray-50);transform:translateY(-1px)}
+@media(max-width:768px){
+  .why-ro-grid{grid-template-columns:1fr}
+  .product-showcase-item{grid-template-columns:1fr;gap:24px}
+  .product-showcase-item:nth-child(even){direction:ltr}
+  .why-ro{padding:32px 20px}
+  .products-cta-banner{padding:32px 20px}
+}
 
 /* ===== WARRANTY PAGE ===== */
 .warranty-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -466,20 +496,6 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
 .exit-modal .form-group{text-align:left;margin-bottom:16px}
 .exit-modal .form-group input{width:100%}
 
-/* ===== PRODUCT MODAL ===== */
-.product-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:4500;display:none;align-items:center;justify-content:center;padding:24px}
-.product-modal-overlay.open{display:flex}
-.product-modal{background:var(--white);border-radius:var(--radius-xl);width:100%;max-width:600px;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-xl)}
-.product-modal-header{display:flex;justify-content:space-between;align-items:flex-start;padding:28px 28px 0}
-.product-modal-header h2{font-size:24px;flex:1}
-.product-modal-body{padding:0 28px 28px}
-.product-modal-body .price{font-size:28px;font-weight:800;color:var(--blue);margin:12px 0}
-.product-modal-body p{font-size:15px;color:var(--gray-700);line-height:1.7;margin-bottom:16px}
-.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px}
-.spec-item{background:var(--gray-50);padding:12px;border-radius:var(--radius-sm);font-size:13px}
-.spec-item .spec-label{color:var(--gray-500);margin-bottom:2px}
-.spec-item .spec-value{font-weight:600;color:var(--dark)}
-
 /* ===== FOOTER ===== */
 .footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:64px 0 0}
 .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
@@ -535,7 +551,6 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
 }
 @media(max-width:480px){
   .addons-grid{grid-template-columns:1fr}
-  .products-grid{grid-template-columns:1fr}
   .spec-grid{grid-template-columns:1fr}
 }
 
@@ -994,83 +1009,171 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
   <div class="section">
     <div class="container">
       <div class="section-header reveal">
-        <h2>Our Products</h2>
-        <p>Premium water treatment equipment from trusted manufacturers. Prices include professional installation by a licensed plumber.</p>
+        <h2>The Technology Behind Your Water</h2>
+        <p>We exclusively install Waterdrop reverse osmosis systems — the industry's most advanced water purification technology.</p>
       </div>
-      <div class="products-grid">
-        <div class="product-card card reveal" onclick="openProductModal('x16')">
-          <div class="card-img"><img src="./assets/product-x16.jpg" alt="Waterdrop X16 RO System" loading="lazy"></div>
-          <div class="card-body">
+
+      <div class="products-intro reveal">
+        <p>At CrystalFlow Miami, we evaluated dozens of water treatment brands before selecting Waterdrop as our exclusive RO partner. Their tankless designs, NSF certifications, and smart monitoring technology set the standard for residential water purification. Every system we install is backed by our professional installation and 1-year warranty.</p>
+      </div>
+
+      <!-- Why Reverse Osmosis -->
+      <div class="why-ro reveal">
+        <h3>Why We Choose Reverse Osmosis</h3>
+        <p style="text-align:center;color:var(--gray-500);max-width:640px;margin:0 auto">Reverse osmosis is the gold standard in water purification. Here's why every CrystalFlow installation starts with RO technology.</p>
+        <div class="why-ro-grid">
+          <div class="why-ro-item">
+            <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h4>99.9% Contaminant Removal</h4>
+            <p>RO membranes filter at 0.0001 microns — removing lead, chlorine, fluoride, PFAS, arsenic, and 1,000+ contaminants that standard filters miss.</p>
+          </div>
+          <div class="why-ro-item">
+            <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <h4>Tankless Efficiency</h4>
+            <p>Waterdrop's tankless design delivers purified water on demand — no stagnant storage tanks means fresher water and up to 800% less wastewater than traditional RO systems.</p>
+          </div>
+          <div class="why-ro-item">
+            <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+            <h4>Smart Monitoring</h4>
+            <p>Real-time TDS displays, filter life indicators, and smart faucets give you full visibility into your water quality — no guesswork.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Showcase -->
+      <div class="product-showcase">
+
+        <!-- X16 -->
+        <div class="product-showcase-item reveal">
+          <div class="product-image">
+            <img src="./assets/product-x16.jpg" alt="Waterdrop X16 RO System" loading="lazy">
+          </div>
+          <div class="product-info">
+            <div class="product-subtitle">Flagship Performance</div>
             <h3>Waterdrop X16</h3>
-            <div class="price">$2,399</div>
-            <p>1600 GPD, 11-stage filtration with UV sterilization and alkaline mineralization. Our most powerful system.</p>
-            <button class="btn btn-outline btn-sm" style="width:100%" onclick="event.stopPropagation();addToCart('product','Waterdrop X16 RO System','2399')">Add to Cart</button>
+            <p>Our most powerful system. The X16 delivers an industry-leading 1600 GPD through 11 stages of filtration, including UV sterilization and alkaline mineralization. The smart digital faucet provides real-time TDS monitoring so you always know your water quality.</p>
+            <div class="spec-pills">
+              <span class="spec-pill highlight">1600 GPD</span>
+              <span class="spec-pill">11-Stage Filtration</span>
+              <span class="spec-pill">UV Sterilization</span>
+              <span class="spec-pill">Alkaline Mineralization</span>
+              <span class="spec-pill">3:1 Drain Ratio</span>
+              <span class="spec-pill">NSF 42, 58, 372</span>
+            </div>
+            <a href="#contact" class="btn btn-primary">Book a Free Water Test</a>
           </div>
         </div>
-        <div class="product-card card reveal" onclick="openProductModal('x12')">
-          <div class="card-img"><img src="./assets/product-x12.png" alt="Waterdrop X12 RO System" loading="lazy"></div>
-          <div class="card-body">
+
+        <!-- X12 -->
+        <div class="product-showcase-item reveal">
+          <div class="product-image">
+            <img src="./assets/product-x12.png" alt="Waterdrop X12 RO System" loading="lazy">
+          </div>
+          <div class="product-info">
+            <div class="product-subtitle">High Performance</div>
             <h3>Waterdrop X12</h3>
-            <div class="price">$1,799</div>
-            <p>1200 GPD, 11-stage filtration with UV sterilization. Smart digital faucet with real-time TDS monitoring.</p>
-            <button class="btn btn-outline btn-sm" style="width:100%" onclick="event.stopPropagation();addToCart('product','Waterdrop X12 RO System','1799')">Add to Cart</button>
+            <p>The X12 matches the X16's 11-stage filtration with UV sterilization and alkaline mineralization in a 1200 GPD package. Fills a cup in 3 seconds. Ideal for families who want premium purification with rapid flow.</p>
+            <div class="spec-pills">
+              <span class="spec-pill highlight">1200 GPD</span>
+              <span class="spec-pill">11-Stage Filtration</span>
+              <span class="spec-pill">UV Sterilization</span>
+              <span class="spec-pill">Alkaline Mineralization</span>
+              <span class="spec-pill">3:1 Drain Ratio</span>
+              <span class="spec-pill">NSF 42, 58, 372</span>
+            </div>
+            <a href="#contact" class="btn btn-primary">Book a Free Water Test</a>
           </div>
         </div>
-        <div class="product-card card reveal" onclick="openProductModal('g3p800')">
-          <div class="card-img"><img src="./assets/product-g3p800.png" alt="Waterdrop G3P800 RO System" loading="lazy"></div>
-          <div class="card-body">
+
+        <!-- G3P800 -->
+        <div class="product-showcase-item reveal">
+          <div class="product-image">
+            <img src="./assets/product-g3p800.png" alt="Waterdrop G3P800 RO System" loading="lazy">
+          </div>
+          <div class="product-info">
+            <div class="product-subtitle">Advanced Purification</div>
             <h3>Waterdrop G3P800</h3>
-            <div class="price">$1,149</div>
-            <p>800 GPD, 10-stage filtration with UV sterilizing light. 3:1 pure-to-drain ratio. Smart display faucet.</p>
-            <button class="btn btn-outline btn-sm" style="width:100%" onclick="event.stopPropagation();addToCart('product','Waterdrop G3P800 RO System','1149')">Add to Cart</button>
+            <p>800 GPD capacity with 10-stage filtration and built-in UV sterilization. The G3P800's 3:1 pure-to-drain ratio makes it one of the most efficient systems on the market. Smart display faucet tracks filter life and water quality in real time.</p>
+            <div class="spec-pills">
+              <span class="spec-pill highlight">800 GPD</span>
+              <span class="spec-pill">10-Stage + UV</span>
+              <span class="spec-pill">3:1 Drain Ratio</span>
+              <span class="spec-pill">Smart Display Faucet</span>
+              <span class="spec-pill">NSF 42, 53, 58, 372</span>
+            </div>
+            <a href="#contact" class="btn btn-primary">Book a Free Water Test</a>
           </div>
         </div>
-        <div class="product-card card reveal" onclick="openProductModal('g3p600')">
-          <div class="card-img"><img src="./assets/product-g3p600.png" alt="Waterdrop G3P600 RO System" loading="lazy"></div>
-          <div class="card-body">
+
+        <!-- G3P600 -->
+        <div class="product-showcase-item reveal">
+          <div class="product-image">
+            <img src="./assets/product-g3p600.png" alt="Waterdrop G3P600 RO System" loading="lazy">
+          </div>
+          <div class="product-info">
+            <div class="product-subtitle">Best Value</div>
             <h3>Waterdrop G3P600</h3>
-            <div class="price">$699</div>
-            <p>600 GPD, 8-stage tankless RO system. NSF 42/53/58 certified. LED smart display faucet included.</p>
-            <button class="btn btn-outline btn-sm" style="width:100%" onclick="event.stopPropagation();addToCart('product','Waterdrop G3P600 RO System','699')">Add to Cart</button>
+            <p>Our most popular RO system and the core of our Pure Life package. 600 GPD with 8-stage tankless filtration and a 2:1 pure-to-drain ratio that saves significantly more water than traditional systems. The LED smart display faucet monitors filter life automatically.</p>
+            <div class="spec-pills">
+              <span class="spec-pill highlight">600 GPD</span>
+              <span class="spec-pill">8-Stage Filtration</span>
+              <span class="spec-pill">2:1 Drain Ratio</span>
+              <span class="spec-pill">LED Smart Faucet</span>
+              <span class="spec-pill">NSF 42, 53, 58, 372</span>
+            </div>
+            <a href="#contact" class="btn btn-primary">Book a Free Water Test</a>
           </div>
         </div>
-        <div class="product-card card reveal" onclick="openProductModal('g5p500a')">
-          <div class="card-img"><img src="./assets/product-g5p500a.png" alt="Waterdrop G5P500A Alkaline RO" loading="lazy"></div>
-          <div class="card-body">
+
+        <!-- G5P500A -->
+        <div class="product-showcase-item reveal">
+          <div class="product-image">
+            <img src="./assets/product-g5p500a.png" alt="Waterdrop G5P500A Alkaline RO" loading="lazy">
+          </div>
+          <div class="product-info">
+            <div class="product-subtitle">Alkaline + Compact</div>
             <h3>Waterdrop G5P500A</h3>
-            <div class="price">$399</div>
-            <p>500 GPD, 8-stage alkaline RO system. Remineralization for balanced pH. Saves 70% under-sink space.</p>
-            <button class="btn btn-outline btn-sm" style="width:100%" onclick="event.stopPropagation();addToCart('product','Waterdrop G5P500A Alkaline RO','399')">Add to Cart</button>
+            <p>The G5P500A combines 500 GPD reverse osmosis with alkaline remineralization to deliver purified water at a balanced pH. Its compact design saves 70% of under-sink space — perfect for smaller kitchens or condos where every inch counts.</p>
+            <div class="spec-pills">
+              <span class="spec-pill highlight">500 GPD</span>
+              <span class="spec-pill">8-Stage + Alkaline</span>
+              <span class="spec-pill">2:1 Drain Ratio</span>
+              <span class="spec-pill">70% Space Savings</span>
+              <span class="spec-pill">NSF 372</span>
+            </div>
+            <a href="#contact" class="btn btn-primary">Book a Free Water Test</a>
           </div>
         </div>
-        <div class="product-card card reveal" onclick="openProductModal('t3m')">
-          <div class="card-img"><img src="./assets/product-t3m.jpg" alt="Waterdrop T3-M RO System" loading="lazy"></div>
-          <div class="card-body">
+
+        <!-- T3-M -->
+        <div class="product-showcase-item reveal">
+          <div class="product-image">
+            <img src="./assets/product-t3m.jpg" alt="Waterdrop T3-M RO System" loading="lazy">
+          </div>
+          <div class="product-info">
+            <div class="product-subtitle">Compact Entry Point</div>
             <h3>Waterdrop T3-M</h3>
-            <div class="price">$349</div>
-            <p>450 GPD, 9-stage filtration with remineralization. Compact design, easy filter replacement.</p>
-            <button class="btn btn-outline btn-sm" style="width:100%" onclick="event.stopPropagation();addToCart('product','Waterdrop T3-M RO System','349')">Add to Cart</button>
+            <p>A compact 450 GPD tankless RO with 9-stage filtration and built-in remineralization. The T3-M's twist-and-pull filter design makes maintenance effortless — no tools required. An excellent entry point into premium water purification.</p>
+            <div class="spec-pills">
+              <span class="spec-pill highlight">450 GPD</span>
+              <span class="spec-pill">9-Stage + Remineralization</span>
+              <span class="spec-pill">2:1 Drain Ratio</span>
+              <span class="spec-pill">Tool-Free Filters</span>
+              <span class="spec-pill">NSF 372</span>
+            </div>
+            <a href="#contact" class="btn btn-primary">Book a Free Water Test</a>
           </div>
         </div>
-        <div class="product-card card reveal" onclick="openProductModal('mseries')">
-          <div class="card-img"><img src="./assets/product-mseries.png" alt="M-Series Compact Water Softener" loading="lazy"></div>
-          <div class="card-body">
-            <h3>M-Series Compact Softener</h3>
-            <div class="price">$649</div>
-            <p>20,000 grain capacity. Compact 3-tank design for continuous soft water. Treats 45+ grains per gallon.</p>
-            <button class="btn btn-outline btn-sm" style="width:100%" onclick="event.stopPropagation();addToCart('product','M-Series Compact Softener','649')">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card card reveal" onclick="openProductModal('sediment')">
-          <div class="card-img"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="8" width="24" height="48" rx="4" stroke="#0066CC" stroke-width="2" fill="#f0f7ff"/><rect x="24" y="16" width="16" height="8" rx="2" fill="#00A5A8" opacity="0.3"/><rect x="24" y="28" width="16" height="8" rx="2" fill="#00A5A8" opacity="0.5"/><rect x="24" y="40" width="16" height="8" rx="2" fill="#00A5A8" opacity="0.7"/><line x1="32" y1="4" x2="32" y2="8" stroke="#0066CC" stroke-width="2" stroke-linecap="round"/><line x1="32" y1="56" x2="32" y2="60" stroke="#0066CC" stroke-width="2" stroke-linecap="round"/></svg></div>
-          <div class="card-body">
-            <h3>Sediment Pre-Filter</h3>
-            <div class="price">$79</div>
-            <p>Protect your main system from sediment damage. Extends equipment life by 20-30%.</p>
-            <button class="btn btn-outline btn-sm" style="width:100%" onclick="event.stopPropagation();addToCart('product','Sediment Pre-Filter','79')">Add to Cart</button>
-          </div>
-        </div>
+
       </div>
+
+      <!-- CTA Banner -->
+      <div class="products-cta-banner reveal">
+        <h3>Not Sure Which System Is Right for You?</h3>
+        <p>Book a free water test and our specialists will recommend the ideal system based on your water quality, household size, and budget.</p>
+        <a href="#contact" class="btn btn-lg">Schedule Your Free Consultation</a>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1736,23 +1839,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
   </div>
 </div>
 
-<!-- ===== PRODUCT MODAL ===== -->
-<div class="product-modal-overlay" id="productModalOverlay" onclick="closeProductModal()">
-  <div class="product-modal" onclick="event.stopPropagation()">
-    <div class="product-modal-header">
-      <h2 id="pmTitle"></h2>
-      <button class="cart-close" aria-label="Close" onclick="closeProductModal()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      </button>
-    </div>
-    <div class="product-modal-body">
-      <div class="price" id="pmPrice"></div>
-      <p id="pmDesc"></p>
-      <div class="spec-grid" id="pmSpecs"></div>
-      <button class="btn btn-primary" style="width:100%" id="pmAddBtn">Add to Cart</button>
-    </div>
-  </div>
-</div>
+
 
 <!-- ===== CHATBOT ===== -->
 <button class="chat-fab" aria-label="Open chat assistant" onclick="toggleChat()">
@@ -2151,144 +2238,7 @@ function checkoutPrev() {
   }
 }
 
-/* ===== PRODUCT MODALS ===== */
-var products = {
-  x16: {
-    title: 'Waterdrop X16 RO System',
-    price: '$2,399',
-    priceNum: 2399,
-    desc: 'The flagship Waterdrop X Series. 1600 GPD capacity with 11-stage filtration including UV sterilization and alkaline mineralization. Smart digital faucet with real-time TDS monitoring. NSF/ANSI 42, 58 & 372 certified. Price includes professional installation by a licensed plumber.',
-    specs: [
-      { label: 'Capacity', value: '1600 GPD' },
-      { label: 'Filtration', value: '11-stage + UV + Alkaline' },
-      { label: 'Drain Ratio', value: '3:1' },
-      { label: 'Dimensions', value: '18.2 x 6.25 x 16.72 in' },
-      { label: 'Certifications', value: 'NSF/ANSI 42, 58 & 372' },
-      { label: 'Installation', value: 'Professional, 4-5 hours' }
-    ]
-  },
-  x12: {
-    title: 'Waterdrop X12 RO System',
-    price: '$1,799',
-    priceNum: 1799,
-    desc: 'High-performance 1200 GPD tankless RO with 11-stage filtration, UV sterilization, and alkaline mineralization. Fills a cup in 3 seconds. NSF/ANSI 42, 58 & 372 certified. Price includes professional installation.',
-    specs: [
-      { label: 'Capacity', value: '1200 GPD' },
-      { label: 'Filtration', value: '11-stage + UV + Alkaline' },
-      { label: 'Drain Ratio', value: '3:1' },
-      { label: 'Dimensions', value: '18.2 x 6.25 x 16.72 in' },
-      { label: 'Certifications', value: 'NSF/ANSI 42, 58 & 372' },
-      { label: 'Installation', value: 'Professional, 4-5 hours' }
-    ]
-  },
-  mseries: {
-    title: 'M-Series Compact Water Softener',
-    price: '$649',
-    priceNum: 649,
-    desc: 'The M-Series Compact is a high-efficiency water softener designed for under-sink and point-of-use installations. Its slim 32" × 8" footprint fits easily under most kitchen sinks while providing reliable 20,000-grain capacity softening.',
-    specs: [
-      { label: 'Capacity', value: '20,000 grains' },
-      { label: 'Dimensions', value: '32" × 8"' },
-      { label: 'Flow Rate', value: '5 GPM' },
-      { label: 'Regeneration', value: 'Automatic' },
-      { label: 'Brand', value: 'Clean Water Store' },
-      { label: 'Warranty', value: '1 Year (standard)' }
-    ]
-  },
 
-  g3p600: {
-    title: 'Waterdrop G3P600 RO System',
-    price: '$699',
-    priceNum: 699,
-    desc: '600 GPD tankless RO with 8-stage filtration. 2:1 pure-to-drain ratio saves water. Smart display faucet with filter life indicators. NSF/ANSI 42, 53, 58 & 372 certified. Price includes professional installation.',
-    specs: [
-      { label: 'Capacity', value: '600 GPD' },
-      { label: 'Filtration', value: '8-stage' },
-      { label: 'Drain Ratio', value: '2:1' },
-      { label: 'Dimensions', value: '18.11 x 5.67 x 17.73 in' },
-      { label: 'Certifications', value: 'NSF/ANSI 42, 53, 58 & 372' },
-      { label: 'Installation', value: 'Professional, 3-4 hours' }
-    ]
-  },
-  g3p800: {
-    title: 'Waterdrop G3P800 RO System',
-    price: '$1,149',
-    priceNum: 1149,
-    desc: '800 GPD tankless RO with UV sterilizing light and 10-stage filtration. 3:1 pure-to-drain ratio. Smart display faucet. NSF/ANSI 42, 53, 58 & 372 certified. Price includes professional installation.',
-    specs: [
-      { label: 'Capacity', value: '800 GPD' },
-      { label: 'Filtration', value: '10-stage + UV' },
-      { label: 'Drain Ratio', value: '3:1' },
-      { label: 'Dimensions', value: '18.11 x 5.67 x 17.73 in' },
-      { label: 'Certifications', value: 'NSF/ANSI 42, 53, 58 & 372' },
-      { label: 'Installation', value: 'Professional, 3-4 hours' }
-    ]
-  },
-  t3m: {
-    title: 'Waterdrop T3-M RO System',
-    price: '$349',
-    priceNum: 349,
-    desc: '450 GPD tankless RO with 9-stage filtration and remineralization. Compact design for smaller kitchens. Easy twist-and-pull filter replacement. NSF/ANSI 372 certified. Price includes professional installation.',
-    specs: [
-      { label: 'Capacity', value: '450 GPD' },
-      { label: 'Filtration', value: '9-stage + Remineralization' },
-      { label: 'Drain Ratio', value: '2:1' },
-      { label: 'Certifications', value: 'NSF/ANSI 372' },
-      { label: 'Filter Change', value: 'Twist-and-pull' },
-      { label: 'Installation', value: 'Professional, 2-3 hours' }
-    ]
-  },
-  g5p500a: {
-    title: 'Waterdrop G5P500A Alkaline RO',
-    price: '$399',
-    priceNum: 399,
-    desc: '500 GPD alkaline RO with 8-stage filtration and remineralization for balanced pH. Compact design saves 70% under-sink space. NSF/ANSI 372 certified. Price includes professional installation.',
-    specs: [
-      { label: 'Capacity', value: '500 GPD' },
-      { label: 'Filtration', value: '8-stage + Alkaline' },
-      { label: 'Drain Ratio', value: '2:1' },
-      { label: 'Certifications', value: 'NSF/ANSI 372' },
-      { label: 'Design', value: 'Compact, 70% space savings' },
-      { label: 'Installation', value: 'Professional, 2-3 hours' }
-    ]
-  },
-  sediment: {
-    title: 'Sediment Pre-Filter',
-    price: '$79',
-    priceNum: 79,
-    desc: 'Protect your primary water treatment system with a sediment pre-filter. Captures sand, rust, and debris before they can reach your softener or RO system, extending the life of your main equipment.',
-    specs: [
-      { label: 'Type', value: 'Sediment pre-filter' },
-      { label: 'Micron Rating', value: '5-20 micron' },
-      { label: 'Purpose', value: 'System protection' },
-      { label: 'Filter Life', value: '3-6 months' },
-      { label: 'Compatibility', value: 'All systems' },
-      { label: 'Installation', value: 'Inline' }
-    ]
-  }
-};
-
-function openProductModal(id) {
-  var p = products[id];
-  if (!p) return;
-  document.getElementById('pmTitle').textContent = p.title;
-  document.getElementById('pmPrice').textContent = p.price;
-  document.getElementById('pmDesc').textContent = p.desc;
-  var specsHtml = '';
-  p.specs.forEach(function(s) {
-    specsHtml += '<div class="spec-item"><div class="spec-label">' + s.label + '</div><div class="spec-value">' + s.value + '</div></div>';
-  });
-  document.getElementById('pmSpecs').innerHTML = specsHtml;
-  document.getElementById('pmAddBtn').onclick = function() {
-    closeProductModal();
-    addToCart('product', p.title, p.priceNum);
-  };
-  document.getElementById('productModalOverlay').classList.add('open');
-}
-
-function closeProductModal() {
-  document.getElementById('productModalOverlay').classList.remove('open');
-}
 
 /* ===== CHATBOT ===== */
 function toggleChat() {
