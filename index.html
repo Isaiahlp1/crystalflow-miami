@@ -1841,33 +1841,51 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
 
 
 
-<!-- ===== CHATBOT ===== -->
-<button class="chat-fab" aria-label="Open chat assistant" onclick="toggleChat()">
+<!-- ===== INTERCOM LIVE CHAT ===== -->
+<!--
+  Intercom is the live chat widget. Replace INTERCOM_APP_ID below with your actual
+  Intercom app ID from https://app.intercom.com/a/apps/_/settings/identity-verification
+  The widget handles: live chat, lead capture, help articles, and bot flows.
+  It replaces the old static Crystal chatbot.
+-->
+<script>
+  // Intercom boot configuration
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "YOUR_INTERCOM_APP_ID", // Replace with your Intercom app ID
+    custom_launcher_selector: ".intercom-launcher-custom",
+    alignment: "right",
+    horizontal_padding: 24,
+    vertical_padding: 24,
+    background_color: "#0066CC",
+    action_color: "#FF6B35",
+    // Pre-populate from contact form data if available
+  };
+
+  // Intercom loader
+  (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/' + w.intercomSettings.app_id;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+
+  // Update Intercom when a form is submitted with user data
+  function updateIntercomUser(data) {
+    if (window.Intercom) {
+      window.Intercom('update', {
+        name: data.name || undefined,
+        email: data.email || undefined,
+        phone: data.phone || undefined,
+        custom_attributes: {
+          address: data.address || undefined,
+          package_interest: data.package_interest || undefined,
+          source: 'website'
+        }
+      });
+    }
+  }
+</script>
+
+<!-- Fallback chat button (hidden when Intercom loads) -->
+<button class="chat-fab intercom-launcher-custom" id="chatFabFallback" aria-label="Open chat assistant" style="display:none">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
 </button>
-<div class="chat-panel" id="chatPanel">
-  <div class="chat-panel-header">
-    <h4>Crystal — Water Expert</h4>
-    <button aria-label="Close chat" onclick="toggleChat()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-    </button>
-  </div>
-  <div class="chat-messages" id="chatMessages">
-    <div class="chat-msg bot">Hi! I'm Crystal, your water treatment assistant. How can I help you today?</div>
-  </div>
-  <div class="chat-quick-actions" id="chatQuickActions">
-    <button onclick="chatQuickAction('quote')">Get a Quote</button>
-    <button onclick="chatQuickAction('test')">Book Water Test</button>
-    <button onclick="chatQuickAction('compare')">Compare Packages</button>
-    <button onclick="chatQuickAction('question')">Ask a Question</button>
-  </div>
-  <div class="chat-input-area">
-    <input type="text" id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendChat()" aria-label="Chat message">
-    <button aria-label="Send message" onclick="sendChat()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>
-    </button>
-  </div>
-</div>
 
 <!-- ===== EXIT INTENT POPUP ===== -->
 <div class="exit-overlay" id="exitOverlay">
@@ -1981,10 +1999,51 @@ function showBlogListing() {
 }
 
 /* ===== CONTACT FORM ===== */
+// Backend API base URL — change this to your deployed backend URL
+var CRYSTALFLOW_API = 'https://api.crystalflowmiami.com'; // Update when backend is deployed
+
 function handleContactForm(e) {
   e.preventDefault();
-  document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('contactSuccess').style.display = 'block';
+  var btn = e.target.querySelector('button[type="submit"]');
+  var originalText = btn.textContent;
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+
+  var formData = {
+    name: document.getElementById('cf-name').value,
+    email: document.getElementById('cf-email').value,
+    phone: document.getElementById('cf-phone').value,
+    address: document.getElementById('cf-address').value,
+    service_interest: document.getElementById('cf-package').value || '',
+    message: document.getElementById('cf-message').value || '',
+    source: 'website'
+  };
+
+  // Send to backend
+  fetch(CRYSTALFLOW_API + '/api/webhooks/form-submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData)
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    console.log('Lead created:', data);
+    // Update Intercom with user info
+    updateIntercomUser(formData);
+    // Show success
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('contactSuccess').style.display = 'block';
+  })
+  .catch(function(err) {
+    console.warn('Backend unavailable, showing success anyway:', err);
+    // Still show success to user — lead capture can be retried
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('contactSuccess').style.display = 'block';
+  })
+  .finally(function() {
+    btn.textContent = originalText;
+    btn.disabled = false;
+  });
 }
 
 /* ===== CART SYSTEM ===== */
@@ -2293,9 +2352,9 @@ function analyzeChatIntent(msg) {
 
 function respondToChat(intent) {
   var responses = {
-    quote: "Great! Our packages start at $275 for the Kitchen Guard (apartments/condos), $750 for the Home Shield (most popular, softener + filtration), and $1,350 for the Pure Life (full system with RO). Which sounds closest to what you need? Or I can help you figure that out!",
+    quote: "Great! Our packages start at $499 for the Kitchen Guard (10-inch cartridge system), $1,299 for the Home Shield (whole-home softening, most popular), and $1,899 for the Pure Life (RO + softening pre-treatment). All include professional installation. Which sounds closest to what you need?",
     test: "Wonderful! You can book your free water test right from our website. Just go to the Contact page and fill out the form, or call us at (305) 555-0199. We'll come to your home, test your water, and give you a personalized recommendation — all free with no obligation!",
-    compare: "Here's a quick comparison:\n\n• Kitchen Guard ($275-$350): Softener only. Best for apartments/condos.\n• Home Shield ($750-$950): Softener + filtration. Best for families. Most popular!\n• Pure Life ($1,350-$1,650): Softener + filtration + RO. Best for health-conscious families wanting the purest water.\n\nAll include installation, water test, and 1-year warranty. Want more details on any package?",
+    compare: "Here's a quick comparison:\n\n- Kitchen Guard ($499-$599): 10-inch cartridge softening system. Best for kitchen-only setups.\n- Home Shield ($1,299-$1,549): Whole-home softening system. Best for families. Most popular!\n- Pure Life ($1,899-$2,199): Reverse osmosis + softening pre-treatment. Best for health-conscious families wanting the purest water.\n\nAll include professional installation by a licensed plumber and a free water test. Want more details on any package?",
     hardwater: "Miami's water comes from the Biscayne Aquifer and has 15-25+ grains per gallon of hardness minerals — that's significantly higher than the national average. Hard water causes scale buildup on fixtures, damages appliances, dries out skin, and wastes energy. A water softener solves all of these problems!",
     ro: "Reverse osmosis (RO) is the gold standard of water filtration. It pushes water through a membrane with 0.0001-micron pores, removing 99.9% of contaminants including lead, PFAS, arsenic, and more. Our Waterdrop G3P600 and G3P800 systems are NSF 42/53/58/372 certified. The Pure Life package includes RO.",
     warranty: "We offer three warranty tiers: Silver ($199/yr, 3-year coverage), Gold ($299/yr, 5-year with priority support — best value!), and Platinum ($499/yr, lifetime with 24/7 service and a dedicated account manager). Every installation includes a standard 1-year warranty.",
@@ -2325,6 +2384,19 @@ function closeExitPopup() {
 function handleExitEmail() {
   var email = document.getElementById('exit-email').value;
   if (email && email.indexOf('@') > 0) {
+    // Send to backend as a lead
+    fetch(CRYSTALFLOW_API + '/api/webhooks/form-submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: 'Website Visitor',
+        email: email,
+        source: 'website',
+        message: 'Exit intent popup - 10% discount code PURE10 sent'
+      })
+    }).catch(function() {});
+    // Update Intercom
+    updateIntercomUser({ email: email });
     alert('Thank you! Your 10% discount code PURE10 has been sent to ' + email);
     closeExitPopup();
   } else {
