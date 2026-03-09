@@ -1207,22 +1207,29 @@ a, button, [role="button"] {
 }
 
 .product-image-wrap {
-  aspect-ratio: 4/3;
+  aspect-ratio: 1/1;
   overflow: hidden;
-  background: var(--color-surface-2);
+  background: linear-gradient(145deg, #f5f3f0 0%, #ebe8e4 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-6);
+  padding: var(--space-8);
+  position: relative;
+}
+
+[data-theme="dark"] .product-image-wrap {
+  background: linear-gradient(145deg, #252423 0%, #1e1d1b 100%);
 }
 
 .product-image-wrap img {
-  max-height: 180px;
+  max-height: 240px;
+  width: auto;
   object-fit: contain;
   transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15));
 }
 
-.product-card:hover .product-image-wrap img { transform: scale(1.05); }
+.product-card:hover .product-image-wrap img { transform: scale(1.08) translateY(-4px); }
 
 .product-body {
   padding: var(--space-6) var(--space-8) var(--space-8);
@@ -1295,20 +1302,7 @@ a, button, [role="button"] {
   justify-content: center;
 }
 
-/* Products installation image */
-.products-installation {
-  margin-top: var(--space-12);
-  border-radius: var(--radius-2xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-xl);
-  max-height: 400px;
-}
 
-.products-installation img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
 /* ============================================================
    WARRANTY PLANS
@@ -2591,7 +2585,7 @@ a, button, [role="button"] {
       <!-- Kitchen Guard — Entry -->
       <div class="product-card fade-in">
         <div class="product-image-wrap">
-          <img src="./assets/product-g5p500a.png" alt="G5P500A Entry-level under-sink reverse osmosis system" loading="lazy">
+          <img src="./assets/product-kitchen-guard-3d.png" alt="Kitchen Guard compact under-sink reverse osmosis system — 3D render" loading="lazy">
         </div>
         <div class="product-body">
           <p class="product-tier">Entry Level</p>
@@ -2628,7 +2622,7 @@ a, button, [role="button"] {
       <!-- Home Shield — Most Popular -->
       <div class="product-card product-card--featured fade-in">
         <div class="product-image-wrap">
-          <img src="./assets/product-g3p800.png" alt="G3P800 mid-range whole-home reverse osmosis system" loading="lazy">
+          <img src="./assets/product-home-shield-3d.png" alt="Home Shield tankless reverse osmosis system with UV sterilization — 3D render" loading="lazy">
         </div>
         <div class="product-body">
           <p class="product-tier">Most Popular</p>
@@ -2669,7 +2663,7 @@ a, button, [role="button"] {
       <!-- Pure Life — Premium -->
       <div class="product-card fade-in">
         <div class="product-image-wrap">
-          <img src="./assets/product-x16.png" alt="X16 premium water treatment system" loading="lazy">
+          <img src="./assets/product-pure-life-3d.png" alt="Pure Life premium multi-stage water treatment system with alkaline and UV — 3D render" loading="lazy">
         </div>
         <div class="product-body">
           <p class="product-tier">Premium</p>
@@ -2708,10 +2702,7 @@ a, button, [role="button"] {
       </div>
     </div>
 
-    <!-- Installation image -->
-    <div class="products-installation fade-in" role="img" aria-label="Professional under-sink RO installation">
-      <img src="./assets/installation.png" alt="CrystalFlow technician installing a reverse osmosis system under a kitchen sink in Miami" loading="lazy">
-    </div>
+
   </div>
 </section>
 
@@ -3023,7 +3014,7 @@ a, button, [role="button"] {
 
       <a href="#" class="blog-card fade-in" aria-label="Read: The Hidden Cost of Hard Water in South Florida">
         <div class="blog-card-img">
-          <img src="./assets/installation.png" alt="Under-sink water filtration system installation" loading="lazy">
+          <img src="./assets/water-test.png" alt="Water quality testing equipment for hard water analysis" loading="lazy">
         </div>
         <div class="blog-card-body">
           <p class="blog-card-category">Home Protection</p>
