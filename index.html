@@ -2146,13 +2146,11 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
   window.intercomSettings = {
     api_base: "https://api-iam.intercom.io",
     app_id: "sx0gvmky",
-    custom_launcher_selector: ".intercom-launcher-custom",
     alignment: "right",
     horizontal_padding: 24,
     vertical_padding: 24,
     background_color: "#0066CC",
     action_color: "#FF6B35",
-    // Pre-populate from contact form data if available
   };
 
   // Intercom loader
@@ -2175,10 +2173,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
   }
 </script>
 
-<!-- Fallback chat button (hidden when Intercom loads) -->
-<button class="chat-fab intercom-launcher-custom" id="chatFabFallback" aria-label="Open chat assistant" style="display:none">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-</button>
+<!-- Intercom widget loads its own launcher button automatically -->
 
 <!-- ===== EXIT INTENT POPUP ===== -->
 <div class="exit-overlay" id="exitOverlay">
@@ -2201,7 +2196,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
 let cart = [];
 let checkoutStep = 1;
 let exitPopupShown = false;
-let chatOpen = false;
+
 
 /* ===== ROUTING ===== */
 function navigateTo(hash) {
@@ -2592,73 +2587,11 @@ function checkoutPrev() {
 
 
 
-/* ===== CHATBOT ===== */
-function toggleChat() {
-  chatOpen = !chatOpen;
-  document.getElementById('chatPanel').classList.toggle('open', chatOpen);
-}
+/* Old static chatbot removed — Intercom handles all chat */
 
-function chatQuickAction(action) {
-  var msgs = {
-    quote: "I'd like to get a quote for a water treatment system.",
-    test: "I'd like to book a free water test.",
-    compare: "Can you compare your packages?",
-    question: "I have a question about water treatment."
-  };
-  addChatMessage(msgs[action], 'user');
-  document.getElementById('chatQuickActions').style.display = 'none';
-  setTimeout(function() { respondToChat(action); }, 800);
-}
 
-function sendChat() {
-  var input = document.getElementById('chatInput');
-  var msg = input.value.trim();
-  if (!msg) return;
-  addChatMessage(msg, 'user');
-  input.value = '';
-  setTimeout(function() { respondToChat(analyzeChatIntent(msg)); }, 800);
-}
 
-function addChatMessage(text, type) {
-  var container = document.getElementById('chatMessages');
-  var div = document.createElement('div');
-  div.className = 'chat-msg ' + type;
-  div.textContent = text;
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
-}
 
-function analyzeChatIntent(msg) {
-  msg = msg.toLowerCase();
-  if (msg.indexOf('quote') >= 0 || msg.indexOf('price') >= 0 || msg.indexOf('cost') >= 0 || msg.indexOf('how much') >= 0) return 'quote';
-  if (msg.indexOf('test') >= 0 || msg.indexOf('book') >= 0 || msg.indexOf('schedule') >= 0 || msg.indexOf('appointment') >= 0) return 'test';
-  if (msg.indexOf('compare') >= 0 || msg.indexOf('difference') >= 0 || msg.indexOf('package') >= 0 || msg.indexOf('which') >= 0) return 'compare';
-  if (msg.indexOf('hard water') >= 0 || msg.indexOf('what is') >= 0) return 'hardwater';
-  if (msg.indexOf('ro') >= 0 || msg.indexOf('reverse osmosis') >= 0) return 'ro';
-  if (msg.indexOf('warranty') >= 0) return 'warranty';
-  if (msg.indexOf('area') >= 0 || msg.indexOf('serve') >= 0 || msg.indexOf('location') >= 0) return 'area';
-  if (msg.indexOf('hour') >= 0 || msg.indexOf('open') >= 0 || msg.indexOf('when') >= 0) return 'hours';
-  if (msg.indexOf('human') >= 0 || msg.indexOf('person') >= 0 || msg.indexOf('call') >= 0 || msg.indexOf('talk') >= 0) return 'human';
-  if (msg.indexOf('finance') >= 0 || msg.indexOf('payment plan') >= 0 || msg.indexOf('monthly') >= 0) return 'financing';
-  return 'general';
-}
-
-function respondToChat(intent) {
-  var responses = {
-    quote: "Great question! We offer three packages: Kitchen Guard (alkaline RO for your kitchen), Home Shield (advanced tankless RO with UV sterilization, most popular), and Pure Life (premium alkaline RO with UV, up to 1600 GPD). All include professional installation. The best way to get an accurate quote is to book a free water test — we will come to your home and give you a personalized recommendation. Which package sounds closest to what you need?",
-    test: "Wonderful! You can book your free water test right from our website. Just go to the Contact page and fill out the form, or call us at (786) 947-3824. We'll come to your home, test your water, and give you a personalized recommendation — all free with no obligation!",
-    compare: "Here's a quick comparison:\n\n- Kitchen Guard: Waterdrop G5P500A alkaline RO system (8-stage, 500 GPD). Best for kitchen-only setups.\n- Home Shield: Waterdrop G3P800 tankless RO with UV sterilization (10-stage, 800 GPD). Best for families. Most popular!\n- Pure Life: Waterdrop X16 premium alkaline RO with UV (11-stage, 1600 GPD). Best for health-conscious families wanting the purest water.\n\nAll include professional installation and a free water test. Book your free consultation for personalized pricing!",
-    hardwater: "Miami's water comes from the Biscayne Aquifer and has 15-25+ grains per gallon of hardness minerals — that's significantly higher than the national average. Hard water causes scale buildup on fixtures, damages appliances, dries out skin, and wastes energy. A professional water purification system solves all of these problems!",
-    ro: "Reverse osmosis (RO) is the gold standard of water filtration. It pushes water through a membrane with 0.0001-micron pores, removing 99.9% of contaminants including lead, PFAS, arsenic, and more. Our Waterdrop G3P600 and G3P800 systems are NSF 42/53/58/372 certified. The Pure Life package includes RO.",
-    warranty: "We offer three warranty tiers: Silver ($199/yr, 3-year coverage), Gold ($299/yr, 5-year with priority support — best value!), and Platinum ($499/yr, lifetime with 24/7 service and a dedicated account manager). Every installation includes a standard 1-year warranty.",
-    area: "We currently serve all of Miami-Dade County including Miami, Miami Beach, Coral Gables, Kendall, Homestead, Doral, and Hialeah. We're expanding to Broward and Palm Beach counties soon!",
-    hours: "Our office hours are Monday through Friday, 8AM to 5PM. Warranty holders have access to emergency service outside these hours — with response times as fast as 4 hours for Platinum plan members.",
-    human: "Of course! You can reach our team at:\nPhone: (786) 947-3824\nEmail: info@crystalflowmiami.com\nHours: Mon-Fri, 8AM-5PM\n\nWe look forward to hearing from you.",
-    financing: "Yes, we offer flexible payment plans! Monthly payments can be as low as $65/month depending on the package. Just ask during your free consultation and we'll find a plan that fits your budget.",
-    general: "I'm here to help with anything about water treatment! I can help you get a quote, compare packages, book a free water test, or answer questions about hard water, filtration, and our services. What would you like to know?"
-  };
-  addChatMessage(responses[intent] || responses.general, 'bot');
-}
 
 /* ===== EXIT INTENT ===== */
 function initExitIntent() {
