@@ -731,7 +731,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
         <span class="cart-badge" id="cartBadge">0</span>
       </button>
-      <a href="#contact" class="btn btn-primary header-cta">Book Free Water Test</a>
+      <a href="#contact" class="btn btn-primary header-cta" onclick="trackEvent('cta_click',{cta_location:'header'})">Book Free Water Test</a>
       <button class="hamburger" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
         <span></span><span></span><span></span>
       </button>
@@ -749,7 +749,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
   <a href="#contact" data-nav onclick="closeMobileNav()">Contact</a>
   <a href="#faq" data-nav onclick="closeMobileNav()">FAQ</a>
   <a href="#blog" data-nav onclick="closeMobileNav()">Blog</a>
-  <a href="#contact" class="btn btn-primary" onclick="closeMobileNav()">Book Free Water Test</a>
+  <a href="#contact" class="btn btn-primary" onclick="closeMobileNav();trackEvent('cta_click',{cta_location:'mobile_nav'})">Book Free Water Test</a>
 </div>
 
 <!-- ===== MAIN CONTENT ===== -->
@@ -766,7 +766,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
         <h1>Pure Water.<br>Protected Home.<br><span class="highlight">Miami's Trusted</span> Water Treatment Experts.</h1>
         <p>Stop hard water from damaging your appliances, drying your skin, and wasting your money. Professional water purification systems — installed by experts, backed by warranty.</p>
         <div class="hero-btns">
-          <a href="#contact" class="btn btn-primary btn-lg">Book Your Free Water Test</a>
+          <a href="#contact" class="btn btn-primary btn-lg" onclick="trackEvent('cta_click',{cta_location:'hero'})">Book Your Free Water Test</a>
           <a href="#services" class="btn btn-outline btn-lg">View Our Packages</a>
         </div>
       </div>
@@ -944,7 +944,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
     <div class="container">
       <h2>Miami's Hard Water Is Damaging Your Home</h2>
       <p>Schedule a free water test today and find out what's really in your water.</p>
-      <a href="#contact" class="btn btn-primary btn-lg">Book Free Water Test</a>
+      <a href="#contact" class="btn btn-primary btn-lg" onclick="trackEvent('cta_click',{cta_location:'cta_banner_home'})">Book Free Water Test</a>
     </div>
   </div>
 
@@ -1006,7 +1006,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
               Installation: 1–2 hours
             </div>
-            <a href="#contact" class="btn btn-primary" style="width:100%">Book a Free Water Test</a>
+            <a href="#contact" class="btn btn-primary" style="width:100%" onclick="trackEvent('cta_click',{cta_location:'services_kitchen_guard'})">Book a Free Water Test</a>
           </div>
         </div>
 
@@ -1029,7 +1029,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
               Installation: 1–2 hours
             </div>
-            <a href="#contact" class="btn btn-secondary" style="width:100%">Book a Free Water Test</a>
+            <a href="#contact" class="btn btn-secondary" style="width:100%" onclick="trackEvent('cta_click',{cta_location:'services_home_shield'})">Book a Free Water Test</a>
           </div>
         </div>
 
@@ -1052,7 +1052,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
               Installation: 1–2 hours
             </div>
-            <a href="#contact" class="btn btn-primary" style="width:100%">Book a Free Water Test</a>
+            <a href="#contact" class="btn btn-primary" style="width:100%" onclick="trackEvent('cta_click',{cta_location:'services_pure_life'})">Book a Free Water Test</a>
           </div>
         </div>
       </div>
@@ -1187,7 +1187,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
               <span class="spec-pill">3:1 Drain Ratio</span>
               <span class="spec-pill">NSF 42, 58, 372</span>
             </div>
-            <a href="#contact" class="btn btn-primary">Book a Free Water Test</a>
+            <a href="#contact" class="btn btn-primary" onclick="trackEvent('cta_click',{cta_location:'products_x16'})">Book a Free Water Test</a>
           </div>
         </div>
 
@@ -1208,7 +1208,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
               <span class="spec-pill">3:1 Drain Ratio</span>
               <span class="spec-pill">NSF 42, 58, 372</span>
             </div>
-            <a href="#contact" class="btn btn-primary">Book a Free Water Test</a>
+            <a href="#contact" class="btn btn-primary" onclick="trackEvent('cta_click',{cta_location:'products_x12'})">Book a Free Water Test</a>
           </div>
         </div>
 
@@ -1228,7 +1228,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
               <span class="spec-pill">Smart Display Faucet</span>
               <span class="spec-pill">NSF 42, 53, 58, 372</span>
             </div>
-            <a href="#contact" class="btn btn-primary">Book a Free Water Test</a>
+            <a href="#contact" class="btn btn-primary" onclick="trackEvent('cta_click',{cta_location:'products_g3p800'})">Book a Free Water Test</a>
           </div>
         </div>
 
@@ -1248,7 +1248,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
               <span class="spec-pill">LED Smart Faucet</span>
               <span class="spec-pill">NSF 42, 53, 58, 372</span>
             </div>
-            <a href="#contact" class="btn btn-primary">Book a Free Water Test</a>
+            <a href="#contact" class="btn btn-primary" onclick="trackEvent('cta_click',{cta_location:'products_g3p600'})">Book a Free Water Test</a>
           </div>
         </div>
 
@@ -1268,7 +1268,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
               <span class="spec-pill">70% Space Savings</span>
               <span class="spec-pill">NSF 372</span>
             </div>
-            <a href="#contact" class="btn btn-primary">Book a Free Water Test</a>
+            <a href="#contact" class="btn btn-primary" onclick="trackEvent('cta_click',{cta_location:'products_g5p500a'})">Book a Free Water Test</a>
           </div>
         </div>
 
@@ -1288,7 +1288,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
               <span class="spec-pill">Tool-Free Filters</span>
               <span class="spec-pill">NSF 372</span>
             </div>
-            <a href="#contact" class="btn btn-primary">Book a Free Water Test</a>
+            <a href="#contact" class="btn btn-primary" onclick="trackEvent('cta_click',{cta_location:'products_t3m'})">Book a Free Water Test</a>
           </div>
         </div>
 
@@ -1298,7 +1298,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
       <div class="products-cta-banner reveal">
         <h3>Not Sure Which System Is Right for You?</h3>
         <p>Book a free water test and our specialists will recommend the ideal system based on your water quality, household size, and budget.</p>
-        <a href="#contact" class="btn btn-lg">Schedule Your Free Consultation</a>
+        <a href="#contact" class="btn btn-lg" onclick="trackEvent('cta_click',{cta_location:'products_cta_banner'})">Schedule Your Free Consultation</a>
       </div>
 
     </div>
@@ -1540,7 +1540,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             <div>
               <h4>Phone</h4>
-              <p>(786) 947-3824</p>
+              <p><a href="tel:+17869473824" onclick="trackEvent('phone_click',{location:'contact_info_card'})">(786) 947-3824</a></p>
             </div>
           </div>
           <div class="contact-info-card card">
@@ -1781,8 +1781,8 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
         <div style="background:var(--blue-50,#eff6ff);border:1px solid var(--blue-200,#bfdbfe);border-radius:12px;padding:28px 32px;margin:40px 0 32px">
           <h3 style="margin-bottom:8px;font-size:20px">Ready to know exactly what's in your water?</h3>
           <p style="margin-bottom:20px;color:var(--gray-700)">Book a Free Water Test with CrystalFlow Miami. Our licensed team will test your home's water on-site, provide a full written report, and walk you through the options that match your home, your budget, and your family's needs.</p>
-          <a href="#contact" class="btn btn-primary" onclick="showPage('page-contact')">Book a Free Water Test</a>
-          <p style="margin:16px 0 0;font-size:14px;color:var(--gray-500)">Call <strong>(786) 947-3824</strong> &nbsp;&mdash;&nbsp; No obligation. Results on-site.</p>
+          <a href="#contact" class="btn btn-primary" onclick="showPage('page-contact');trackEvent('cta_click',{cta_location:'blog_post1_cta'})">Book a Free Water Test</a>
+          <p style="margin:16px 0 0;font-size:14px;color:var(--gray-500)">Call <a href="tel:+17869473824" onclick="trackEvent('phone_click',{location:'blog_post1'})" style="color:inherit"><strong>(786) 947-3824</strong></a> &nbsp;&mdash;&nbsp; No obligation. Results on-site.</p>
         </div>
 
         <!-- Sources -->
@@ -1881,8 +1881,8 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
         <div style="background:var(--blue-50,#eff6ff);border:1px solid var(--blue-200,#bfdbfe);border-radius:12px;padding:28px 32px;margin:40px 0 32px">
           <h3 style="margin-bottom:8px;font-size:20px">Start with a free assessment of your home's water hardness.</h3>
           <p style="margin-bottom:20px;color:var(--gray-700)">Book a Free Water Test with CrystalFlow Miami. Our licensed team will measure your water's hardness level on-site, explain exactly what it means for your home, and walk you through the best solution for your budget.</p>
-          <a href="#contact" class="btn btn-primary" onclick="showPage('page-contact')">Book a Free Water Test</a>
-          <p style="margin:16px 0 0;font-size:14px;color:var(--gray-500)">Call <strong>(786) 947-3824</strong> &nbsp;&mdash;&nbsp; No obligation. Results on-site.</p>
+          <a href="#contact" class="btn btn-primary" onclick="showPage('page-contact');trackEvent('cta_click',{cta_location:'blog_post2_cta'})">Book a Free Water Test</a>
+          <p style="margin:16px 0 0;font-size:14px;color:var(--gray-500)">Call <a href="tel:+17869473824" onclick="trackEvent('phone_click',{location:'blog_post2'})" style="color:inherit"><strong>(786) 947-3824</strong></a> &nbsp;&mdash;&nbsp; No obligation. Results on-site.</p>
         </div>
 
         <!-- Related Reading -->
@@ -1951,7 +1951,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#warranty">Warranty Info</a></li>
           <li><a href="#contact">Service Areas</a></li>
-          <li><a href="javascript:void(0)">(786) 947-3824</a></li>
+          <li><a href="tel:+17869473824" onclick="trackEvent('phone_click',{location:'footer'})">(786) 947-3824</a></li>
           <li><a href="javascript:void(0)">info@crystalflowmiami.com</a></li>
           <li>Mon–Fri 8AM–5PM</li>
         </ul>
@@ -2156,6 +2156,13 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
   // Intercom loader
   (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/' + w.intercomSettings.app_id;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
 
+  // GA4 tracking: fire chat_open when Intercom messenger is opened
+  window.Intercom('onShow', function() {
+    if (typeof gtag === 'function') {
+      gtag('event', 'chat_open', {});
+    }
+  });
+
   // Update Intercom when a form is submitted with user data
   function updateIntercomUser(data) {
     if (window.Intercom) {
@@ -2192,6 +2199,13 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.
 
 <!-- ===== JAVASCRIPT ===== -->
 <script>
+/* ===== GA4 TRACKING UTILITY ===== */
+function trackEvent(eventName, params) {
+  if (typeof gtag === 'function') {
+    gtag('event', eventName, params || {});
+  }
+}
+
 /* ===== STATE ===== */
 let cart = [];
 let checkoutStep = 1;
@@ -2213,6 +2227,7 @@ function navigateTo(hash) {
   });
   window.scrollTo({ top: 0, behavior: 'smooth' });
   initRevealAnimations();
+  trackEvent('page_view', { section: page });
 }
 
 window.addEventListener('hashchange', function() { navigateTo(location.hash); });
@@ -2318,12 +2333,16 @@ function handleContactForm(e) {
     console.log('Lead created:', data);
     // Update Intercom with user info
     updateIntercomUser(formData);
+    // Track GA4 form submission
+    trackEvent('form_submit', { form_type: 'contact', package_interest: formData.service_interest || '' });
     // Show success
     document.getElementById('contactForm').style.display = 'none';
     document.getElementById('contactSuccess').style.display = 'block';
   })
   .catch(function(err) {
     console.warn('Backend unavailable, showing success anyway:', err);
+    // Track GA4 form submission
+    trackEvent('form_submit', { form_type: 'contact', package_interest: formData.service_interest || '' });
     // Still show success to user — lead capture can be retried
     document.getElementById('contactForm').style.display = 'none';
     document.getElementById('contactSuccess').style.display = 'block';
@@ -2359,6 +2378,7 @@ function addToCart(type, name, price) {
     cart = cart.filter(function(i) { return i.type !== 'warranty'; });
   }
   cart.push({ type: type, name: name, price: price, id: Date.now() });
+  trackEvent('add_to_cart', { item_name: name, item_category: type, value: price, currency: 'USD' });
   renderCart();
   toggleCart();
   triggerUpsell(type, name);
@@ -2623,6 +2643,8 @@ function handleExitEmail() {
     }).catch(function() {});
     // Update Intercom
     updateIntercomUser({ email: email });
+    // Track GA4 lead capture
+    trackEvent('lead_capture', { source: 'exit_intent' });
     alert('Thank you! Your 10% discount code PURE10 has been sent to ' + email);
     closeExitPopup();
   } else {
