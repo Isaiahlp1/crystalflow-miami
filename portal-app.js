@@ -195,6 +195,14 @@
       populateWarranty(data);
     }).catch(function () { /* handle silently */ });
 
+    apiPortal("/api/portal/warranty-status").then(function (data) {
+      handleWarrantyStatus(data);
+    }).catch(function () { /* handle silently */ });
+
+    apiPortal("/api/portal/warranty-claims").then(function (data) {
+      populateWarrantyClaims(data);
+    }).catch(function () { /* handle silently */ });
+
     apiPortal("/api/portal/system").then(function (data) {
       populateSystem(data);
     }).catch(function () { /* handle silently */ });
@@ -475,6 +483,101 @@
   function capitalize(str) {
     if (!str) return "";
     return str.charAt(0).toUpperCase() + str.slice(1).replace(/_/g, " ");
+  }
+
+  /* ===== WARRANTY STATUS + UPSELL ===== */
+  function handleWarrantyStatus(data) {
+    if (!data) return;
+    var upsellEl = document.getElementById("warrantyUpsell");
+    var claimSection = document.getElementById("warrantyClaimSection");
+
+    if (!data.has_warranty && !data.has_system) {
+      /* No system installed — hide claim form, show upsell */
+      if (upsellEl) upsellEl.style.display = "none";
+      if (claimSection) claimSection.style.display = "none";
+    } else if (!data.has_warranty || data.expired) {
+      /* Has system but no active warranty — show upsell, hide claim form */
+      if (upsellEl) upsellEl.style.display = "block";
+      if (claimSection) claimSection.style.display = "none";
+    } else {
+      /* Has active warranty — show claim form, hide upsell */
+      if (upsellEl) upsellEl.style.display = "none";
+      if (claimSection) claimSection.style.display = "block";
+    }
+  }
+
+  /* ===== POPULATE WARRANTY CLAIMS LIST ===== */
+  function populateWarrantyClaims(claims) {
+    var container = document.getElementById("warrantyClaimsList");
+    if (!container) return;
+
+    if (!claims || claims.length === 0) {
+      container.innerHTML = '<p style="font-size: var(--text-sm); color: var(--color-text-faint);">No warranty claims filed yet.</p>';
+      return;
+    }
+
+    container.innerHTML = "";
+    claims.forEach(function (claim) {
+      var statusClass = "badge-upcoming";
+      if (claim.status === "resolved" || claim.status === "closed") statusClass = "badge-resolved";
+      else if (claim.status === "denied") statusClass = "badge-canceled";
+      else if (claim.status === "in_progress" || claim.status === "scheduled") statusClass = "badge-scheduled";
+
+      var div = document.createElement("div");
+      div.className = "past-request";
+      div.style.marginBottom = "var(--space-3)";
+      div.innerHTML =
+        '<div class="past-request-icon" style="background:linear-gradient(135deg,var(--color-cyan),var(--color-violet));">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="width:16px;height:16px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>' +
+        '<div class="past-request-info">' +
+        '<div class="past-request-title">' + (claim.claim_number || "Claim") + ' — ' + capitalize(claim.category) + '</div>' +
+        '<div class="past-request-meta">' + formatDate(claim.created_at) + (claim.equipment_affected ? ' — ' + claim.equipment_affected : '') + '</div>' +
+        '</div>' +
+        '<span class="badge ' + statusClass + '">' + capitalize(claim.status) + '</span>';
+      container.appendChild(div);
+    });
+  }
+
+  /* ===== WARRANTY CLAIM FORM SUBMISSION ===== */
+  var warrantyClaimForm = document.getElementById("warrantyClaimForm");
+  if (warrantyClaimForm) {
+    warrantyClaimForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var categoryEl = document.getElementById("wcClaimCategory");
+      var descEl = document.getElementById("wcClaimDescription");
+      var equipEl = document.getElementById("wcClaimEquipment");
+      var errEl = document.getElementById("warrantyClaimError");
+      var successEl = document.getElementById("warrantyClaimSuccess");
+      var submitBtn = document.getElementById("submitWarrantyClaimBtn");
+
+      if (errEl) errEl.style.display = "none";
+      if (successEl) successEl.style.display = "none";
+      if (submitBtn) { submitBtn.textContent = "Submitting..."; submitBtn.disabled = true; }
+
+      apiPortalPost("/api/portal/warranty-claims", {
+        category: categoryEl ? categoryEl.value : "other",
+        description: descEl ? descEl.value : "",
+        equipment_affected: equipEl ? equipEl.value : "",
+      }).then(function (claim) {
+        warrantyClaimForm.reset();
+        if (successEl) {
+          successEl.textContent = "Warranty claim " + (claim.claim_number || "") + " submitted successfully. Our team will review it and contact you shortly.";
+          successEl.style.display = "block";
+        }
+        /* Reload claims list */
+        apiPortal("/api/portal/warranty-claims").then(function (data) {
+          populateWarrantyClaims(data);
+        }).catch(function () {});
+      }).catch(function (err) {
+        if (errEl) {
+          errEl.textContent = "Failed to submit claim: " + (err.message || "Please try again.");
+          errEl.style.display = "block";
+        }
+      }).finally(function () {
+        if (submitBtn) { submitBtn.textContent = "Submit Warranty Claim"; submitBtn.disabled = false; }
+      });
+    });
   }
 
   /* ===== TAB NAVIGATION ===== */

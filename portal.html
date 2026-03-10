@@ -266,7 +266,77 @@
           </div>
         </div>
 
-        <button class="btn btn-pink" style="margin-top: var(--space-4);" onclick="document.querySelector('[data-tab=\"service\"]').click(); setTimeout(function(){document.getElementById('issueType').value='warranty_claim';},100);">File Warranty Claim</button>
+        <!-- Warranty Upsell (shown for customers without warranty) -->
+        <div id="warrantyUpsell" style="display:none;">
+          <div style="background: linear-gradient(135deg, rgba(0,197,219,0.08), rgba(91,107,245,0.08)); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--space-5); margin-top: var(--space-4);">
+            <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-3);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;color:var(--color-cyan);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <div style="font-weight:600;font-size:var(--text-base);color:var(--color-text);">Protect Your Investment</div>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-3);">Your system does not have an active warranty plan. Upgrade to protect against unexpected repairs, parts failure, and more.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-3);margin-bottom:var(--space-4);">
+              <div style="background:var(--color-surface-2);border-radius:var(--radius-md);padding:var(--space-3);text-align:center;">
+                <div style="font-weight:600;color:var(--color-text);">Silver</div>
+                <div style="font-size:var(--text-sm);color:var(--color-text-muted);">$199/yr</div>
+                <div style="font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-1);">Parts + Labor</div>
+              </div>
+              <div style="background:var(--color-surface-2);border-radius:var(--radius-md);padding:var(--space-3);text-align:center;border:1px solid var(--color-cyan);">
+                <div style="font-weight:600;color:var(--color-cyan);">Gold</div>
+                <div style="font-size:var(--text-sm);color:var(--color-text-muted);">$299/yr</div>
+                <div style="font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-1);">Parts + Labor + Filters</div>
+              </div>
+              <div style="background:var(--color-surface-2);border-radius:var(--radius-md);padding:var(--space-3);text-align:center;">
+                <div style="font-weight:600;color:var(--color-pink);">Platinum</div>
+                <div style="font-size:var(--text-sm);color:var(--color-text-muted);">$499/yr</div>
+                <div style="font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-1);">All-Inclusive + Priority</div>
+              </div>
+            </div>
+            <a href="https://calendly.com/isaiah-pacheco5321/30min" target="_blank" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:var(--space-2);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              Book a Free Water Test
+            </a>
+          </div>
+        </div>
+
+        <!-- File Warranty Claim Section -->
+        <div id="warrantyClaimSection" style="margin-top: var(--space-5);">
+          <div style="font-weight:600;font-size:var(--text-base);color:var(--color-text);margin-bottom:var(--space-3);">File a Warranty Claim</div>
+          <div id="warrantyClaimFormCard" class="service-form-card">
+            <form id="warrantyClaimForm">
+              <div class="form-group">
+                <label class="form-label">Category</label>
+                <select class="form-select" id="wcClaimCategory" required>
+                  <option value="defective_part">Defective Part</option>
+                  <option value="installation_issue">Installation Issue</option>
+                  <option value="water_quality">Water Quality</option>
+                  <option value="leak">Leak</option>
+                  <option value="system_malfunction">System Malfunction</option>
+                  <option value="filter_issue">Filter Issue</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Description</label>
+                <textarea class="form-textarea" id="wcClaimDescription" placeholder="Describe the issue with your system..." required></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Equipment Affected</label>
+                <input class="form-input" type="text" id="wcClaimEquipment" placeholder="e.g. RO Membrane, UV Lamp, Softener Tank">
+              </div>
+              <div id="warrantyClaimError" class="form-error" style="display:none;"></div>
+              <div id="warrantyClaimSuccess" style="display:none;background:rgba(0,197,219,0.1);border:1px solid var(--color-cyan);border-radius:var(--radius-md);padding:var(--space-3);font-size:var(--text-sm);color:var(--color-cyan);"></div>
+              <button type="submit" class="btn btn-pink" id="submitWarrantyClaimBtn" style="margin-top: var(--space-3);">Submit Warranty Claim</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Past Warranty Claims -->
+        <div style="margin-top: var(--space-5);">
+          <div style="font-weight:600;font-size:var(--text-base);color:var(--color-text);margin-bottom:var(--space-3);">Your Claims</div>
+          <div id="warrantyClaimsList">
+            <p style="font-size: var(--text-sm); color: var(--color-text-faint);">No warranty claims filed yet.</p>
+          </div>
+        </div>
       </div>
 
       <!-- ====== SERVICE REQUESTS ====== -->
