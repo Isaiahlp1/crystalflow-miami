@@ -74,9 +74,15 @@
       <p class="login-subtext">Set up your CrystalFlow customer account</p>
       <div class="login-error" id="registerError" style="display:none; background: rgba(248,113,113,0.12); color: #F87171; padding: 10px 14px; border-radius: 6px; font-size: 0.875rem; margin-bottom: 16px;"></div>
       <form class="login-form" id="registerForm">
-        <div class="form-group">
-          <label class="form-label">Full Name</label>
-          <input class="form-input" type="text" name="name" placeholder="Your full name" required>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input class="form-input" type="text" name="first_name" placeholder="First name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input class="form-input" type="text" name="last_name" placeholder="Last name" required>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Email</label>
@@ -165,37 +171,26 @@
       <!-- ====== OVERVIEW ====== -->
       <div class="portal-view active" id="tab-overview">
         <div class="overview-grid">
-          <div class="overview-welcome">
-            <h2>Hi Maria, your CrystalFlow Pure Life system is running great.</h2>
-            <p>Installed on Feb 14, 2026 — All systems normal, water quality excellent.</p>
+          <div class="overview-welcome" id="overviewWelcome">
+            <h2 id="welcomeHeading">Welcome to your CrystalFlow account.</h2>
+            <p id="welcomeSubtext">Loading your system information...</p>
           </div>
 
-          <div class="card">
+          <div class="card" id="nextApptCard">
             <div class="card-title">Next Appointment</div>
             <div class="card-subtitle">Upcoming service visit</div>
-            <div style="display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-3);">
-              <div class="appt-date-box cyan">
-                <span class="month">AUG</span>
-                <span class="day">14</span>
-              </div>
-              <div>
-                <div style="font-size: var(--text-sm); font-weight: 600; color: var(--color-dark);">Filter Change</div>
-                <div style="font-size: var(--text-xs); color: var(--color-text-muted);">Aug 14, 2026 at 2:00 PM</div>
-              </div>
+            <div id="nextApptContent">
+              <p style="font-size: var(--text-sm); color: var(--color-text-muted);">No appointments scheduled yet.</p>
+              <button class="btn btn-secondary btn-sm" style="margin-top: var(--space-3);" onclick="window.open('https://calendly.com/isaiah-pacheco5321/30min','_blank')">Book Consultation</button>
             </div>
-            <button class="btn btn-secondary btn-sm" onclick="alert('Reschedule feature coming soon!')">Reschedule</button>
           </div>
 
-          <div class="card">
+          <div class="card" id="systemHealthCard">
             <div class="card-title">System Health</div>
             <div class="card-subtitle">Real-time status</div>
-            <div class="system-health-row">
-              <span class="status-dot green"></span>
-              <span class="system-health-status">All Systems Normal</span>
+            <div id="systemHealthContent">
+              <p style="font-size: var(--text-sm); color: var(--color-text-muted);">No system installed yet. Contact us to schedule your installation.</p>
             </div>
-            <div class="health-detail"><span>TDS Reading</span><span style="color: var(--color-success);">12 ppm (Excellent)</span></div>
-            <div class="health-detail"><span>Last Checked</span><span>Mar 1, 2026</span></div>
-            <div class="health-detail"><span>Water Quality</span><span style="color: var(--color-success);">Excellent</span></div>
           </div>
 
           <div class="quick-actions">
@@ -211,11 +206,11 @@
               </div>
               <span class="quick-action-label">Pay Invoice</span>
             </a>
-            <a class="quick-action-btn" data-action="appointments">
-              <div class="quick-action-icon violet">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <a class="quick-action-btn" id="emergencyBtn" data-action="service">
+              <div class="quick-action-icon" style="background: var(--color-error-bg); color: var(--color-error);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
               </div>
-              <span class="quick-action-label">Schedule Filter Change</span>
+              <span class="quick-action-label">Emergency Service</span>
             </a>
           </div>
         </div>
@@ -224,155 +219,50 @@
       <!-- ====== APPOINTMENTS ====== -->
       <div class="portal-view" id="tab-appointments">
         <div class="section-title">Upcoming</div>
-        <div class="appt-card">
-          <div class="appt-date-box cyan">
-            <span class="month">AUG</span>
-            <span class="day">14</span>
-          </div>
-          <div class="appt-info">
-            <div class="appt-title">Filter Change</div>
-            <div class="appt-meta">Aug 14, 2026, 2:00 PM &mdash; Technician: Ana T.</div>
-            <div class="appt-actions">
-              <span class="badge badge-scheduled">Scheduled</span>
-              <button class="btn btn-secondary btn-sm" onclick="alert('Reschedule feature coming soon!')">Reschedule</button>
-            </div>
-          </div>
+        <div id="upcomingApptsContainer">
+          <p style="font-size: var(--text-sm); color: var(--color-text-muted); padding: var(--space-4) 0;">No upcoming appointments.</p>
         </div>
 
         <div class="section-title" style="margin-top: var(--space-8);">Past Appointments</div>
-        <div class="appt-card">
-          <div class="appt-date-box green">
-            <span class="month">FEB</span>
-            <span class="day">14</span>
-          </div>
-          <div class="appt-info">
-            <div class="appt-title">Initial Installation</div>
-            <div class="appt-meta">Feb 14, 2026, 10:00 AM &mdash; Technician: Marco R.</div>
-            <div class="appt-actions">
-              <span class="badge badge-completed">Completed</span>
-              <span class="star-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            </div>
-          </div>
+        <div id="pastApptsContainer">
+          <p style="font-size: var(--text-sm); color: var(--color-text-muted); padding: var(--space-4) 0;">No past appointments.</p>
         </div>
 
-        <button class="btn btn-primary" style="margin-top: var(--space-6);" onclick="alert('Appointment scheduling coming soon!')">Request New Appointment</button>
+        <button class="btn btn-primary" style="margin-top: var(--space-6);" onclick="window.open('https://calendly.com/isaiah-pacheco5321/30min','_blank')">Request New Appointment</button>
       </div>
 
       <!-- ====== INVOICES & PAYMENTS ====== -->
       <div class="portal-view" id="tab-invoices">
-        <div class="invoice-summary">
+        <div class="invoice-summary" id="invoiceSummary">
           <div class="invoice-stat">
-            <div class="invoice-stat-value">$3,147.00</div>
+            <div class="invoice-stat-value" id="totalPaid">$0.00</div>
             <div class="invoice-stat-label">Total Paid</div>
           </div>
           <div class="invoice-stat">
-            <div class="invoice-stat-value">$99.00</div>
-            <div class="invoice-stat-label">Upcoming Balance</div>
+            <div class="invoice-stat-value" id="pendingBalance">$0.00</div>
+            <div class="invoice-stat-label">Pending Balance</div>
           </div>
         </div>
 
-        <div class="invoice-card">
-          <div class="invoice-icon paid">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-          </div>
-          <div class="invoice-info">
-            <div class="invoice-title">#CF-1042 &mdash; Pure Life Final Payment</div>
-            <div class="invoice-detail">Feb 14, 2026</div>
-          </div>
-          <div class="invoice-right">
-            <div class="invoice-amount">$1,449.50</div>
-            <span class="badge badge-paid">Paid</span>
-          </div>
-        </div>
-
-        <div class="invoice-card">
-          <div class="invoice-icon paid">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-          </div>
-          <div class="invoice-info">
-            <div class="invoice-title">#CF-1041 &mdash; Pure Life 50% Deposit</div>
-            <div class="invoice-detail">Feb 10, 2026</div>
-          </div>
-          <div class="invoice-right">
-            <div class="invoice-amount">$1,449.50</div>
-            <span class="badge badge-paid">Paid</span>
-          </div>
-        </div>
-
-        <div class="invoice-card">
-          <div class="invoice-icon paid">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-          </div>
-          <div class="invoice-info">
-            <div class="invoice-title">#CF-1056 &mdash; Extended Warranty</div>
-            <div class="invoice-detail">Mar 8, 2026</div>
-          </div>
-          <div class="invoice-right">
-            <div class="invoice-amount">$149.00</div>
-            <span class="badge badge-paid">Paid</span>
-          </div>
-        </div>
-
-        <div class="invoice-card" style="border-color: var(--color-warning); border-width: 1px;">
-          <div class="invoice-icon upcoming">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          </div>
-          <div class="invoice-info">
-            <div class="invoice-title">#CF-1070 &mdash; Filter Subscription</div>
-            <div class="invoice-detail">Aug 14, 2026</div>
-          </div>
-          <div class="invoice-right">
-            <div class="invoice-amount">$99.00</div>
-            <span class="badge badge-upcoming" style="margin-bottom: var(--space-2);">Upcoming</span>
-            <br>
-            <button class="btn btn-primary btn-sm" id="payNowBtn">Pay Now</button>
-          </div>
+        <div id="invoicesContainer">
+          <p style="font-size: var(--text-sm); color: var(--color-text-muted); padding: var(--space-4) 0;">No invoices yet. Invoices will appear here after your installation.</p>
         </div>
       </div>
 
       <!-- ====== WARRANTY ====== -->
       <div class="portal-view" id="tab-warranty">
-        <div class="warranty-card-portal">
-          <div class="warranty-header">
-            <div class="warranty-shield pink">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div id="warrantyContainer">
+          <div class="warranty-card-portal">
+            <div class="warranty-header">
+              <div class="warranty-shield cyan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="warranty-name" id="warrantyName">Standard Warranty</div>
+                <div class="warranty-equip" id="warrantyEquip">Contact us to view your warranty details</div>
+              </div>
             </div>
-            <div>
-              <div class="warranty-name">Platinum Extended Warranty</div>
-              <div class="warranty-equip">Pure Life &mdash; Waterdrop X16 (1600 GPD)</div>
-            </div>
-          </div>
-          <div class="warranty-progress-bar">
-            <div class="warranty-progress-fill" style="width: 4%; background: linear-gradient(90deg, #E8439A, #5B6BF5);"></div>
-          </div>
-          <div class="warranty-dates">
-            <span>Start: Feb 14, 2026</span>
-            <span>Expires: Feb 14, 2028</span>
-          </div>
-          <table class="coverage-table">
-            <tr><td>Coverage</td><td>Parts + Labor</td></tr>
-            <tr><td>Response Time</td><td>24 hours</td></tr>
-            <tr><td>Filter Changes</td><td>2 included</td></tr>
-            <tr><td>Transferable</td><td style="color: var(--color-success);">Yes</td></tr>
-          </table>
-        </div>
-
-        <div class="warranty-card-portal">
-          <div class="warranty-header">
-            <div class="warranty-shield cyan">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-            </div>
-            <div>
-              <div class="warranty-name">Manufacturer Warranty</div>
-              <div class="warranty-equip">Waterdrop Standard &mdash; 1 Year</div>
-            </div>
-          </div>
-          <div class="warranty-progress-bar">
-            <div class="warranty-progress-fill" style="width: 8%; background: linear-gradient(90deg, #00C9DB, #5B6BF5);"></div>
-          </div>
-          <div class="warranty-dates">
-            <span>Start: Feb 14, 2026</span>
-            <span>Expires: Feb 14, 2027</span>
+            <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Your warranty information will appear here after system installation.</p>
           </div>
         </div>
 
@@ -405,12 +295,16 @@
                 <select class="form-select" id="issueUrgency">
                   <option value="normal">Normal</option>
                   <option value="urgent">Urgent</option>
+                  <option value="emergency">Emergency</option>
                 </select>
               </div>
               <div class="form-group">
                 <label class="form-label">Preferred Date</label>
                 <input class="form-input" type="date" id="issueDate">
               </div>
+            </div>
+            <div id="emergencyNotice" style="display:none; background: var(--color-error-bg); border: 1px solid var(--color-error); border-radius: var(--radius-lg); padding: var(--space-3) var(--space-4); margin-bottom: var(--space-4); font-size: var(--text-xs); color: var(--color-error);">
+              Emergency requests are prioritized. Our team will contact you within 1 hour during business hours.
             </div>
             <button class="btn btn-primary" type="submit">Submit Request</button>
           </form>
@@ -421,20 +315,13 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
           </div>
           <div style="font-size: var(--text-lg); font-weight: 700; color: var(--color-dark); margin-bottom: var(--space-2);">Request Submitted</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">Your service request #SR-002 has been received. We'll contact you within 4 hours.</div>
+          <div style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">Your service request has been received. We will contact you shortly.</div>
           <button class="btn btn-secondary" id="newRequestBtn">Submit Another Request</button>
         </div>
 
         <div class="section-title" style="margin-top: var(--space-8);">Past Requests</div>
-        <div class="past-request">
-          <div class="past-request-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-          </div>
-          <div class="past-request-info">
-            <div class="past-request-title">#SR-001 &mdash; Filter Light Blinking</div>
-            <div class="past-request-meta">Feb 28, 2026 &mdash; Response time: 4 hours</div>
-          </div>
-          <span class="badge badge-resolved">Resolved</span>
+        <div id="pastRequestsContainer">
+          <p style="font-size: var(--text-sm); color: var(--color-text-muted); padding: var(--space-4) 0;">No previous service requests.</p>
         </div>
       </div>
 
@@ -444,137 +331,32 @@
           <div class="card">
             <div class="card-title">System Details</div>
             <div class="card-subtitle">Your CrystalFlow installation</div>
-            <div class="system-info-row"><span class="system-info-label">Package</span><span class="system-info-value" style="color: var(--color-cyan);">Pure Life</span></div>
-            <div class="system-info-row"><span class="system-info-label">Equipment</span><span class="system-info-value">Waterdrop X16 (1600 GPD)</span></div>
-            <div class="system-info-row"><span class="system-info-label">Install Date</span><span class="system-info-value">Feb 14, 2026</span></div>
-            <div class="system-info-row"><span class="system-info-label">Serial</span><span class="system-info-value">WD-X16-2026-0214-001</span></div>
-            <div class="system-info-row"><span class="system-info-label">Filters Installed</span><span class="system-info-value">1 of 4 included</span></div>
+            <div id="systemDetailsContent">
+              <p style="font-size: var(--text-sm); color: var(--color-text-muted);">No system installed yet. Schedule a free water test to get started.</p>
+              <button class="btn btn-primary btn-sm" style="margin-top: var(--space-3);" onclick="window.open('https://calendly.com/isaiah-pacheco5321/30min','_blank')">Book a Free Water Test</button>
+            </div>
           </div>
 
           <div class="card">
             <div class="card-title">Water Quality</div>
             <div class="card-subtitle">TDS readings over time (ppm)</div>
-            <div class="chart-container">
+            <div class="chart-container" id="tdsChartContainer" style="display:none;">
               <canvas id="tdsChart"></canvas>
             </div>
+            <p id="noTdsData" style="font-size: var(--text-sm); color: var(--color-text-muted);">Water quality data will appear after installation.</p>
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" id="maintenanceCard" style="display:none;">
           <div class="card-title">Maintenance Schedule</div>
           <div class="card-subtitle">Filter replacement timeline</div>
-
-          <div class="filter-status">
-            <div class="filter-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
-            </div>
-            <div class="filter-info">
-              <div class="filter-name">Filter 1 &mdash; RO Membrane</div>
-              <div class="filter-due">Due: Aug 2026</div>
-            </div>
-            <div class="filter-bar">
-              <div class="filter-bar-fill" style="width: 55%; background: linear-gradient(90deg, var(--color-warning), var(--color-cyan));"></div>
-            </div>
-            <div class="filter-pct">55%</div>
-          </div>
-
-          <div class="filter-status">
-            <div class="filter-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
-            </div>
-            <div class="filter-info">
-              <div class="filter-name">Filter 2 &mdash; Pre-Carbon</div>
-              <div class="filter-due">Due: Aug 2027</div>
-            </div>
-            <div class="filter-bar">
-              <div class="filter-bar-fill" style="width: 85%; background: linear-gradient(90deg, var(--color-success), var(--color-cyan));"></div>
-            </div>
-            <div class="filter-pct">85%</div>
-          </div>
-
-          <div class="filter-status">
-            <div class="filter-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
-            </div>
-            <div class="filter-info">
-              <div class="filter-name">Filter 3 &mdash; Post-Carbon</div>
-              <div class="filter-due">Due: Aug 2027</div>
-            </div>
-            <div class="filter-bar">
-              <div class="filter-bar-fill" style="width: 85%; background: linear-gradient(90deg, var(--color-success), var(--color-cyan));"></div>
-            </div>
-            <div class="filter-pct">85%</div>
-          </div>
+          <div id="maintenanceContent"></div>
         </div>
       </div>
 
     </div><!-- /.portal-content -->
   </div><!-- /.portal-body -->
 </div><!-- /.portal-shell -->
-
-<!-- ===== PAYMENT MODAL ===== -->
-<div class="modal-overlay" id="payModal">
-  <div class="modal-card">
-    <button class="modal-close" id="payModalClose">&times;</button>
-    <div class="modal-header">
-      <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
-        <rect width="36" height="36" rx="8" fill="url(#lg3)"/>
-        <path d="M10 18C10 13.58 13.58 10 18 10C18 14.42 21.58 18 26 18C26 22.42 22.42 26 18 26C18 21.58 14.42 18 10 18Z" fill="white" opacity="0.9"/>
-        <circle cx="18" cy="18" r="3" fill="white"/>
-        <defs>
-          <linearGradient id="lg3" x1="0" y1="0" x2="36" y2="36">
-            <stop stop-color="#E8439A"/>
-            <stop offset="0.5" stop-color="#5B6BF5"/>
-            <stop offset="1" stop-color="#00C9DB"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <div>
-        <div class="modal-brand">CrystalFlow</div>
-        <div class="modal-brand-sub">Secure Payment</div>
-      </div>
-    </div>
-    <div class="modal-body">
-      <div id="payFormSection">
-        <div class="modal-summary-title">Invoice #CF-1070</div>
-        <div class="modal-summary-line"><span>Filter Subscription</span><span>$99.00</span></div>
-        <div class="modal-divider"></div>
-        <div class="modal-summary-line modal-total-line"><span>Total Due</span><span>$99.00</span></div>
-
-        <div style="margin-top: var(--space-5);">
-          <div class="form-group">
-            <label class="form-label">Card Number</label>
-            <input class="form-input" type="text" placeholder="4242 4242 4242 4242" maxlength="19">
-          </div>
-          <div class="modal-form-grid">
-            <div class="form-group">
-              <label class="form-label">Expiry</label>
-              <input class="form-input" type="text" placeholder="MM/YY" maxlength="5">
-            </div>
-            <div class="form-group">
-              <label class="form-label">CVC</label>
-              <input class="form-input" type="text" placeholder="123" maxlength="4">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Zip</label>
-              <input class="form-input" type="text" placeholder="33139" maxlength="5">
-            </div>
-          </div>
-          <button class="btn btn-primary btn-block" id="paySubmitBtn">Pay $99.00</button>
-        </div>
-      </div>
-
-      <div class="modal-success" id="paySuccess">
-        <div class="modal-success-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-        </div>
-        <div class="modal-success-title">Payment Confirmed</div>
-        <div class="modal-success-desc">Invoice #CF-1070 has been paid. A receipt has been sent to your email.</div>
-        <button class="btn btn-secondary" id="paySuccessClose" style="margin-top: var(--space-5);">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Footer -->
 <footer style="position: fixed; bottom: 0; right: 0; padding: 4px 12px; font-size: 10px; color: var(--color-text-faint); z-index: 50;">

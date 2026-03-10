@@ -68,7 +68,6 @@
     setTimeout(function () {
       if (loginScreen) loginScreen.classList.remove("hidden");
     }, 200);
-    /* Show login form, hide register */
     if (loginSection) loginSection.style.display = "block";
     if (registerSection) registerSection.style.display = "none";
   }
@@ -115,29 +114,26 @@
     });
   }
 
-  /* Register */
+  /* Register — now reads separate first_name and last_name fields */
   if (registerForm) {
     registerForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      var nameEl = registerForm.querySelector('input[name="name"]');
+      var firstNameEl = registerForm.querySelector('input[name="first_name"]');
+      var lastNameEl = registerForm.querySelector('input[name="last_name"]');
       var emailEl = registerForm.querySelector('input[type="email"]');
       var phoneEl = registerForm.querySelector('input[type="tel"]');
       var passEl = registerForm.querySelector('input[type="password"]');
-      if (!emailEl || !passEl || !nameEl) return;
+      if (!emailEl || !passEl || !firstNameEl || !lastNameEl) return;
 
       var submitBtn = registerForm.querySelector('button[type="submit"]');
       if (submitBtn) { submitBtn.textContent = "Creating account..."; submitBtn.disabled = true; }
       if (registerError) registerError.style.display = "none";
 
-      var nameParts = nameEl.value.trim().split(" ");
-      var firstName = nameParts[0] || "";
-      var lastName = nameParts.slice(1).join(" ") || "";
-
       apiPortalPost("/api/portal/register", {
-        first_name: firstName,
-        last_name: lastName || firstName,
-        email: emailEl.value,
-        phone: phoneEl ? phoneEl.value : "",
+        first_name: firstNameEl.value.trim(),
+        last_name: lastNameEl.value.trim(),
+        email: emailEl.value.trim(),
+        phone: phoneEl ? phoneEl.value.trim() : "",
         password: passEl.value
       }).then(function (data) {
         authToken = data.access_token;
@@ -181,150 +177,304 @@
 
   /* ===== LOAD CUSTOMER DATA ===== */
   function loadCustomerData() {
-    /* Load profile */
     apiPortal("/api/portal/me").then(function (customer) {
       currentCustomer = customer;
       populateProfile(customer);
+      populateOverview(customer);
     }).catch(function () { /* handle silently */ });
 
-    /* Load appointments */
     apiPortal("/api/portal/appointments").then(function (data) {
-      populateActivity(data);
+      populateAppointments(data);
     }).catch(function () { /* handle silently */ });
 
-    /* Load invoices */
     apiPortal("/api/portal/invoices").then(function (data) {
       populateInvoices(data);
     }).catch(function () { /* handle silently */ });
 
-    /* Load warranty */
     apiPortal("/api/portal/warranty").then(function (data) {
       populateWarranty(data);
     }).catch(function () { /* handle silently */ });
 
-    /* Load system info */
     apiPortal("/api/portal/system").then(function (data) {
       populateSystem(data);
+    }).catch(function () { /* handle silently */ });
+
+    apiPortal("/api/portal/service-requests").then(function (data) {
+      populatePastRequests(data);
     }).catch(function () { /* handle silently */ });
   }
 
   /* ===== POPULATE PROFILE ===== */
   function populateProfile(customer) {
-    var nameEl = document.querySelector(".profile-name");
-    var emailEl = document.querySelector(".profile-email");
-    var avatarEl = document.querySelector(".profile-avatar");
     var greetingEl = document.getElementById("portalGreetingName");
-
-    var fullName = (customer.first_name || "") + " " + (customer.last_name || "");
-    fullName = fullName.trim() || "Customer";
-    if (nameEl) nameEl.textContent = fullName;
-    if (emailEl) emailEl.textContent = customer.email || "";
+    var fullName = ((customer.first_name || "") + " " + (customer.last_name || "")).trim() || "Customer";
     if (greetingEl) greetingEl.textContent = customer.first_name || "there";
-    if (avatarEl) {
-      var initials = (customer.first_name ? customer.first_name[0] : "") + (customer.last_name ? customer.last_name[0] : "");
-      avatarEl.textContent = initials.toUpperCase() || "?";
-    }
-
-    /* Update profile info rows */
-    var infoRows = document.querySelectorAll(".profile-info-row");
-    infoRows.forEach(function (row) {
-      var label = row.querySelector(".profile-info-label");
-      var value = row.querySelector(".profile-info-value");
-      if (!label || !value) return;
-      var labelText = label.textContent.toLowerCase();
-      if (labelText === "phone") value.textContent = customer.phone || "Not provided";
-      else if (labelText === "address") value.textContent = (customer.address || "Not provided") + (customer.zip_code ? ", " + customer.zip_code : "");
-      else if (labelText === "package") value.textContent = customer.package_installed || "Pending";
-      else if (labelText.indexOf("install") >= 0) value.textContent = customer.install_date || "Not scheduled";
-    });
   }
 
-  /* ===== POPULATE ACTIVITY ===== */
-  function populateActivity(appointments) {
-    var timeline = document.querySelector("#portal-activity .timeline");
-    if (!timeline || !appointments || appointments.length === 0) return;
+  /* ===== POPULATE OVERVIEW ===== */
+  function populateOverview(customer) {
+    var heading = document.getElementById("welcomeHeading");
+    var subtext = document.getElementById("welcomeSubtext");
+    var firstName = customer.first_name || "there";
 
-    timeline.innerHTML = "";
-    appointments.forEach(function (appt) {
-      var item = document.createElement("div");
-      item.className = "timeline-item";
-      var dotClass = appt.status === "completed" ? "success" : (appt.status === "scheduled" ? "cyan" : "violet");
-      var time = appt.date + (appt.start_time ? " at " + appt.start_time : "");
-      item.innerHTML =
-        '<div class="timeline-dot ' + dotClass + '">' +
-          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>' +
-        '</div>' +
-        '<div class="timeline-content">' +
-          '<div class="timeline-title">' + (appt.service_type || "Appointment") + '</div>' +
-          '<div class="timeline-desc">Status: ' + (appt.status || "Pending") + '</div>' +
-          '<div class="timeline-time">' + time + '</div>' +
+    if (customer.package_installed) {
+      if (heading) heading.textContent = "Hi " + firstName + ", your CrystalFlow system is running.";
+      if (subtext) {
+        var installInfo = customer.install_date ? "Installed on " + formatDate(customer.install_date) : "System active";
+        subtext.textContent = installInfo + " — All systems normal.";
+      }
+    } else {
+      if (heading) heading.textContent = "Welcome, " + firstName + ". Your account is ready.";
+      if (subtext) subtext.textContent = "Book a free water test to get started with your CrystalFlow system.";
+    }
+  }
+
+  /* ===== POPULATE APPOINTMENTS ===== */
+  function populateAppointments(appointments) {
+    var upcoming = [];
+    var past = [];
+    var now = new Date().toISOString().split("T")[0];
+
+    if (appointments && appointments.length > 0) {
+      appointments.forEach(function (appt) {
+        if (appt.status === "completed" || appt.status === "cancelled" || appt.date < now) {
+          past.push(appt);
+        } else {
+          upcoming.push(appt);
+        }
+      });
+    }
+
+    /* Upcoming */
+    var upEl = document.getElementById("upcomingApptsContainer");
+    if (upEl) {
+      if (upcoming.length === 0) {
+        upEl.innerHTML = '<p style="font-size: var(--text-sm); color: var(--color-text-muted); padding: var(--space-4) 0;">No upcoming appointments.</p>';
+      } else {
+        upEl.innerHTML = "";
+        upcoming.forEach(function (appt) {
+          upEl.appendChild(createApptCard(appt, "cyan"));
+        });
+      }
+    }
+
+    /* Past */
+    var pastEl = document.getElementById("pastApptsContainer");
+    if (pastEl) {
+      if (past.length === 0) {
+        pastEl.innerHTML = '<p style="font-size: var(--text-sm); color: var(--color-text-muted); padding: var(--space-4) 0;">No past appointments.</p>';
+      } else {
+        pastEl.innerHTML = "";
+        past.forEach(function (appt) {
+          pastEl.appendChild(createApptCard(appt, "green"));
+        });
+      }
+    }
+
+    /* Update overview next appointment card */
+    var nextApptContent = document.getElementById("nextApptContent");
+    if (nextApptContent && upcoming.length > 0) {
+      var next = upcoming[0];
+      var d = parseDate(next.date);
+      nextApptContent.innerHTML =
+        '<div style="display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-3);">' +
+          '<div class="appt-date-box cyan"><span class="month">' + d.month + '</span><span class="day">' + d.day + '</span></div>' +
+          '<div><div style="font-size: var(--text-sm); font-weight: 600; color: var(--color-dark);">' + (next.service_type || "Appointment") + '</div>' +
+          '<div style="font-size: var(--text-xs); color: var(--color-text-muted);">' + next.date + (next.start_time ? " at " + next.start_time : "") + '</div></div>' +
         '</div>';
-      timeline.appendChild(item);
-    });
+    }
+  }
+
+  function createApptCard(appt, colorClass) {
+    var d = parseDate(appt.date);
+    var badgeClass = appt.status === "completed" ? "badge-completed" : (appt.status === "cancelled" ? "badge-upcoming" : "badge-scheduled");
+    var div = document.createElement("div");
+    div.className = "appt-card";
+    div.innerHTML =
+      '<div class="appt-date-box ' + colorClass + '"><span class="month">' + d.month + '</span><span class="day">' + d.day + '</span></div>' +
+      '<div class="appt-info"><div class="appt-title">' + (appt.service_type || "Appointment") + '</div>' +
+      '<div class="appt-meta">' + appt.date + (appt.start_time ? " at " + appt.start_time : "") + '</div>' +
+      '<div class="appt-actions"><span class="badge ' + badgeClass + '">' + capitalize(appt.status || "scheduled") + '</span></div></div>';
+    return div;
   }
 
   /* ===== POPULATE INVOICES ===== */
   function populateInvoices(invoices) {
-    var tbody = document.querySelector("#portal-invoices .data-table tbody");
-    if (!tbody || !invoices || invoices.length === 0) return;
+    var container = document.getElementById("invoicesContainer");
+    var totalPaidEl = document.getElementById("totalPaid");
+    var pendingEl = document.getElementById("pendingBalance");
 
-    tbody.innerHTML = "";
+    if (!invoices || invoices.length === 0) {
+      if (container) container.innerHTML = '<p style="font-size: var(--text-sm); color: var(--color-text-muted); padding: var(--space-4) 0;">No invoices yet. Invoices will appear here after your installation.</p>';
+      return;
+    }
+
+    var totalPaid = 0;
+    var pending = 0;
     invoices.forEach(function (inv) {
-      var tr = document.createElement("tr");
-      var statusClass = inv.status === "paid" ? "badge-completed" : "badge-pending";
-      var statusText = inv.status === "paid" ? "Paid" : "Pending";
-      tr.innerHTML =
-        '<td>#' + (inv.invoice_number || inv.id) + '</td>' +
-        '<td>' + (inv.date || inv.created_at || "") + '</td>' +
-        '<td>' + (inv.description || "") + '</td>' +
-        '<td>$' + (inv.amount ? Number(inv.amount).toLocaleString("en-US", {minimumFractionDigits: 2}) : "0.00") + '</td>' +
-        '<td><span class="badge ' + statusClass + '">' + statusText + '</span></td>';
-      tbody.appendChild(tr);
+      if (inv.status === "paid") totalPaid += Number(inv.amount || 0);
+      else pending += Number(inv.amount || 0);
     });
+
+    if (totalPaidEl) totalPaidEl.textContent = "$" + totalPaid.toLocaleString("en-US", { minimumFractionDigits: 2 });
+    if (pendingEl) pendingEl.textContent = "$" + pending.toLocaleString("en-US", { minimumFractionDigits: 2 });
+
+    if (container) {
+      container.innerHTML = "";
+      invoices.forEach(function (inv) {
+        var isPaid = inv.status === "paid";
+        var div = document.createElement("div");
+        div.className = "invoice-card";
+        if (!isPaid) div.style.borderColor = "var(--color-warning)";
+        div.innerHTML =
+          '<div class="invoice-icon ' + (isPaid ? "paid" : "upcoming") + '">' +
+            (isPaid
+              ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>'
+              : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>') +
+          '</div>' +
+          '<div class="invoice-info"><div class="invoice-title">#' + (inv.invoice_number || inv.id) + ' — ' + (inv.description || "Invoice") + '</div>' +
+          '<div class="invoice-detail">' + formatDate(inv.due_date || inv.created_at) + '</div></div>' +
+          '<div class="invoice-right"><div class="invoice-amount">$' + Number(inv.amount).toLocaleString("en-US", { minimumFractionDigits: 2 }) + '</div>' +
+          '<span class="badge ' + (isPaid ? "badge-paid" : "badge-upcoming") + '">' + (isPaid ? "Paid" : "Pending") + '</span></div>';
+        container.appendChild(div);
+      });
+    }
   }
 
   /* ===== POPULATE WARRANTY ===== */
   function populateWarranty(warranty) {
     if (!warranty) return;
-    var titleEl = document.querySelector("#portal-warranty .warranty-title");
-    var subtitleEl = document.querySelector("#portal-warranty .warranty-subtitle");
-    if (titleEl && warranty.type) titleEl.textContent = warranty.type;
-    if (subtitleEl && warranty.system_name) subtitleEl.textContent = warranty.system_name;
+    var container = document.getElementById("warrantyContainer");
+    if (!container) return;
 
-    /* Update progress bar */
-    var progressBar = document.querySelector("#portal-warranty .warranty-progress-bar");
-    if (progressBar && warranty.start_date && warranty.end_date) {
-      var start = new Date(warranty.start_date).getTime();
-      var end = new Date(warranty.end_date).getTime();
+    var plan = warranty.plan || "standard";
+    var coverage = warranty.coverage || {};
+    var planNames = { standard: "Standard Warranty", extended: "Extended Warranty", premium: "Premium Warranty" };
+    var planName = planNames[plan] || "Standard Warranty";
+
+    var html = '<div class="warranty-card-portal"><div class="warranty-header">' +
+      '<div class="warranty-shield ' + (plan === "premium" ? "pink" : "cyan") + '">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>' +
+      '<div><div class="warranty-name">' + planName + '</div>' +
+      '<div class="warranty-equip">' + (warranty.package || "CrystalFlow System") + '</div></div></div>';
+
+    if (warranty.install_date && warranty.expiry) {
+      var start = new Date(warranty.install_date).getTime();
+      var end = new Date(warranty.expiry).getTime();
       var now = Date.now();
       var pct = Math.min(100, Math.max(0, ((now - start) / (end - start)) * 100));
-      progressBar.style.width = pct.toFixed(1) + "%";
+      html += '<div class="warranty-progress-bar"><div class="warranty-progress-fill" style="width: ' + pct.toFixed(1) + '%; background: linear-gradient(90deg, #E8439A, #5B6BF5);"></div></div>';
+      html += '<div class="warranty-dates"><span>Start: ' + formatDate(warranty.install_date) + '</span><span>Expires: ' + formatDate(warranty.expiry) + '</span></div>';
     }
 
-    /* Update dates */
-    var dates = document.querySelector("#portal-warranty .warranty-dates");
-    if (dates && warranty.start_date && warranty.end_date) {
-      dates.innerHTML =
-        '<span>Start: ' + formatDate(warranty.start_date) + '</span>' +
-        '<span>Expires: ' + formatDate(warranty.end_date) + '</span>';
+    if (coverage.duration) {
+      html += '<table class="coverage-table">';
+      html += '<tr><td>Duration</td><td>' + coverage.duration + '</td></tr>';
+      html += '<tr><td>Parts</td><td>' + (coverage.parts ? "Covered" : "Not covered") + '</td></tr>';
+      html += '<tr><td>Labor</td><td>' + (coverage.labor ? "Covered" : "Not covered") + '</td></tr>';
+      html += '<tr><td>Filter Changes</td><td>' + (coverage.filters ? "Included" : "Not included") + '</td></tr>';
+      html += '<tr><td>Emergency Service</td><td>' + (coverage.emergency ? "Included" : "Not included") + '</td></tr>';
+      html += '</table>';
     }
+
+    html += '</div>';
+    container.innerHTML = html;
   }
 
   /* ===== POPULATE SYSTEM ===== */
   function populateSystem(system) {
     if (!system) return;
-    /* Update TDS reading if available */
-    var tdsEl = document.querySelector(".tds-current-value");
-    if (tdsEl && system.current_tds !== undefined) {
-      tdsEl.textContent = system.current_tds + " ppm";
+
+    var detailsEl = document.getElementById("systemDetailsContent");
+    if (detailsEl && system.package) {
+      detailsEl.innerHTML = '';
+      var rows = [
+        { label: "Package", value: system.package || "N/A" },
+        { label: "Equipment", value: system.model || "N/A" },
+        { label: "Install Date", value: system.install_date ? formatDate(system.install_date) : "N/A" },
+        { label: "Serial", value: system.serial || "N/A" },
+      ];
+      rows.forEach(function (row) {
+        var div = document.createElement("div");
+        div.className = "system-info-row";
+        div.innerHTML = '<span class="system-info-label">' + row.label + '</span><span class="system-info-value">' + row.value + '</span>';
+        detailsEl.appendChild(div);
+      });
+    }
+
+    /* Maintenance schedule */
+    if (system.maintenance_schedule && system.maintenance_schedule.length > 0) {
+      var mainCard = document.getElementById("maintenanceCard");
+      var mainContent = document.getElementById("maintenanceContent");
+      if (mainCard) mainCard.style.display = "block";
+      if (mainContent) {
+        mainContent.innerHTML = "";
+        system.maintenance_schedule.forEach(function (item) {
+          var div = document.createElement("div");
+          div.className = "filter-status";
+          div.innerHTML =
+            '<div class="filter-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg></div>' +
+            '<div class="filter-info"><div class="filter-name">' + item.item + '</div><div class="filter-due">Every ' + item.interval + '</div></div>';
+          mainContent.appendChild(div);
+        });
+      }
+    }
+
+    /* System health on overview */
+    var healthEl = document.getElementById("systemHealthContent");
+    if (healthEl && system.package) {
+      healthEl.innerHTML =
+        '<div class="system-health-row"><span class="status-dot green"></span><span class="system-health-status">All Systems Normal</span></div>' +
+        '<div class="health-detail"><span>Package</span><span>' + (system.package || "N/A") + '</span></div>' +
+        '<div class="health-detail"><span>Equipment</span><span>' + (system.model || "N/A") + '</span></div>' +
+        '<div class="health-detail"><span>Water Quality</span><span style="color: var(--color-success);">Excellent</span></div>';
     }
   }
 
-  /* ===== HELPER ===== */
+  /* ===== POPULATE PAST SERVICE REQUESTS ===== */
+  function populatePastRequests(requests) {
+    var container = document.getElementById("pastRequestsContainer");
+    if (!container) return;
+
+    if (!requests || requests.length === 0) {
+      container.innerHTML = '<p style="font-size: var(--text-sm); color: var(--color-text-muted); padding: var(--space-4) 0;">No previous service requests.</p>';
+      return;
+    }
+
+    container.innerHTML = "";
+    requests.forEach(function (req) {
+      var statusBadge = req.status === "completed" || req.status === "closed" ? "badge-resolved" : (req.status === "open" ? "badge-scheduled" : "badge-upcoming");
+      var div = document.createElement("div");
+      div.className = "past-request";
+      div.style.marginBottom = "var(--space-3)";
+      div.innerHTML =
+        '<div class="past-request-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>' +
+        '<div class="past-request-info"><div class="past-request-title">#SR-' + String(req.id).padStart(3, "0") + ' — ' + capitalize(req.category) + '</div>' +
+        '<div class="past-request-meta">' + formatDate(req.created_at) + ' — Priority: ' + capitalize(req.priority) + '</div></div>' +
+        '<span class="badge ' + statusBadge + '">' + capitalize(req.status) + '</span>';
+      container.appendChild(div);
+    });
+  }
+
+  /* ===== HELPER FUNCTIONS ===== */
   function formatDate(dateStr) {
     if (!dateStr) return "";
     var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
     return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  }
+
+  function parseDate(dateStr) {
+    if (!dateStr) return { month: "---", day: "--" };
+    var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    var d = new Date(dateStr + "T00:00:00");
+    if (isNaN(d.getTime())) return { month: "---", day: "--" };
+    return { month: months[d.getMonth()], day: d.getDate() };
+  }
+
+  function capitalize(str) {
+    if (!str) return "";
+    return str.charAt(0).toUpperCase() + str.slice(1).replace(/_/g, " ");
   }
 
   /* ===== TAB NAVIGATION ===== */
@@ -342,7 +492,6 @@
     if (navTarget) navTarget.classList.add("active");
     if (viewTarget) viewTarget.classList.add("active");
 
-    /* Initialize TDS chart on first visit to system tab */
     if (tabId === "system" && !tdsChartCreated) {
       tdsChartCreated = true;
       setTimeout(initTDSChart, 100);
@@ -364,18 +513,37 @@
     });
   });
 
+  /* Emergency button — go to service tab with urgency pre-selected */
+  var emergencyBtn = document.getElementById("emergencyBtn");
+  if (emergencyBtn) {
+    emergencyBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      switchTab("service");
+      var urgencyEl = document.getElementById("issueUrgency");
+      if (urgencyEl) {
+        urgencyEl.value = "emergency";
+        urgencyEl.dispatchEvent(new Event("change"));
+      }
+    });
+  }
+
   /* ===== WATER QUALITY CHART ===== */
   function initTDSChart() {
     var ctx = document.getElementById("tdsChart");
-    if (!ctx) return;
+    var container = document.getElementById("tdsChartContainer");
+    var noData = document.getElementById("noTdsData");
+    if (!ctx || !currentCustomer || !currentCustomer.package_installed) return;
+
+    if (container) container.style.display = "block";
+    if (noData) noData.style.display = "none";
 
     new Chart(ctx, {
       type: "line",
       data: {
-        labels: ["Before Install", "After Install", "Mar 2026", "Apr 2026", "May 2026", "Jun 2026"],
+        labels: ["Before Install", "After Install", "Month 1", "Month 2", "Month 3"],
         datasets: [{
           label: "TDS (ppm)",
-          data: [380, 12, 12, 14, 11, 13],
+          data: [380, 12, 13, 12, 14],
           borderColor: "#00A5A8",
           backgroundColor: "rgba(0, 165, 168, 0.1)",
           fill: true,
@@ -401,10 +569,7 @@
         scales: {
           y: {
             beginAtZero: true,
-            ticks: {
-              callback: function (v) { return v + " ppm"; },
-              color: "#9B98B5",
-            },
+            ticks: { callback: function (v) { return v + " ppm"; }, color: "#9B98B5" },
             grid: { color: "rgba(216, 218, 229, 0.5)" },
           },
           x: {
@@ -421,24 +586,44 @@
   var serviceFormCard = document.getElementById("serviceFormCard");
   var serviceSuccess = document.getElementById("serviceSuccess");
   var newRequestBtn = document.getElementById("newRequestBtn");
+  var issueUrgency = document.getElementById("issueUrgency");
+  var emergencyNotice = document.getElementById("emergencyNotice");
+
+  /* Show/hide emergency notice */
+  if (issueUrgency) {
+    issueUrgency.addEventListener("change", function () {
+      if (emergencyNotice) {
+        emergencyNotice.style.display = issueUrgency.value === "emergency" ? "block" : "none";
+      }
+    });
+  }
 
   if (serviceForm) {
     serviceForm.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      var typeEl = serviceForm.querySelector("select");
-      var descEl = serviceForm.querySelector("textarea");
+      var typeEl = document.getElementById("issueType");
+      var descEl = document.getElementById("issueDesc");
+      var urgencyEl = document.getElementById("issueUrgency");
       var submitBtn = serviceForm.querySelector('button[type="submit"]');
 
       if (submitBtn) { submitBtn.textContent = "Submitting..."; submitBtn.disabled = true; }
 
+      /* Map urgency values to API priority values */
+      var priorityMap = { normal: "medium", urgent: "high", emergency: "urgent" };
+      var priority = priorityMap[urgencyEl ? urgencyEl.value : "normal"] || "medium";
+
       apiPortalPost("/api/portal/service-requests", {
         category: typeEl ? typeEl.value : "general",
         description: descEl ? descEl.value : "Service request",
-        priority: "medium"
+        priority: priority
       }).then(function () {
         if (serviceFormCard) serviceFormCard.style.display = "none";
         if (serviceSuccess) serviceSuccess.classList.add("visible");
+        /* Reload past requests */
+        apiPortal("/api/portal/service-requests").then(function (data) {
+          populatePastRequests(data);
+        }).catch(function () {});
       }).catch(function (err) {
         alert("Failed to submit request: " + err.message);
       }).finally(function () {
@@ -452,63 +637,19 @@
       if (serviceSuccess) serviceSuccess.classList.remove("visible");
       if (serviceFormCard) serviceFormCard.style.display = "block";
       if (serviceForm) serviceForm.reset();
-    });
-  }
-
-  /* ===== PAYMENT MODAL ===== */
-  var payModal = document.getElementById("payModal");
-  var payNowBtn = document.getElementById("payNowBtn");
-  var payModalClose = document.getElementById("payModalClose");
-  var paySubmitBtn = document.getElementById("paySubmitBtn");
-  var payFormSection = document.getElementById("payFormSection");
-  var paySuccess = document.getElementById("paySuccess");
-  var paySuccessClose = document.getElementById("paySuccessClose");
-
-  function openPayModal() {
-    if (!payModal) return;
-    if (payFormSection) payFormSection.style.display = "block";
-    if (paySuccess) paySuccess.classList.remove("visible");
-    payModal.classList.add("active");
-  }
-
-  function closePayModal() {
-    if (payModal) payModal.classList.remove("active");
-  }
-
-  if (payNowBtn) payNowBtn.addEventListener("click", openPayModal);
-  if (payModalClose) payModalClose.addEventListener("click", closePayModal);
-  if (paySuccessClose) paySuccessClose.addEventListener("click", closePayModal);
-
-  if (payModal) {
-    payModal.addEventListener("click", function (e) {
-      if (e.target === payModal) closePayModal();
-    });
-  }
-
-  if (paySubmitBtn) {
-    paySubmitBtn.addEventListener("click", function () {
-      paySubmitBtn.textContent = "Processing...";
-      paySubmitBtn.disabled = true;
-
-      setTimeout(function () {
-        if (payFormSection) payFormSection.style.display = "none";
-        if (paySuccess) paySuccess.classList.add("visible");
-        paySubmitBtn.textContent = "Pay $99.00";
-        paySubmitBtn.disabled = false;
-      }, 1500);
+      if (emergencyNotice) emergencyNotice.style.display = "none";
     });
   }
 
   /* ===== AUTO-LOGIN CHECK ===== */
   if (authToken) {
-    /* Validate existing token */
     apiPortal("/api/portal/me").then(function (customer) {
       currentCustomer = customer;
       populateProfile(customer);
+      populateOverview(customer);
       showPortal();
       loadCustomerData();
     }).catch(function () {
-      /* Token expired, show login */
       signOut();
     });
   }
