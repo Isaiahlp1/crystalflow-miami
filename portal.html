@@ -266,7 +266,7 @@
           </div>
         </div>
 
-        <button class="btn btn-pink" style="margin-top: var(--space-4);" onclick="alert('Warranty claim form coming soon!')">File Warranty Claim</button>
+        <button class="btn btn-pink" style="margin-top: var(--space-4);" onclick="document.querySelector('[data-tab=\"service\"]').click(); setTimeout(function(){document.getElementById('issueType').value='warranty_claim';},100);">File Warranty Claim</button>
       </div>
 
       <!-- ====== SERVICE REQUESTS ====== -->
@@ -282,6 +282,7 @@
                 <option value="pressure">Low Pressure</option>
                 <option value="leak">Leak</option>
                 <option value="taste">Strange Taste</option>
+                <option value="warranty_claim">Warranty Claim</option>
                 <option value="other">Other</option>
               </select>
             </div>
