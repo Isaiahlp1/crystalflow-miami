@@ -343,8 +343,46 @@
           '<div class="invoice-info"><div class="invoice-title">#' + (inv.invoice_number || inv.id) + ' — ' + (inv.description || "Invoice") + '</div>' +
           '<div class="invoice-detail">' + formatDate(inv.due_date || inv.created_at) + '</div></div>' +
           '<div class="invoice-right"><div class="invoice-amount">$' + Number(inv.amount).toLocaleString("en-US", { minimumFractionDigits: 2 }) + '</div>' +
-          '<span class="badge ' + (isPaid ? "badge-paid" : "badge-upcoming") + '">' + (isPaid ? "Paid" : "Pending") + '</span></div>';
+          (isPaid
+            ? '<span class="badge badge-paid">Paid</span>'
+            : '<button class="btn btn-primary btn-sm pay-invoice-btn" data-invoice-id="' + inv.id + '" style="font-size:0.75rem;padding:6px 14px;margin-top:4px;">Pay Now</button>') +
+          '</div>';
         container.appendChild(div);
+      });
+
+      /* Wire Pay Now buttons */
+      container.querySelectorAll(".pay-invoice-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var invoiceId = btn.getAttribute("data-invoice-id");
+          btn.textContent = "Redirecting...";
+          btn.disabled = true;
+
+          fetch(API_BASE + "/api/stripe/invoice-checkout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              invoice_id: parseInt(invoiceId, 10),
+              success_url: window.location.origin + "/portal.html?payment=success",
+              cancel_url: window.location.origin + "/portal.html?payment=cancelled",
+            }),
+          })
+            .then(function (r) {
+              if (!r.ok) return r.json().then(function (d) { throw new Error(d.detail || "Checkout failed"); });
+              return r.json();
+            })
+            .then(function (data) {
+              if (data.checkout_url) {
+                window.location.href = data.checkout_url;
+              } else {
+                throw new Error("No checkout URL returned");
+              }
+            })
+            .catch(function (err) {
+              btn.textContent = "Pay Now";
+              btn.disabled = false;
+              alert("Payment error: " + err.message);
+            });
+        });
       });
     }
   }
@@ -744,8 +782,164 @@
     });
   }
 
+  /* ===== FORGOT PASSWORD ===== */
+  var forgotPasswordLink = document.getElementById("forgotPasswordLink");
+  var forgotPasswordSection = document.getElementById("forgotPasswordSection");
+  var forgotPasswordForm = document.getElementById("forgotPasswordForm");
+  var forgotError = document.getElementById("forgotError");
+  var forgotSuccess = document.getElementById("forgotSuccess");
+  var backToLoginFromForgot = document.getElementById("backToLoginFromForgot");
+
+  function showForgotPassword() {
+    if (loginSection) loginSection.style.display = "none";
+    if (registerSection) registerSection.style.display = "none";
+    if (forgotPasswordSection) forgotPasswordSection.style.display = "block";
+    if (forgotError) forgotError.style.display = "none";
+    if (forgotSuccess) forgotSuccess.style.display = "none";
+  }
+
+  if (forgotPasswordLink) {
+    forgotPasswordLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      showForgotPassword();
+    });
+  }
+
+  if (backToLoginFromForgot) {
+    backToLoginFromForgot.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (forgotPasswordSection) forgotPasswordSection.style.display = "none";
+      if (loginSection) loginSection.style.display = "block";
+    });
+  }
+
+  if (forgotPasswordForm) {
+    forgotPasswordForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var emailEl = forgotPasswordForm.querySelector('input[type="email"]');
+      if (!emailEl) return;
+      var submitBtn = forgotPasswordForm.querySelector('button[type="submit"]');
+      if (submitBtn) { submitBtn.textContent = "Sending..."; submitBtn.disabled = true; }
+      if (forgotError) forgotError.style.display = "none";
+      if (forgotSuccess) forgotSuccess.style.display = "none";
+
+      fetch(API_BASE + "/api/portal/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: emailEl.value.trim() }),
+      }).then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (forgotSuccess) {
+            forgotSuccess.textContent = data.message || "If that email is in our system, a reset link has been sent.";
+            forgotSuccess.style.display = "block";
+          }
+          emailEl.value = "";
+        })
+        .catch(function () {
+          if (forgotError) {
+            forgotError.textContent = "Something went wrong. Please try again.";
+            forgotError.style.display = "block";
+          }
+        })
+        .finally(function () {
+          if (submitBtn) { submitBtn.textContent = "Send Reset Link"; submitBtn.disabled = false; }
+        });
+    });
+  }
+
+  /* ===== RESET PASSWORD (from email link) ===== */
+  var resetPasswordSection = document.getElementById("resetPasswordSection");
+  var resetPasswordForm = document.getElementById("resetPasswordForm");
+  var resetError = document.getElementById("resetError");
+  var resetSuccess = document.getElementById("resetSuccess");
+  var backToLoginFromReset = document.getElementById("backToLoginFromReset");
+
+  function getUrlParam(name) {
+    var params = new URLSearchParams(window.location.search);
+    return params.get(name);
+  }
+
+  var resetToken = getUrlParam("reset_token");
+
+  if (resetToken) {
+    /* Show reset password form instead of login */
+    if (loginSection) loginSection.style.display = "none";
+    if (registerSection) registerSection.style.display = "none";
+    if (forgotPasswordSection) forgotPasswordSection.style.display = "none";
+    if (resetPasswordSection) resetPasswordSection.style.display = "block";
+  }
+
+  if (backToLoginFromReset) {
+    backToLoginFromReset.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (resetPasswordSection) resetPasswordSection.style.display = "none";
+      if (loginSection) loginSection.style.display = "block";
+      /* Clean URL */
+      window.history.replaceState({}, document.title, window.location.pathname);
+    });
+  }
+
+  if (resetPasswordForm) {
+    resetPasswordForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var newPassEl = resetPasswordForm.querySelector('input[name="new_password"]');
+      var confirmEl = resetPasswordForm.querySelector('input[name="confirm_password"]');
+      if (!newPassEl || !confirmEl) return;
+
+      if (newPassEl.value !== confirmEl.value) {
+        if (resetError) { resetError.textContent = "Passwords do not match."; resetError.style.display = "block"; }
+        return;
+      }
+      if (newPassEl.value.length < 6) {
+        if (resetError) { resetError.textContent = "Password must be at least 6 characters."; resetError.style.display = "block"; }
+        return;
+      }
+
+      var submitBtn = resetPasswordForm.querySelector('button[type="submit"]');
+      if (submitBtn) { submitBtn.textContent = "Resetting..."; submitBtn.disabled = true; }
+      if (resetError) resetError.style.display = "none";
+      if (resetSuccess) resetSuccess.style.display = "none";
+
+      fetch(API_BASE + "/api/portal/reset-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: resetToken, new_password: newPassEl.value }),
+      }).then(function (r) {
+        if (!r.ok) return r.json().then(function (data) { throw new Error(data.detail || "Reset failed"); });
+        return r.json();
+      }).then(function (data) {
+        if (resetSuccess) {
+          resetSuccess.textContent = data.message || "Password has been reset. You can now sign in.";
+          resetSuccess.style.display = "block";
+        }
+        resetPasswordForm.style.display = "none";
+        /* Clean URL */
+        window.history.replaceState({}, document.title, window.location.pathname);
+        /* Show back to login after 2 seconds */
+        setTimeout(function () {
+          if (resetPasswordSection) resetPasswordSection.style.display = "none";
+          if (loginSection) loginSection.style.display = "block";
+        }, 3000);
+      }).catch(function (err) {
+        if (resetError) { resetError.textContent = err.message; resetError.style.display = "block"; }
+      }).finally(function () {
+        if (submitBtn) { submitBtn.textContent = "Reset Password"; submitBtn.disabled = false; }
+      });
+    });
+  }
+
+  /* ===== PAYMENT SUCCESS BANNER ===== */
+  var paymentStatus = getUrlParam("payment");
+  if (paymentStatus === "success") {
+    var banner = document.createElement("div");
+    banner.style.cssText = "position:fixed;top:0;left:0;right:0;background:#0066CC;color:#fff;padding:12px 20px;text-align:center;font-size:0.9rem;z-index:9999;";
+    banner.innerHTML = 'Payment received successfully. Thank you. <a href="#" style="color:#fff;text-decoration:underline;margin-left:12px;" onclick="this.parentElement.remove();window.history.replaceState({},document.title,window.location.pathname);return false;">Dismiss</a>';
+    document.body.prepend(banner);
+    setTimeout(function () { if (banner.parentElement) banner.remove(); }, 8000);
+  }
+
   /* ===== AUTO-LOGIN CHECK ===== */
-  if (authToken) {
+  if (authToken && !resetToken) {
     apiPortal("/api/portal/me").then(function (customer) {
       currentCustomer = customer;
       populateProfile(customer);
