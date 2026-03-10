@@ -56,7 +56,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 
 <!-- Google Analytics 4 + Google Ads -->
@@ -165,37 +165,36 @@
    DESIGN TOKENS — Obsidian Reserve Palette
    ============================================================ */
 :root {
-  /* Brand Colors */
-  --color-charcoal: #1C1C1E;
-  --color-copper: #B87333;
-  --color-copper-hover: #9A5E27;
-  --color-teal: #2A6F6F;
-  --color-teal-hover: #1F5454;
-  --color-ivory: #FAF8F5;
-  --color-near-black: #141414;
+  /* Brand Colors — Miami Vice */
+  --color-pink: #E8439A;
+  --color-pink-hover: #CC3385;
+  --color-cyan: #00C9DB;
+  --color-cyan-hover: #00A8B8;
+  --color-violet: #5B6BF5;
+  --color-navy: #0F1729;
 
   /* Light Mode (default) */
-  --color-bg: #FAF8F5;
+  --color-bg: #FAFBFE;
   --color-surface: #FFFFFF;
-  --color-surface-2: #F4F1EC;
-  --color-surface-offset: #EDEAE3;
-  --color-divider: #DDD9D0;
-  --color-border: #D5D0C8;
-  --color-text: #141414;
-  --color-text-muted: #6B6760;
-  --color-text-faint: #ABA9A4;
-  --color-text-inverse: #FAF8F5;
-  --color-primary: #B87333;
-  --color-primary-hover: #9A5E27;
-  --color-secondary: #2A6F6F;
-  --color-secondary-hover: #1F5454;
-  --color-hero-bg: #1C1C1E;
+  --color-surface-2: #F2F4FA;
+  --color-surface-offset: #EBF0FA;
+  --color-divider: #DDE3F0;
+  --color-border: #CDD5E8;
+  --color-text: #0F1729;
+  --color-text-muted: #5A6580;
+  --color-text-faint: #A0AAC0;
+  --color-text-inverse: #FAFBFE;
+  --color-primary: #E8439A;
+  --color-primary-hover: #CC3385;
+  --color-secondary: #00C9DB;
+  --color-secondary-hover: #00A8B8;
+  --color-hero-bg: #0D0B2E;
 
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(20, 20, 20, 0.06);
-  --shadow-md: 0 4px 16px rgba(20, 20, 20, 0.10);
-  --shadow-lg: 0 12px 40px rgba(20, 20, 20, 0.14);
-  --shadow-xl: 0 24px 64px rgba(20, 20, 20, 0.18);
+  --shadow-sm: 0 1px 3px rgba(15, 23, 41, 0.06);
+  --shadow-md: 0 4px 16px rgba(15, 23, 41, 0.10);
+  --shadow-lg: 0 12px 40px rgba(15, 23, 41, 0.14);
+  --shadow-xl: 0 24px 64px rgba(15, 23, 41, 0.18);
 
   /* Type Scale */
   --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
@@ -236,7 +235,7 @@
   --transition-exit: 200ms cubic-bezier(0.4, 0, 1, 1);
 
   /* Fonts */
-  --font-display: 'Cormorant', 'Georgia', serif;
+  --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Satoshi', 'Inter', -apple-system, sans-serif;
 
   /* Content widths */
@@ -247,48 +246,48 @@
 
 /* Dark Mode */
 [data-theme="dark"] {
-  --color-bg: #111110;
-  --color-surface: #1A1918;
-  --color-surface-2: #222120;
-  --color-surface-offset: #2A2927;
-  --color-divider: #333230;
-  --color-border: #3F3E3C;
-  --color-text: #E8E5E0;
-  --color-text-muted: #908D88;
-  --color-text-faint: #5E5C58;
-  --color-text-inverse: #111110;
-  --color-primary: #C9874A;
-  --color-primary-hover: #B87333;
-  --color-secondary: #3D8E8E;
-  --color-secondary-hover: #2A6F6F;
-  --color-hero-bg: #0D0D0D;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.45);
-  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.55);
+  --color-bg: #0D0B1E;
+  --color-surface: #151230;
+  --color-surface-2: #1C1940;
+  --color-surface-offset: #231F50;
+  --color-divider: #2A2560;
+  --color-border: #3A3570;
+  --color-text: #EDE8F5;
+  --color-text-muted: #8A80B0;
+  --color-text-faint: #5A5080;
+  --color-text-inverse: #0D0B1E;
+  --color-primary: #FF5DAE;
+  --color-primary-hover: #E8439A;
+  --color-secondary: #00E5F0;
+  --color-secondary-hover: #00C9DB;
+  --color-hero-bg: #050318;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.65);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --color-bg: #111110;
-    --color-surface: #1A1918;
-    --color-surface-2: #222120;
-    --color-surface-offset: #2A2927;
-    --color-divider: #333230;
-    --color-border: #3F3E3C;
-    --color-text: #E8E5E0;
-    --color-text-muted: #908D88;
-    --color-text-faint: #5E5C58;
-    --color-text-inverse: #111110;
-    --color-primary: #C9874A;
-    --color-primary-hover: #B87333;
-    --color-secondary: #3D8E8E;
-    --color-secondary-hover: #2A6F6F;
-    --color-hero-bg: #0D0D0D;
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
-    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.45);
-    --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.55);
+    --color-bg: #0D0B1E;
+    --color-surface: #151230;
+    --color-surface-2: #1C1940;
+    --color-surface-offset: #231F50;
+    --color-divider: #2A2560;
+    --color-border: #3A3570;
+    --color-text: #EDE8F5;
+    --color-text-muted: #8A80B0;
+    --color-text-faint: #5A5080;
+    --color-text-inverse: #0D0B1E;
+    --color-primary: #FF5DAE;
+    --color-primary-hover: #E8439A;
+    --color-secondary: #00E5F0;
+    --color-secondary-hover: #00C9DB;
+    --color-hero-bg: #050318;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.55);
+    --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.65);
   }
 }
 
@@ -331,7 +330,7 @@ h1, h2, h3, h4, h5, h6 {
 p, li { text-wrap: pretty; }
 
 ::selection {
-  background: rgba(184, 115, 51, 0.2);
+  background: rgba(232, 67, 154, 0.2);
   color: var(--color-text);
 }
 
@@ -407,7 +406,7 @@ a, button, [role="button"] {
 }
 
 .btn--primary {
-  background: var(--color-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
   color: #fff;
 }
 .btn--primary:hover {
@@ -423,7 +422,7 @@ a, button, [role="button"] {
   border: 1.5px solid var(--color-primary);
 }
 .btn--outline:hover {
-  background: var(--color-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
   color: #fff;
   box-shadow: var(--shadow-sm);
 }
@@ -484,7 +483,7 @@ a, button, [role="button"] {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(250, 248, 245, 0.92);
+  background: rgba(250, 251, 254, 0.92);
   backdrop-filter: blur(8px) saturate(1.5);
   -webkit-backdrop-filter: blur(8px) saturate(1.5);
   transition: background var(--transition-enter),
@@ -493,18 +492,18 @@ a, button, [role="button"] {
 }
 
 .site-header.scrolled {
-  background: rgba(250, 248, 245, 0.85);
+  background: rgba(250, 251, 254, 0.85);
   backdrop-filter: blur(16px) saturate(1.8);
   -webkit-backdrop-filter: blur(16px) saturate(1.8);
   box-shadow: 0 1px 0 var(--color-divider), var(--shadow-sm);
 }
 
 [data-theme="dark"] .site-header.scrolled {
-  background: rgba(17, 17, 16, 0.88);
+  background: rgba(13, 11, 30, 0.88);
 }
 
 .site-header.hero-visible {
-  background: rgba(20, 20, 20, 0.25);
+  background: rgba(13, 11, 46, 0.3);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   box-shadow: none;
@@ -529,16 +528,16 @@ a, button, [role="button"] {
 }
 
 .site-header.hero-visible .header-logo {
-  color: #FAF8F5;
+  color: #FAFBFE;
 }
 
 .site-header.hero-visible .header-logo-name {
-  color: #FAF8F5;
+  color: #FAFBFE;
   text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 .site-header.hero-visible .header-logo-sub {
-  color: #C9874A;
+  color: #00C9DB;
   text-shadow: none;
 }
 
@@ -597,12 +596,12 @@ a, button, [role="button"] {
 }
 
 .site-header.hero-visible .header-nav a {
-  color: rgba(250, 248, 245, 0.88);
+  color: rgba(237, 232, 245, 0.88);
   text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 .site-header.hero-visible .header-nav a:hover {
-  color: #FAF8F5;
+  color: #FAFBFE;
   background: rgba(255,255,255,0.12);
   text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
@@ -638,12 +637,12 @@ a, button, [role="button"] {
 }
 
 .site-header.hero-visible .theme-toggle {
-  color: rgba(250, 248, 245, 0.75);
+  color: rgba(250, 251, 254, 0.75);
   border-color: rgba(255,255,255,0.3);
 }
 
 .site-header.hero-visible .theme-toggle:hover {
-  color: #FAF8F5;
+  color: #FAFBFE;
   border-color: rgba(255,255,255,0.7);
   background: rgba(255,255,255,0.1);
 }
@@ -661,7 +660,7 @@ a, button, [role="button"] {
 }
 
 .site-header.hero-visible .mobile-menu-btn {
-  color: #FAF8F5;
+  color: #FAFBFE;
 }
 
 /* Mobile Nav */
@@ -724,7 +723,7 @@ a, button, [role="button"] {
   display: flex;
   align-items: flex-end;
   overflow: hidden;
-  background: var(--color-charcoal);
+  background: linear-gradient(135deg, #0D0B2E 0%, #1A1145 35%, #2D1B69 65%, #4B1D8E 100%);
 }
 
 .hero-parallax {
@@ -734,6 +733,8 @@ a, button, [role="button"] {
   background-size: cover;
   background-position: center 40%;
   will-change: transform;
+  opacity: 0.12;
+  mix-blend-mode: luminosity;
 }
 
 .hero-overlay {
@@ -741,10 +742,12 @@ a, button, [role="button"] {
   inset: 0;
   background: linear-gradient(
     165deg,
-    rgba(28, 28, 30, 0.3) 0%,
-    rgba(28, 28, 30, 0.55) 40%,
-    rgba(28, 28, 30, 0.85) 100%
-  );
+    rgba(13, 11, 46, 0.2) 0%,
+    rgba(26, 17, 69, 0.4) 40%,
+    rgba(75, 29, 142, 0.6) 100%
+  ),
+  radial-gradient(ellipse at 80% 80%, rgba(232, 67, 154, 0.3) 0%, transparent 60%),
+  radial-gradient(ellipse at 20% 30%, rgba(0, 201, 219, 0.15) 0%, transparent 50%);
 }
 
 .hero-content {
@@ -772,7 +775,7 @@ a, button, [role="button"] {
   display: block;
   width: 24px;
   height: 1px;
-  background: var(--color-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
 }
 
 .hero-title {
@@ -780,7 +783,7 @@ a, button, [role="button"] {
   font-size: var(--text-hero);
   font-weight: 400;
   line-height: 1.0;
-  color: #FAF8F5;
+  color: #FAFBFE;
   max-width: 14ch;
   margin-bottom: var(--space-6);
   letter-spacing: -0.01em;
@@ -788,14 +791,14 @@ a, button, [role="button"] {
 
 .hero-title em {
   font-style: italic;
-  color: #C9874A;
+  color: #00C9DB;
 }
 
 .hero-subtitle {
   font-family: var(--font-body);
   font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
   font-weight: 400;
-  color: rgba(250, 248, 245, 0.78);
+  color: rgba(237, 232, 245, 0.8);
   max-width: 52ch;
   margin-bottom: var(--space-10);
   line-height: 1.65;
@@ -814,7 +817,7 @@ a, button, [role="button"] {
   gap: clamp(var(--space-8), 4vw, var(--space-16));
   margin-top: clamp(var(--space-12), 6vw, var(--space-20));
   padding-top: var(--space-8);
-  border-top: 1px solid rgba(250, 248, 245, 0.15);
+  border-top: 1px solid rgba(250, 251, 254, 0.15);
   flex-wrap: wrap;
 }
 
@@ -828,7 +831,7 @@ a, button, [role="button"] {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 500;
-  color: #FAF8F5;
+  color: #FAFBFE;
   line-height: 1;
   letter-spacing: -0.02em;
 }
@@ -843,7 +846,7 @@ a, button, [role="button"] {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(250, 248, 245, 0.55);
+  color: rgba(250, 251, 254, 0.55);
 }
 
 /* ============================================================
@@ -936,7 +939,7 @@ a, button, [role="button"] {
 }
 
 .ps-panel--solution .ps-list li::before {
-  background: var(--color-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
 }
 
 /* ============================================================
@@ -966,7 +969,7 @@ a, button, [role="button"] {
   display: block;
   width: 20px;
   height: 1px;
-  background: var(--color-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
 }
 
 .section-title {
@@ -988,14 +991,14 @@ a, button, [role="button"] {
 }
 
 /* Dark section header variant */
-.section-header--light .section-title { color: #FAF8F5; }
-.section-header--light .section-desc { color: rgba(250, 248, 245, 0.65); }
+.section-header--light .section-title { color: #FAFBFE; }
+.section-header--light .section-desc { color: rgba(250, 251, 254, 0.65); }
 
 /* ============================================================
    HOW IT WORKS
    ============================================================ */
 .how-it-works {
-  background: var(--color-charcoal);
+  background: linear-gradient(135deg, #0D0B2E 0%, #1A1145 35%, #2D1B69 65%, #4B1D8E 100%);
   position: relative;
   overflow: hidden;
 }
@@ -1077,13 +1080,13 @@ a, button, [role="button"] {
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: 600;
-  color: #FAF8F5;
+  color: #FAFBFE;
   margin-bottom: var(--space-3);
 }
 
 .step-desc {
   font-size: var(--text-base);
-  color: rgba(250, 248, 245, 0.6);
+  color: rgba(250, 251, 254, 0.6);
   line-height: 1.65;
 }
 
@@ -1195,7 +1198,7 @@ a, button, [role="button"] {
   position: absolute;
   top: var(--space-4);
   right: var(--space-4);
-  background: var(--color-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
   color: #fff;
   font-family: var(--font-body);
   font-size: var(--text-xs);
@@ -1307,7 +1310,7 @@ a, button, [role="button"] {
    WARRANTY PLANS
    ============================================================ */
 .warranty {
-  background: var(--color-charcoal);
+  background: linear-gradient(135deg, #0D0B2E 0%, #1A1145 35%, #2D1B69 65%, #4B1D8E 100%);
   position: relative;
   overflow: hidden;
 }
@@ -1335,8 +1338,8 @@ a, button, [role="button"] {
 }
 
 .warranty-card {
-  background: rgba(250, 248, 245, 0.04);
-  border: 1.5px solid rgba(250, 248, 245, 0.12);
+  background: rgba(250, 251, 254, 0.04);
+  border: 1.5px solid rgba(250, 251, 254, 0.12);
   border-radius: var(--radius-2xl);
   padding: var(--space-8);
   display: flex;
@@ -1350,7 +1353,7 @@ a, button, [role="button"] {
 
 .warranty-card:hover {
   border-color: rgba(184, 115, 51, 0.4);
-  background: rgba(250, 248, 245, 0.07);
+  background: rgba(250, 251, 254, 0.07);
   transform: translateY(-2px);
 }
 
@@ -1367,7 +1370,7 @@ a, button, [role="button"] {
   top: calc(-1 * var(--space-4));
   left: 50%;
   transform: translateX(-50%);
-  background: var(--color-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
   color: #fff;
   font-family: var(--font-body);
   font-size: var(--text-xs);
@@ -1392,7 +1395,7 @@ a, button, [role="button"] {
   font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: 600;
-  color: #FAF8F5;
+  color: #FAFBFE;
   margin-bottom: var(--space-1);
 }
 
@@ -1406,19 +1409,19 @@ a, button, [role="button"] {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 500;
-  color: #FAF8F5;
+  color: #FAFBFE;
   letter-spacing: -0.02em;
 }
 
 .warranty-price-period {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: rgba(250, 248, 245, 0.5);
+  color: rgba(250, 251, 254, 0.5);
 }
 
 .warranty-divider {
   height: 1px;
-  background: rgba(250, 248, 245, 0.1);
+  background: rgba(250, 251, 254, 0.1);
 }
 
 .warranty-features {
@@ -1433,7 +1436,7 @@ a, button, [role="button"] {
   align-items: flex-start;
   gap: var(--space-3);
   font-size: var(--text-sm);
-  color: rgba(250, 248, 245, 0.65);
+  color: rgba(250, 251, 254, 0.65);
   line-height: 1.5;
 }
 
@@ -1689,7 +1692,7 @@ a, button, [role="button"] {
    CONTACT / FINAL CTA
    ============================================================ */
 .contact-cta {
-  background: var(--color-charcoal);
+  background: linear-gradient(135deg, #0D0B2E 0%, #1A1145 35%, #2D1B69 65%, #4B1D8E 100%);
   position: relative;
   overflow: hidden;
 }
@@ -1718,7 +1721,7 @@ a, button, [role="button"] {
   font-family: var(--font-display);
   font-size: var(--text-2xl);
   font-weight: 400;
-  color: #FAF8F5;
+  color: #FAFBFE;
   line-height: 1.15;
   margin-bottom: var(--space-6);
 }
@@ -1756,13 +1759,13 @@ a, button, [role="button"] {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(250, 248, 245, 0.45);
+  color: rgba(250, 251, 254, 0.45);
   margin-bottom: var(--space-1);
 }
 
 .contact-item-value {
   font-size: var(--text-base);
-  color: #FAF8F5;
+  color: #FAFBFE;
   text-decoration: none;
   transition: color var(--transition-interactive);
 }
@@ -1771,8 +1774,8 @@ a, button, [role="button"] {
 
 /* Contact Form */
 .contact-form-wrap {
-  background: rgba(250, 248, 245, 0.04);
-  border: 1.5px solid rgba(250, 248, 245, 0.1);
+  background: rgba(250, 251, 254, 0.04);
+  border: 1.5px solid rgba(250, 251, 254, 0.1);
   border-radius: var(--radius-2xl);
   padding: clamp(var(--space-8), 4vw, var(--space-10));
 }
@@ -1781,7 +1784,7 @@ a, button, [role="button"] {
   font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: 600;
-  color: #FAF8F5;
+  color: #FAFBFE;
   margin-bottom: var(--space-6);
 }
 
@@ -1812,17 +1815,17 @@ a, button, [role="button"] {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(250, 248, 245, 0.6);
+  color: rgba(250, 251, 254, 0.6);
 }
 
 .form-input,
 .form-textarea {
-  background: rgba(250, 248, 245, 0.06);
-  border: 1.5px solid rgba(250, 248, 245, 0.12);
+  background: rgba(250, 251, 254, 0.06);
+  border: 1.5px solid rgba(250, 251, 254, 0.12);
   border-radius: var(--radius-md);
   padding: var(--space-4);
   font-size: var(--text-base);
-  color: #FAF8F5;
+  color: #FAFBFE;
   outline: none;
   width: 100%;
   transition: border-color var(--transition-interactive),
@@ -1831,13 +1834,13 @@ a, button, [role="button"] {
 
 .form-input::placeholder,
 .form-textarea::placeholder {
-  color: rgba(250, 248, 245, 0.3);
+  color: rgba(250, 251, 254, 0.3);
 }
 
 .form-input:focus,
 .form-textarea:focus {
   border-color: var(--color-primary);
-  background: rgba(250, 248, 245, 0.09);
+  background: rgba(250, 251, 254, 0.09);
 }
 
 .form-textarea {
@@ -1954,7 +1957,7 @@ a, button, [role="button"] {
 .site-footer {
   background: #0E0E0D;
   padding-block: var(--space-16) var(--space-10);
-  border-top: 1px solid rgba(250, 248, 245, 0.06);
+  border-top: 1px solid rgba(250, 251, 254, 0.06);
 }
 
 .footer-grid {
@@ -1962,7 +1965,7 @@ a, button, [role="button"] {
   grid-template-columns: 2fr 1fr 1fr 1.5fr;
   gap: var(--space-10);
   padding-bottom: var(--space-10);
-  border-bottom: 1px solid rgba(250, 248, 245, 0.08);
+  border-bottom: 1px solid rgba(250, 251, 254, 0.08);
 }
 
 @media (max-width: 900px) {
@@ -1985,7 +1988,7 @@ a, button, [role="button"] {
 
 .footer-brand-desc {
   font-size: var(--text-sm);
-  color: rgba(250, 248, 245, 0.5);
+  color: rgba(250, 251, 254, 0.5);
   line-height: 1.65;
   max-width: 30ch;
   margin-bottom: var(--space-6);
@@ -2000,11 +2003,11 @@ a, button, [role="button"] {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(250, 248, 245, 0.12);
+  border: 1px solid rgba(250, 251, 254, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(250, 248, 245, 0.5);
+  color: rgba(250, 251, 254, 0.5);
   text-decoration: none;
   transition: color var(--transition-interactive),
               border-color var(--transition-interactive),
@@ -2012,7 +2015,7 @@ a, button, [role="button"] {
 }
 
 .social-link:hover {
-  color: #FAF8F5;
+  color: #FAFBFE;
   border-color: var(--color-primary);
   background: rgba(184, 115, 51, 0.1);
 }
@@ -2023,7 +2026,7 @@ a, button, [role="button"] {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(250, 248, 245, 0.4);
+  color: rgba(250, 251, 254, 0.4);
   margin-bottom: var(--space-5);
 }
 
@@ -2035,7 +2038,7 @@ a, button, [role="button"] {
 
 .footer-links a {
   font-size: var(--text-sm);
-  color: rgba(250, 248, 245, 0.6);
+  color: rgba(250, 251, 254, 0.6);
   text-decoration: none;
   transition: color var(--transition-interactive);
 }
@@ -2063,7 +2066,7 @@ a, button, [role="button"] {
 .footer-contact-item a,
 .footer-contact-item span {
   font-size: var(--text-sm);
-  color: rgba(250, 248, 245, 0.6);
+  color: rgba(250, 251, 254, 0.6);
   text-decoration: none;
   transition: color var(--transition-interactive);
   line-height: 1.5;
@@ -2082,12 +2085,12 @@ a, button, [role="button"] {
 
 .footer-copyright {
   font-size: var(--text-xs);
-  color: rgba(250, 248, 245, 0.3);
+  color: rgba(250, 251, 254, 0.3);
 }
 
 .footer-attribution {
   font-size: var(--text-xs);
-  color: rgba(250, 248, 245, 0.3);
+  color: rgba(250, 251, 254, 0.3);
   text-decoration: none;
   transition: color var(--transition-interactive);
 }
@@ -2114,7 +2117,7 @@ a, button, [role="button"] {
 }
 
 .exit-popup-card {
-  background: var(--color-charcoal);
+  background: linear-gradient(135deg, #0D0B2E 0%, #1A1145 35%, #2D1B69 65%, #4B1D8E 100%);
   border: 1.5px solid rgba(184, 115, 51, 0.35);
   border-radius: var(--radius-2xl);
   padding: clamp(var(--space-8), 5vw, var(--space-12));
@@ -2135,14 +2138,14 @@ a, button, [role="button"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(250, 248, 245, 0.5);
+  color: rgba(250, 251, 254, 0.5);
   cursor: pointer;
   transition: color var(--transition-interactive),
               background var(--transition-interactive);
 }
 
 .exit-popup-close:hover {
-  color: #FAF8F5;
+  color: #FAFBFE;
   background: rgba(255,255,255,0.08);
 }
 
@@ -2159,14 +2162,14 @@ a, button, [role="button"] {
   font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: 500;
-  color: #FAF8F5;
+  color: #FAFBFE;
   line-height: 1.2;
   margin-bottom: var(--space-3);
 }
 
 .exit-popup-desc {
   font-size: var(--text-sm);
-  color: rgba(250, 248, 245, 0.6);
+  color: rgba(250, 251, 254, 0.6);
   line-height: 1.6;
   margin-bottom: var(--space-6);
 }
@@ -2182,17 +2185,17 @@ a, button, [role="button"] {
 
 .exit-popup-input {
   flex: 1;
-  background: rgba(250, 248, 245, 0.07);
-  border: 1.5px solid rgba(250, 248, 245, 0.15);
+  background: rgba(250, 251, 254, 0.07);
+  border: 1.5px solid rgba(250, 251, 254, 0.15);
   border-radius: var(--radius-md);
   padding: var(--space-3) var(--space-4);
   font-size: var(--text-sm);
-  color: #FAF8F5;
+  color: #FAFBFE;
   outline: none;
   transition: border-color var(--transition-interactive);
 }
 
-.exit-popup-input::placeholder { color: rgba(250, 248, 245, 0.35); }
+.exit-popup-input::placeholder { color: rgba(250, 251, 254, 0.35); }
 .exit-popup-input:focus { border-color: var(--color-primary); }
 
 .exit-popup-success {
@@ -2210,7 +2213,7 @@ a, button, [role="button"] {
   top: -100px;
   left: var(--space-4);
   z-index: 200;
-  background: var(--color-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
   color: #fff;
   padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-md);
@@ -2232,7 +2235,7 @@ a, button, [role="button"] {
   left: 0;
   right: 0;
   z-index: 80;
-  background: var(--color-charcoal);
+  background: linear-gradient(135deg, #0D0B2E 0%, #1A1145 35%, #2D1B69 65%, #4B1D8E 100%);
   border-top: 1px solid rgba(184, 115, 51, 0.3);
   padding: var(--space-3) var(--space-6);
   gap: var(--space-3);
@@ -2261,6 +2264,311 @@ a, button, [role="button"] {
 .text-copper { color: var(--color-primary); }
 .text-teal { color: var(--color-secondary); }
 
+
+/* ============================================================
+   MIAMI VICE ADDITIONS
+   ============================================================ */
+
+/* Animated neon glow orbs for hero */
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 67, 154, 0.25) 0%, transparent 70%);
+  top: 10%;
+  right: -5%;
+  z-index: 1;
+  animation: float-orb 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 201, 219, 0.2) 0%, transparent 70%);
+  bottom: 15%;
+  left: 5%;
+  z-index: 1;
+  animation: float-orb 10s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+
+@keyframes float-orb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(20px, -30px) scale(1.05); }
+  66% { transform: translate(-15px, 20px) scale(0.95); }
+}
+
+/* Section gradient dividers */
+.section + .section::before {
+  content: '';
+  display: block;
+  width: 60%;
+  max-width: 600px;
+  height: 2px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, #E8439A, #00C9DB, transparent);
+  position: relative;
+  top: calc(-1 * clamp(var(--space-16), 8vw, var(--space-32)) / 2);
+}
+
+/* Glassmorphism product cards */
+.product-card {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(205, 213, 232, 0.5) !important;
+}
+
+[data-theme="dark"] .product-card {
+  background: rgba(21, 18, 48, 0.7) !important;
+  border: 1px solid rgba(58, 53, 112, 0.5) !important;
+}
+
+/* Featured product card accent */
+.product-card--featured {
+  border-top: 3px solid #E8439A !important;
+}
+
+/* Product pricing styles */
+.product-price {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: var(--space-3) 0 var(--space-1);
+  letter-spacing: -0.01em;
+}
+
+.product-price-range {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.product-price-note {
+  font-size: var(--text-xs);
+  color: var(--color-secondary);
+  font-weight: 500;
+  margin-bottom: var(--space-4);
+  letter-spacing: 0.01em;
+}
+
+/* Section eyebrow gradient text */
+.section-eyebrow span {
+  background: linear-gradient(135deg, #E8439A, #00C9DB) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* How It Works + Warranty sections — purple gradient bg */
+.how-it-works {
+  background: linear-gradient(135deg, #0D0B2E 0%, #1A1145 40%, #2D1B69 100%) !important;
+}
+
+.warranty {
+  background: linear-gradient(135deg, #0D0B2E 0%, #1A1145 50%, #2D1B69 100%) !important;
+}
+
+/* Contact CTA section — vibrant gradient */
+.contact-cta {
+  background: linear-gradient(135deg, #1A1145 0%, #2D1B69 40%, #4B1D8E 70%, #E8439A 100%) !important;
+}
+
+/* Primary button glow effect on hover */
+.btn--primary:hover {
+  box-shadow: 0 4px 24px rgba(232, 67, 154, 0.4) !important;
+}
+
+/* Secondary/teal button uses cyan */
+.btn--teal {
+  background: var(--color-secondary) !important;
+}
+.btn--teal:hover {
+  background: var(--color-secondary-hover) !important;
+  box-shadow: 0 4px 20px rgba(0, 201, 219, 0.3);
+}
+
+/* Footer — dark purple */
+.site-footer {
+  background: linear-gradient(180deg, #0D0B2E, #050318) !important;
+}
+
+/* Hero stats on dark bg */
+.hero-stats {
+  border-color: rgba(91, 107, 245, 0.3);
+}
+
+/* Sticky CTA bar */
+.sticky-cta-bar {
+  background: rgba(250, 251, 254, 0.95);
+  backdrop-filter: blur(12px);
+}
+
+[data-theme="dark"] .sticky-cta-bar {
+  background: rgba(13, 11, 30, 0.95);
+}
+
+/* Exit intent popup glassmorphism */
+.exit-popup-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(205, 213, 232, 0.3);
+}
+
+[data-theme="dark"] .exit-popup-card {
+  background: rgba(21, 18, 48, 0.92);
+  border: 1px solid rgba(58, 53, 112, 0.3);
+}
+
+/* Service cards glassmorphism */
+.service-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(205, 213, 232, 0.4);
+}
+
+[data-theme="dark"] .service-card {
+  background: rgba(21, 18, 48, 0.6);
+  border: 1px solid rgba(58, 53, 112, 0.4);
+}
+
+/* Warranty cards glassmorphism on dark bg */
+.warranty-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Testimonial cards */
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(205, 213, 232, 0.4);
+}
+
+[data-theme="dark"] .testimonial-card {
+  background: rgba(21, 18, 48, 0.6);
+  border: 1px solid rgba(58, 53, 112, 0.4);
+}
+
+/* Blog cards */
+.blog-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(205, 213, 232, 0.4);
+}
+
+[data-theme="dark"] .blog-card {
+  background: rgba(21, 18, 48, 0.6);
+  border: 1px solid rgba(58, 53, 112, 0.4);
+}
+
+/* FAQ on light bg */
+.faq-item {
+  border-color: var(--color-divider);
+}
+
+/* Process step icons — use gradient */
+.step-number {
+  background: linear-gradient(135deg, #E8439A, #5B6BF5) !important;
+  color: #fff !important;
+}
+
+/* Mobile nav dark mode */
+[data-theme="dark"] .mobile-nav {
+  background: #0D0B1E;
+}
+
+/* Footer text colors for new bg */
+.footer-brand-desc {
+  color: rgba(237, 232, 245, 0.6) !important;
+}
+
+.footer-col-title {
+  color: #EDE8F5 !important;
+}
+
+.footer-links a,
+.footer-links span {
+  color: rgba(237, 232, 245, 0.5) !important;
+}
+
+.footer-links a:hover {
+  color: #00C9DB !important;
+}
+
+.footer-contact-item a,
+.footer-contact-item span {
+  color: rgba(237, 232, 245, 0.5) !important;
+}
+
+.footer-contact-item svg {
+  color: #E8439A !important;
+}
+
+.footer-copyright {
+  color: rgba(237, 232, 245, 0.3) !important;
+}
+
+.footer-attribution {
+  color: rgba(237, 232, 245, 0.3) !important;
+}
+
+.footer-bottom {
+  border-color: rgba(91, 107, 245, 0.15) !important;
+}
+
+.social-link {
+  border-color: rgba(237, 232, 245, 0.15) !important;
+  color: rgba(237, 232, 245, 0.5) !important;
+}
+
+.social-link:hover {
+  border-color: #E8439A !important;
+  color: #E8439A !important;
+}
+
+/* Fix hero visible header colors for new palette */
+.site-header.hero-visible .header-nav a {
+  color: rgba(237, 232, 245, 0.88) !important;
+}
+
+.site-header.hero-visible .header-nav a:hover {
+  color: #FAFBFE !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.site-header.hero-visible .header-logo-sub {
+  color: #00C9DB !important;
+}
+
+.site-header.hero-visible .theme-toggle {
+  color: rgba(237, 232, 245, 0.75) !important;
+  border-color: rgba(237, 232, 245, 0.3) !important;
+}
+
+.site-header.hero-visible .theme-toggle:hover {
+  color: #FAFBFE !important;
+  border-color: rgba(237, 232, 245, 0.7) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Water test section accent */
+.water-test-section {
+  background: linear-gradient(135deg, rgba(232, 67, 154, 0.05), rgba(0, 201, 219, 0.05));
+}
+
+[data-theme="dark"] .water-test-section {
+  background: linear-gradient(135deg, rgba(232, 67, 154, 0.08), rgba(0, 201, 219, 0.08));
+}
+
 </style>
 </head>
 <body>
@@ -2286,7 +2594,7 @@ a, button, [role="button"] {
           <path d="M12 14 L18 33" stroke="currentColor" stroke-width="1" opacity="0.18"/>
           <path d="M24 14 L18 33" stroke="currentColor" stroke-width="1" opacity="0.18"/>
           <!-- Copper inner facet -->
-          <path d="M14 16 L18 28 L22 16" stroke="#B87333" stroke-width="1.2" fill="none" opacity="0.75"/>
+          <path d="M14 16 L18 28 L22 16" stroke="#00C9DB" stroke-width="1.2" fill="none" opacity="0.75"/>
         </svg>
         <div class="header-logo-text">
           <span class="header-logo-name">CrystalFlow</span>
@@ -2452,7 +2760,7 @@ a, button, [role="button"] {
       <p class="section-eyebrow" style="color: var(--color-primary);">
         <span aria-hidden="true"></span>Simple Process<span aria-hidden="true"></span>
       </p>
-      <h2 class="section-title" id="hiw-heading" style="color: #FAF8F5;">Clean Water in Three Steps</h2>
+      <h2 class="section-title" id="hiw-heading" style="color: #FAFBFE;">Clean Water in Three Steps</h2>
       <p class="section-desc">From your first test to your last install, we make the entire process effortless.</p>
     </div>
 
@@ -2594,6 +2902,9 @@ a, button, [role="button"] {
           <p class="product-tier">Entry Level</p>
           <h3 class="product-name">Kitchen Guard</h3>
           <p class="product-models">G5P500A &bull; T-3M Series</p>
+          <p class="product-price">Starting at $699</p>
+          <p class="product-price-range">$699 - $849 installed</p>
+          <p class="product-price-note">Includes professional installation, free water test, and 1-year warranty</p>
           <p class="product-desc">Point-of-use purification delivering clean drinking and cooking water directly at the kitchen sink. Ideal for renters and apartments.</p>
           <ul class="product-features" role="list">
             <li class="product-feature">
@@ -2631,6 +2942,9 @@ a, button, [role="button"] {
           <p class="product-tier">Most Popular</p>
           <h3 class="product-name">Home Shield</h3>
           <p class="product-models">G3P800 &bull; G3P600 Series</p>
+          <p class="product-price">Starting at $1,799</p>
+          <p class="product-price-range">$1,799 - $2,199 installed</p>
+          <p class="product-price-note">Includes professional installation, free water test, and 1-year warranty</p>
           <p class="product-desc">Whole-home purification protecting every tap, appliance, and fixture in your Miami home from limestone, chlorine, and contaminants.</p>
           <ul class="product-features" role="list">
             <li class="product-feature">
@@ -2672,6 +2986,9 @@ a, button, [role="button"] {
           <p class="product-tier">Premium</p>
           <h3 class="product-name">Pure Life</h3>
           <p class="product-models">X16 &bull; X12 Series</p>
+          <p class="product-price">Starting at $2,699</p>
+          <p class="product-price-range">$2,699 - $3,199 installed</p>
+          <p class="product-price-note">Includes professional installation, free water test, and 1-year warranty</p>
           <p class="product-desc">The ultimate whole-home water treatment experience. Commercial-grade technology engineered for large estates and luxury residences.</p>
           <ul class="product-features" role="list">
             <li class="product-feature">
@@ -2718,7 +3035,7 @@ a, button, [role="button"] {
       <p class="section-eyebrow" style="color: var(--color-primary);">
         <span aria-hidden="true"></span>Protection Plans<span aria-hidden="true"></span>
       </p>
-      <h2 class="section-title" id="warranty-heading" style="color: #FAF8F5;">Warranty &amp; Service Plans</h2>
+      <h2 class="section-title" id="warranty-heading" style="color: #FAFBFE;">Warranty &amp; Service Plans</h2>
       <p class="section-desc">Keep your investment performing perfectly with a CrystalFlow protection plan. Every plan includes filter reminders and dedicated support.</p>
     </div>
 
@@ -3058,9 +3375,9 @@ a, button, [role="button"] {
     <div class="contact-grid">
       <div class="contact-info">
         <h2 class="contact-title" id="contact-heading">
-          Ready for <em style="font-style:italic; color: #C9874A;">Cleaner</em> Water?
+          Ready for <em style="font-style:italic; color: #00C9DB;">Cleaner</em> Water?
         </h2>
-        <p style="font-size: var(--text-base); color: rgba(250,248,245,0.65); line-height: 1.7; margin-bottom: var(--space-8); max-width: 44ch;">
+        <p style="font-size: var(--text-base); color: rgba(250,251,254,0.65); line-height: 1.7; margin-bottom: var(--space-8); max-width: 44ch;">
           Schedule your free in-home water test. No commitment, no pressure — just a clear picture of your water quality and a recommendation from our certified specialists.
         </p>
 
@@ -3246,7 +3563,7 @@ a, button, [role="button"] {
             <path d="M14 16 L18 28 L22 16" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.6"/>
           </svg>
           <div>
-            <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: #FAF8F5; letter-spacing: 0.02em;">CrystalFlow</div>
+            <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: #EDE8F5; letter-spacing: 0.02em;">CrystalFlow</div>
             <div style="font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-primary);">Miami</div>
           </div>
         </a>
@@ -3276,12 +3593,12 @@ a, button, [role="button"] {
       <div>
         <h4 class="footer-col-title">Services</h4>
         <div class="footer-links" role="list">
-          <span role="listitem" style="font-size: var(--text-sm); color: rgba(250,248,245,0.5);">Water Testing</span>
-          <span role="listitem" style="font-size: var(--text-sm); color: rgba(250,248,245,0.5);">RO Installation</span>
-          <span role="listitem" style="font-size: var(--text-sm); color: rgba(250,248,245,0.5);">Water Softening</span>
-          <span role="listitem" style="font-size: var(--text-sm); color: rgba(250,248,245,0.5);">UV Sterilization</span>
-          <span role="listitem" style="font-size: var(--text-sm); color: rgba(250,248,245,0.5);">Filter Replacement</span>
-          <span role="listitem" style="font-size: var(--text-sm); color: rgba(250,248,245,0.5);">Emergency Repairs</span>
+          <span role="listitem" style="font-size: var(--text-sm); color: rgba(250,251,254,0.5);">Water Testing</span>
+          <span role="listitem" style="font-size: var(--text-sm); color: rgba(250,251,254,0.5);">RO Installation</span>
+          <span role="listitem" style="font-size: var(--text-sm); color: rgba(250,251,254,0.5);">Water Softening</span>
+          <span role="listitem" style="font-size: var(--text-sm); color: rgba(250,251,254,0.5);">UV Sterilization</span>
+          <span role="listitem" style="font-size: var(--text-sm); color: rgba(250,251,254,0.5);">Filter Replacement</span>
+          <span role="listitem" style="font-size: var(--text-sm); color: rgba(250,251,254,0.5);">Emergency Repairs</span>
         </div>
       </div>
 
