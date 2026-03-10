@@ -1008,7 +1008,7 @@ a, button, [role="button"] {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(184, 115, 51, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(232, 67, 154, 0.4), transparent);
 }
 
 .steps-grid {
@@ -1025,7 +1025,7 @@ a, button, [role="button"] {
   left: calc(16.67% + var(--space-6));
   right: calc(16.67% + var(--space-6));
   height: 1px;
-  background: linear-gradient(90deg, var(--color-primary), rgba(184, 115, 51, 0.3), var(--color-primary));
+  background: linear-gradient(90deg, var(--color-primary), rgba(232, 67, 154, 0.3), var(--color-primary));
 }
 
 @media (max-width: 768px) {
@@ -1052,14 +1052,14 @@ a, button, [role="button"] {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1.5px solid rgba(184, 115, 51, 0.35);
+  border: 1.5px solid rgba(232, 67, 154, 0.35);
 }
 
 .step-number {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  background: rgba(184, 115, 51, 0.12);
+  background: rgba(232, 67, 154, 0.12);
   border: 1.5px solid var(--color-primary);
   display: flex;
   align-items: center;
@@ -1352,15 +1352,15 @@ a, button, [role="button"] {
 }
 
 .warranty-card:hover {
-  border-color: rgba(184, 115, 51, 0.4);
+  border-color: rgba(232, 67, 154, 0.4);
   background: rgba(250, 251, 254, 0.07);
   transform: translateY(-2px);
 }
 
 .warranty-card--gold {
   border-color: var(--color-primary);
-  background: rgba(184, 115, 51, 0.07);
-  box-shadow: 0 0 0 1px rgba(184, 115, 51, 0.25), var(--shadow-lg);
+  background: rgba(232, 67, 154, 0.07);
+  box-shadow: 0 0 0 1px rgba(232, 67, 154, 0.25), var(--shadow-lg);
   position: relative;
 }
 
@@ -1702,7 +1702,7 @@ a, button, [role="button"] {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(184, 115, 51, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(232, 67, 154, 0.4), transparent);
 }
 
 .contact-grid {
@@ -1743,8 +1743,8 @@ a, button, [role="button"] {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-lg);
-  background: rgba(184, 115, 51, 0.12);
-  border: 1px solid rgba(184, 115, 51, 0.25);
+  background: rgba(232, 67, 154, 0.12);
+  border: 1px solid rgba(232, 67, 154, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2017,7 +2017,7 @@ a, button, [role="button"] {
 .social-link:hover {
   color: #FAFBFE;
   border-color: var(--color-primary);
-  background: rgba(184, 115, 51, 0.1);
+  background: rgba(232, 67, 154, 0.1);
 }
 
 .footer-col-title {
@@ -2118,7 +2118,7 @@ a, button, [role="button"] {
 
 .exit-popup-card {
   background: linear-gradient(135deg, #0D0B2E 0%, #1A1145 35%, #2D1B69 65%, #4B1D8E 100%);
-  border: 1.5px solid rgba(184, 115, 51, 0.35);
+  border: 1.5px solid rgba(232, 67, 154, 0.35);
   border-radius: var(--radius-2xl);
   padding: clamp(var(--space-8), 5vw, var(--space-12));
   max-width: 480px;
@@ -2236,7 +2236,7 @@ a, button, [role="button"] {
   right: 0;
   z-index: 80;
   background: linear-gradient(135deg, #0D0B2E 0%, #1A1145 35%, #2D1B69 65%, #4B1D8E 100%);
-  border-top: 1px solid rgba(184, 115, 51, 0.3);
+  border-top: 1px solid rgba(232, 67, 154, 0.3);
   padding: var(--space-3) var(--space-6);
   gap: var(--space-3);
   box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
@@ -2415,16 +2415,12 @@ a, button, [role="button"] {
   background: rgba(13, 11, 30, 0.95);
 }
 
-/* Exit intent popup glassmorphism */
+/* Exit intent popup — keep dark gradient for contrast */
 .exit-popup-card {
-  background: rgba(255, 255, 255, 0.92);
+  background: linear-gradient(135deg, #0D0B2E 0%, #1A1145 35%, #2D1B69 65%, #4B1D8E 100%) !important;
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(205, 213, 232, 0.3);
-}
-
-[data-theme="dark"] .exit-popup-card {
-  background: rgba(21, 18, 48, 0.92);
-  border: 1px solid rgba(58, 53, 112, 0.3);
+  border: 1.5px solid rgba(232, 67, 154, 0.25) !important;
+  box-shadow: 0 24px 64px rgba(13, 11, 30, 0.6), 0 0 80px rgba(232, 67, 154, 0.1);
 }
 
 /* Service cards glassmorphism */
