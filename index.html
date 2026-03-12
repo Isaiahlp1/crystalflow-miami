@@ -416,6 +416,29 @@ a, button, [role="button"], input, textarea, select {
 .mobile-nav.open { display: flex; }
 .mobile-nav a { font-size: var(--text-xl); font-family: var(--font-display); color: var(--text); text-decoration: none; padding: var(--s3) 0; border-bottom: 1px solid var(--divider); }
 .mobile-nav .btn { margin-top: var(--s4); text-align: center; justify-content: center; }
+.mobile-nav .lang-toggle-mobile { display: flex; align-items: center; gap: var(--s3); padding: var(--s3) 0; border-bottom: 1px solid var(--divider); font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600; }
+.mobile-nav .lang-toggle-mobile button { background: none; border: none; font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600; color: var(--text-muted); cursor: pointer; padding: var(--s1) var(--s3); border-radius: var(--radius-full); transition: all var(--transition-fast); }
+.mobile-nav .lang-toggle-mobile button.active { color: var(--primary); }
+
+/* Language Toggle */
+.lang-toggle {
+  display: inline-flex; align-items: center; gap: 2px;
+  font-family: var(--font-body); font-size: var(--text-xs); font-weight: 600;
+  background: rgba(255,255,255,0.08); border-radius: var(--radius-full);
+  padding: 2px; margin-right: var(--s2);
+}
+.lang-toggle button {
+  padding: 4px 8px; border-radius: var(--radius-full); font-size: var(--text-xs);
+  font-weight: 600; font-family: var(--font-body); cursor: pointer;
+  color: rgba(255,255,255,0.5); background: transparent; border: none;
+  transition: all var(--transition-fast); line-height: 1;
+}
+.lang-toggle button.active { color: #fff; background: var(--primary); }
+.lang-toggle button:hover:not(.active) { color: rgba(255,255,255,0.8); }
+.site-header.scrolled .lang-toggle { background: var(--surface-2); }
+.site-header.scrolled .lang-toggle button { color: var(--text-muted); }
+.site-header.scrolled .lang-toggle button.active { color: #fff; background: var(--primary); }
+.site-header.scrolled .lang-toggle button:hover:not(.active) { color: var(--text); }
 
 @media (max-width: 900px) {
   .header-nav-list { display: none; }
@@ -800,6 +823,50 @@ a, button, [role="button"], input, textarea, select {
 .cta-description { font-size: var(--text-lg); color: rgba(255,255,255,0.6); max-width: 48ch; margin-inline: auto; }
 
 /* ============================================================
+   NEWSLETTER / EMAIL CAPTURE
+   ============================================================ */
+.newsletter-bar {
+  background: var(--surface-2);
+  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+}
+.newsletter-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s10);
+  flex-wrap: wrap;
+}
+.newsletter-copy { max-width: 48ch; }
+.newsletter-copy h3 {
+  font-family: var(--font-display); font-size: var(--text-xl); font-weight: 400;
+  line-height: 1.15; color: var(--text); margin-bottom: var(--s2);
+}
+.newsletter-copy p { font-size: var(--text-sm); color: var(--text-muted); line-height: 1.55; }
+.newsletter-form { display: flex; gap: var(--s3); flex: 1; max-width: 440px; min-width: 280px; }
+.newsletter-form input[type="email"] {
+  flex: 1; padding: var(--s4) var(--s5); font-size: var(--text-sm);
+  border: 1.5px solid var(--border); border-radius: var(--radius-full);
+  background: var(--surface); color: var(--text);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.newsletter-form input[type="email"]:focus {
+  outline: none; border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(232, 67, 154, 0.12);
+}
+.newsletter-form input[type="email"]::placeholder { color: var(--text-faint); }
+.newsletter-form .btn { flex-shrink: 0; }
+.newsletter-privacy { font-size: var(--text-xs); color: var(--text-faint); margin-top: var(--s3); }
+.newsletter-msg {
+  margin-top: var(--s3); font-size: var(--text-sm); font-weight: 600;
+  display: none;
+}
+.newsletter-msg.success { display: block; color: var(--teal); }
+.newsletter-msg.error { display: block; color: var(--primary); }
+@media (max-width: 767px) {
+  .newsletter-inner { flex-direction: column; text-align: center; align-items: stretch; }
+  .newsletter-copy { max-width: none; }
+  .newsletter-form { max-width: none; }
+}
+
+/* ============================================================
    FOOTER
    ============================================================ */
 .site-footer { background: var(--navy); color: rgba(255,255,255,0.7); padding: var(--s20) 0 var(--s8); }
@@ -869,22 +936,28 @@ a, button, [role="button"], input, textarea, select {
 
       <nav class="header-nav">
         <ul class="header-nav-list" role="list">
-          <li><a href="#problem">Miami Water</a></li>
-          <li><a href="#packages">Packages</a></li>
-          <li><a href="#calculator">Compare</a></li>
-          <li><a href="#map">Your Area</a></li>
-          <li><a href="#warranty">Warranty</a></li>
+          <li><a href="#problem" data-i18n="nav_water">Miami Water</a></li>
+          <li><a href="#packages" data-i18n="nav_packages">Packages</a></li>
+          <li><a href="#calculator" data-i18n="nav_compare">Compare</a></li>
+          <li><a href="#map" data-i18n="nav_area">Your Area</a></li>
+          <li><a href="#warranty" data-i18n="nav_warranty">Warranty</a></li>
           <li><a href="#faq">FAQ</a></li>
+          <li><a href="blog.html" data-i18n="nav_blog">Blog</a></li>
+          <li><a href="portal.html" data-i18n="nav_account">My Account</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
+        <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Language">
+          <button id="lang-en" class="active" aria-label="English">EN</button>
+          <button id="lang-es" aria-label="Espa&ntilde;ol">ES</button>
+        </div>
         <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
         </button>
-        <a href="#" class="btn btn-primary header-cta" onclick="openCalendly(event)">Book Free Water Test</a>
+        <a href="#" class="btn btn-primary header-cta" onclick="openCalendly(event)" data-i18n="cta_book">Book Free Water Test</a>
         <button class="mobile-toggle" aria-label="Open menu" onclick="toggleMobileNav()">
           <span></span><span></span><span></span>
         </button>
@@ -895,14 +968,21 @@ a, button, [role="button"], input, textarea, select {
 
 <!-- Mobile Navigation -->
 <nav class="mobile-nav" id="mobile-nav">
-  <a href="#problem" onclick="closeMobileNav()">Miami Water</a>
-  <a href="#packages" onclick="closeMobileNav()">Packages</a>
-  <a href="#calculator" onclick="closeMobileNav()">Compare</a>
-  <a href="#map" onclick="closeMobileNav()">Your Area</a>
-  <a href="#warranty" onclick="closeMobileNav()">Warranty</a>
+  <div class="lang-toggle-mobile">
+    <button class="active" onclick="setLanguage('en')">EN</button>
+    <span style="color: var(--divider);">|</span>
+    <button onclick="setLanguage('es')">ES</button>
+  </div>
+  <a href="#problem" onclick="closeMobileNav()" data-i18n="nav_water">Miami Water</a>
+  <a href="#packages" onclick="closeMobileNav()" data-i18n="nav_packages">Packages</a>
+  <a href="#calculator" onclick="closeMobileNav()" data-i18n="nav_compare">Compare</a>
+  <a href="#map" onclick="closeMobileNav()" data-i18n="nav_area">Your Area</a>
+  <a href="#warranty" onclick="closeMobileNav()" data-i18n="nav_warranty">Warranty</a>
   <a href="#faq" onclick="closeMobileNav()">FAQ</a>
-  <a href="#contact" onclick="closeMobileNav()">Contact</a>
-  <a href="#" class="btn btn-primary" onclick="openCalendly(event)">Book Free Water Test</a>
+  <a href="#contact" onclick="closeMobileNav()" data-i18n="nav_contact">Contact</a>
+  <a href="blog.html" onclick="closeMobileNav()" data-i18n="nav_blog">Blog</a>
+  <a href="portal.html" onclick="closeMobileNav()" data-i18n="nav_account">My Account</a>
+  <a href="#" class="btn btn-primary" onclick="openCalendly(event)" data-i18n="cta_book">Book Free Water Test</a>
 </nav>
 
 <!-- ============================================================
@@ -914,12 +994,12 @@ a, button, [role="button"], input, textarea, select {
     <div class="hero-image-overlay"></div>
   </div>
   <div class="hero-content container container--max">
-    <p class="hero-tagline">Premium Water Treatment for Miami</p>
-    <h1 class="hero-title">Own your<br><em>water.</em></h1>
-    <p class="hero-description">One price. No subscriptions. Professional installation of Waterdrop premium systems across Greater Miami-Dade County.</p>
+    <p class="hero-tagline" data-i18n="hero_tagline">Premium Water Treatment for Miami</p>
+    <h1 class="hero-title" data-i18n="hero_title" data-i18n-html="1">Own your<br><em>water.</em></h1>
+    <p class="hero-description" data-i18n="hero_desc">One price. No subscriptions. Professional installation of Waterdrop premium systems across Greater Miami-Dade County.</p>
     <div class="hero-ctas">
-      <a href="#" class="btn btn-primary btn-lg" onclick="openCalendly(event)">Book Free Water Test</a>
-      <a href="#packages" class="btn btn-ghost btn-lg">See Our Packages</a>
+      <a href="#" class="btn btn-primary btn-lg" onclick="openCalendly(event)" data-i18n="cta_book">Book Free Water Test</a>
+      <a href="#packages" class="btn btn-ghost btn-lg" data-i18n="hero_cta_packages">See Our Packages</a>
     </div>
   </div>
   <div class="hero-watermark" aria-hidden="true">Crystal<br>Flow</div>
@@ -933,19 +1013,19 @@ a, button, [role="button"], input, textarea, select {
     <div class="stats-bar-grid">
       <div class="stat-item js-reveal">
         <span class="stat-value"><span class="counter-value" data-target="99.9" data-decimals="1">0</span>%</span>
-        <span class="stat-label">Contaminant Removal</span>
+        <span class="stat-label" data-i18n="stat_removal">Contaminant Removal</span>
       </div>
       <div class="stat-item js-reveal">
         <span class="stat-value" style="font-size: var(--text-2xl);">$0</span>
-        <span class="stat-label">Hidden Fees or Subscriptions</span>
+        <span class="stat-label" data-i18n="stat_fees">Hidden Fees or Subscriptions</span>
       </div>
       <div class="stat-item js-reveal">
         <span class="stat-value" style="font-size: var(--text-2xl);">1:1</span>
-        <span class="stat-label">Concierge Service</span>
+        <span class="stat-label" data-i18n="stat_concierge">Concierge Service</span>
       </div>
       <div class="stat-item js-reveal">
         <span class="stat-value"><span class="counter-value" data-target="100">0</span>%</span>
-        <span class="stat-label">Transparent Pricing</span>
+        <span class="stat-label" data-i18n="stat_pricing">Transparent Pricing</span>
       </div>
     </div>
   </div>
@@ -961,9 +1041,9 @@ a, button, [role="button"], input, textarea, select {
         <img src="./assets/water-test.png" alt="Water quality testing in a Miami home" loading="lazy" width="800" height="600">
       </div>
       <div>
-        <p class="section-label js-reveal">The Problem</p>
-        <h2 class="section-title js-reveal" style="margin-bottom: var(--s4);">Miami's Water<br>Isn't as Clean<br>as You Think</h2>
-        <p class="section-subtitle js-reveal" style="margin-bottom: var(--s8);">
+        <p class="section-label js-reveal" data-i18n="problem_label">The Problem</p>
+        <h2 class="section-title js-reveal" style="margin-bottom: var(--s4);" data-i18n="problem_title" data-i18n-html="1">Miami's Water<br>Isn't as Clean<br>as You Think</h2>
+        <p class="section-subtitle js-reveal" style="margin-bottom: var(--s8);" data-i18n="problem_desc">
           Miami-Dade's water flows through the Biscayne Aquifer, one of the most porous limestone formations in the country. The result? Hard water, chlorine, and dissolved solids that damage your home and your health.
         </p>
         <div class="problem-stats js-reveal">
@@ -973,7 +1053,7 @@ a, button, [role="button"], input, textarea, select {
             </div>
             <div>
               <span class="problem-stat-number">270+ PPM</span>
-              <span class="problem-stat-desc">Average water hardness in Miami-Dade</span>
+              <span class="problem-stat-desc" data-i18n="problem_hardness_desc">Average water hardness in Miami-Dade</span>
             </div>
           </div>
           <div class="problem-stat">
@@ -981,8 +1061,8 @@ a, button, [role="button"], input, textarea, select {
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
             </div>
             <div>
-              <span class="problem-stat-number">High Chlorine</span>
-              <span class="problem-stat-desc">Used to treat surface water sources</span>
+              <span class="problem-stat-number" data-i18n="problem_chlorine">High Chlorine</span>
+              <span class="problem-stat-desc" data-i18n="problem_chlorine_desc">Used to treat surface water sources</span>
             </div>
           </div>
           <div class="problem-stat">
@@ -990,8 +1070,8 @@ a, button, [role="button"], input, textarea, select {
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
             </div>
             <div>
-              <span class="problem-stat-number">PFAS Detected</span>
-              <span class="problem-stat-desc">Potential forever chemicals in local supply</span>
+              <span class="problem-stat-number" data-i18n="problem_pfas">PFAS Detected</span>
+              <span class="problem-stat-desc" data-i18n="problem_pfas_desc">Potential forever chemicals in local supply</span>
             </div>
           </div>
         </div>
@@ -1006,9 +1086,9 @@ a, button, [role="button"], input, textarea, select {
 <section class="products-section section-pad" id="packages">
   <div class="container">
     <div style="text-align: center;">
-      <p class="section-label js-reveal">Our Packages</p>
-      <h2 class="section-title js-reveal" style="margin-inline: auto;">Find Your<br>Perfect System</h2>
-      <p class="section-subtitle js-reveal" style="margin-inline: auto; margin-top: var(--s4);">Every package includes professional installation. One price. You own it.</p>
+      <p class="section-label js-reveal" data-i18n="pkg_label">Our Packages</p>
+      <h2 class="section-title js-reveal" style="margin-inline: auto;" data-i18n="pkg_title" data-i18n-html="1">Find Your<br>Perfect System</h2>
+      <p class="section-subtitle js-reveal" style="margin-inline: auto; margin-top: var(--s4);" data-i18n="pkg_subtitle">Every package includes professional installation. One price. You own it.</p>
     </div>
     <div class="products-grid">
       <!-- Kitchen Guard -->
@@ -1017,33 +1097,33 @@ a, button, [role="button"], input, textarea, select {
           <img src="./assets/product-kitchen-guard-official.png" alt="Kitchen Guard under-sink RO system" loading="lazy" width="300" height="300">
         </div>
         <h3 class="product-name">Kitchen Guard</h3>
-        <div class="product-price">$699 &ndash; $849 <span>installed</span></div>
+        <div class="product-price">$699 &ndash; $849 <span data-i18n="pkg_installed">installed</span></div>
         <ul class="product-features" role="list">
-          <li>Under-sink reverse osmosis system</li>
-          <li>500 GPD capacity (G5P500A)</li>
-          <li>Compact design, perfect for condos</li>
-          <li>Professional installation included</li>
-          <li>Gooseneck faucet included</li>
+          <li data-i18n="kg_f1">Under-sink reverse osmosis system</li>
+          <li data-i18n="kg_f2">500 GPD capacity (G5P500A)</li>
+          <li data-i18n="kg_f3">Compact design, perfect for condos</li>
+          <li data-i18n="kg_f4">Professional installation included</li>
+          <li data-i18n="kg_f5">Gooseneck faucet included</li>
         </ul>
-        <a href="#" class="btn btn-outline-pink" onclick="openCalendly(event)">Book Free Water Test</a>
+        <a href="#" class="btn btn-outline-pink" onclick="openCalendly(event)" data-i18n="cta_book">Book Free Water Test</a>
       </div>
 
       <!-- Home Shield (Featured) -->
       <div class="product-card featured js-reveal">
-        <div class="product-badge">Most Popular</div>
+        <div class="product-badge" data-i18n="pkg_popular">Most Popular</div>
         <div class="product-image">
           <img src="./assets/product-home-shield-official.png" alt="Home Shield whole-home filtration system" loading="lazy" width="300" height="300">
         </div>
         <h3 class="product-name">Home Shield</h3>
-        <div class="product-price">$1,799 &ndash; $2,199 <span>installed</span></div>
+        <div class="product-price">$1,799 &ndash; $2,199 <span data-i18n="pkg_installed">installed</span></div>
         <ul class="product-features" role="list">
-          <li>Whole-home filtration + softening</li>
-          <li>800 GPD capacity (G3P800)</li>
-          <li>LED smart faucet included</li>
-          <li>Professional installation included</li>
-          <li>Full-home water coverage</li>
+          <li data-i18n="hs_f1">Whole-home filtration + softening</li>
+          <li data-i18n="hs_f2">800 GPD capacity (G3P800)</li>
+          <li data-i18n="hs_f3">LED smart faucet included</li>
+          <li data-i18n="hs_f4">Professional installation included</li>
+          <li data-i18n="hs_f5">Full-home water coverage</li>
         </ul>
-        <a href="#" class="btn btn-primary" onclick="openCalendly(event)">Book Free Water Test</a>
+        <a href="#" class="btn btn-primary" onclick="openCalendly(event)" data-i18n="cta_book">Book Free Water Test</a>
       </div>
 
       <!-- Pure Life -->
@@ -1052,15 +1132,15 @@ a, button, [role="button"], input, textarea, select {
           <img src="./assets/product-pure-life-official.png" alt="Pure Life premium whole-home system" loading="lazy" width="300" height="300">
         </div>
         <h3 class="product-name">Pure Life</h3>
-        <div class="product-price">$2,699 &ndash; $3,199 <span>installed</span></div>
+        <div class="product-price">$2,699 &ndash; $3,199 <span data-i18n="pkg_installed">installed</span></div>
         <ul class="product-features" role="list">
-          <li>Premium whole-home system</li>
-          <li>1600 GPD with UV sterilization (X16)</li>
-          <li>Smart display with pH+ remineralization</li>
-          <li>Professional installation included</li>
-          <li>Advanced smart monitoring</li>
+          <li data-i18n="pl_f1">Premium whole-home system</li>
+          <li data-i18n="pl_f2">1600 GPD with UV sterilization (X16)</li>
+          <li data-i18n="pl_f3">Smart display with pH+ remineralization</li>
+          <li data-i18n="pl_f4">Professional installation included</li>
+          <li data-i18n="pl_f5">Advanced smart monitoring</li>
         </ul>
-        <a href="#" class="btn btn-outline-pink" onclick="openCalendly(event)">Book Free Water Test</a>
+        <a href="#" class="btn btn-outline-pink" onclick="openCalendly(event)" data-i18n="cta_book">Book Free Water Test</a>
       </div>
     </div>
   </div>
@@ -1072,13 +1152,13 @@ a, button, [role="button"], input, textarea, select {
 <section class="calculator-section section-pad" id="calculator">
   <div class="container">
     <div style="text-align: center;">
-      <p class="section-label js-reveal">Cost Calculator</p>
-      <h2 class="section-title js-reveal" style="margin-inline: auto;">See How Much<br>You Save</h2>
-      <p class="section-subtitle js-reveal" style="margin-inline: auto; margin-top: var(--s4);">Compare the total cost of ownership over time. Own your system outright or keep paying month after month?</p>
+      <p class="section-label js-reveal" data-i18n="calc_label">Cost Calculator</p>
+      <h2 class="section-title js-reveal" style="margin-inline: auto;" data-i18n="calc_title" data-i18n-html="1">See How Much<br>You Save</h2>
+      <p class="section-subtitle js-reveal" style="margin-inline: auto; margin-top: var(--s4);" data-i18n="calc_subtitle">Compare the total cost of ownership over time. Own your system outright or keep paying month after month?</p>
     </div>
     <div class="calc-container js-reveal">
       <div class="calc-slider-row">
-        <span class="calc-slider-label">Years of ownership:</span>
+        <span class="calc-slider-label" data-i18n="calc_slider_label">Years of ownership:</span>
         <input type="range" class="calc-slider" id="calc-years" min="1" max="10" value="5" aria-label="Years of ownership">
         <span class="calc-slider-value" id="calc-years-display">5 years</span>
       </div>
@@ -1089,23 +1169,23 @@ a, button, [role="button"], input, textarea, select {
           </div>
           <span class="calc-bar-amount" id="cost-cf">$2,699</span>
           <span class="calc-bar-label">CrystalFlow</span>
-          <span class="calc-bar-sublabel">One-time purchase</span>
+          <span class="calc-bar-sublabel" data-i18n="calc_onetime">One-time purchase</span>
         </div>
         <div class="calc-bar-item">
           <div class="calc-bar-track">
             <div class="calc-bar-fill subscription" id="bar-sub" style="height: 70%"></div>
           </div>
           <span class="calc-bar-amount" id="cost-sub">$4,200</span>
-          <span class="calc-bar-label">Subscription Competitor</span>
-          <span class="calc-bar-sublabel">$70/month</span>
+          <span class="calc-bar-label" data-i18n="calc_sub_label">Subscription Competitor</span>
+          <span class="calc-bar-sublabel" data-i18n="calc_sub_price">$70/month</span>
         </div>
         <div class="calc-bar-item">
           <div class="calc-bar-track">
             <div class="calc-bar-fill national" id="bar-nat" style="height: 92%"></div>
           </div>
           <span class="calc-bar-amount" id="cost-nat">$5,500</span>
-          <span class="calc-bar-label">National Brand</span>
-          <span class="calc-bar-sublabel">$5,000+ upfront</span>
+          <span class="calc-bar-label" data-i18n="calc_nat_label">National Brand</span>
+          <span class="calc-bar-sublabel" data-i18n="calc_nat_price">$5,000+ upfront</span>
         </div>
       </div>
       <div class="calc-savings" id="calc-savings">
@@ -1113,7 +1193,7 @@ a, button, [role="button"], input, textarea, select {
         <span class="calc-savings-text" id="savings-text">vs. subscription competitor over 5 years</span>
       </div>
       <div class="calc-cta">
-        <a href="#" class="btn btn-primary btn-lg" onclick="openCalendly(event)">Stop Renting Your Water</a>
+        <a href="#" class="btn btn-primary btn-lg" onclick="openCalendly(event)" data-i18n="calc_cta">Stop Renting Your Water</a>
       </div>
     </div>
   </div>
@@ -1125,32 +1205,32 @@ a, button, [role="button"], input, textarea, select {
 <section class="map-section section-pad" id="map">
   <div class="container">
     <div style="text-align: center;">
-      <p class="section-label js-reveal">Your Neighborhood</p>
-      <h2 class="section-title js-reveal" style="margin-inline: auto;">Miami-Dade<br>Water Quality Map</h2>
-      <p class="section-subtitle js-reveal" style="margin-inline: auto; margin-top: var(--s4);">Click your neighborhood to see local water quality data. Source: Miami-Dade Water and Sewer Department.</p>
+      <p class="section-label js-reveal" data-i18n="map_label">Your Neighborhood</p>
+      <h2 class="section-title js-reveal" style="margin-inline: auto;" data-i18n="map_title" data-i18n-html="1">Miami-Dade<br>Water Quality Map</h2>
+      <p class="section-subtitle js-reveal" style="margin-inline: auto; margin-top: var(--s4);" data-i18n="map_subtitle">Click your neighborhood to see local water quality data. Source: Miami-Dade Water and Sewer Department.</p>
     </div>
     <div class="map-layout js-reveal">
       <div class="map-container" id="leaflet-map"></div>
       <div class="map-info-panel" id="map-info">
-        <h3 class="map-info-title" id="map-area-name">Select a Neighborhood</h3>
-        <p class="map-info-subtitle" id="map-area-subtitle">Click any area on the map to view water quality data for that neighborhood.</p>
+        <h3 class="map-info-title" id="map-area-name" data-i18n="map_select">Select a Neighborhood</h3>
+        <p class="map-info-subtitle" id="map-area-subtitle" data-i18n="map_select_desc">Click any area on the map to view water quality data for that neighborhood.</p>
         <div class="map-info-stats" id="map-stats">
           <div class="map-info-stat">
-            <span class="map-info-stat-label">Water Hardness (PPM)</span>
+            <span class="map-info-stat-label" data-i18n="map_hardness">Water Hardness (PPM)</span>
             <span class="map-info-stat-value" id="stat-hardness">--</span>
           </div>
           <div>
             <div class="map-info-bar"><div class="map-info-bar-fill" id="bar-hardness" style="width: 0%; background: var(--pink);"></div></div>
           </div>
           <div class="map-info-stat">
-            <span class="map-info-stat-label">Chlorine (mg/L)</span>
+            <span class="map-info-stat-label" data-i18n="map_chlorine">Chlorine (mg/L)</span>
             <span class="map-info-stat-value" id="stat-chlorine">--</span>
           </div>
           <div>
             <div class="map-info-bar"><div class="map-info-bar-fill" id="bar-chlorine" style="width: 0%; background: var(--cyan);"></div></div>
           </div>
           <div class="map-info-stat">
-            <span class="map-info-stat-label">TDS (mg/L)</span>
+            <span class="map-info-stat-label" data-i18n="map_tds">TDS (mg/L)</span>
             <span class="map-info-stat-value" id="stat-tds">--</span>
           </div>
           <div>
@@ -1158,11 +1238,11 @@ a, button, [role="button"], input, textarea, select {
           </div>
         </div>
         <div class="map-info-recommendation" id="map-recommendation" style="display: none;">
-          <strong>Our Recommendation</strong>
+          <strong data-i18n="map_rec_label">Our Recommendation</strong>
           <span id="map-rec-text"></span>
         </div>
         <div class="map-info-cta" id="map-cta" style="display: none;">
-          <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="openCalendly(event)">Book Free Water Test</a>
+          <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="openCalendly(event)" data-i18n="cta_book">Book Free Water Test</a>
         </div>
       </div>
     </div>
@@ -1175,47 +1255,47 @@ a, button, [role="button"], input, textarea, select {
 <section class="warranty-section section-pad" id="warranty">
   <div class="container">
     <div style="text-align: center;">
-      <p class="section-label js-reveal">Protection Plans</p>
-      <h2 class="section-title js-reveal" style="margin-inline: auto;">Warranty &amp;<br>Maintenance</h2>
-      <p class="section-subtitle js-reveal" style="margin-inline: auto; margin-top: var(--s4);">Keep your system running at peak performance with our annual warranty plans.</p>
+      <p class="section-label js-reveal" data-i18n="warranty_label">Protection Plans</p>
+      <h2 class="section-title js-reveal" style="margin-inline: auto;" data-i18n="warranty_title" data-i18n-html="1">Warranty &amp;<br>Maintenance</h2>
+      <p class="section-subtitle js-reveal" style="margin-inline: auto; margin-top: var(--s4);" data-i18n="warranty_subtitle">Keep your system running at peak performance with our annual warranty plans.</p>
     </div>
     <div class="warranty-grid">
       <div class="warranty-card js-reveal">
-        <h3 class="warranty-name">Silver</h3>
-        <div class="warranty-price">$199 <span>/year</span></div>
+        <h3 class="warranty-name" data-i18n="w_silver">Silver</h3>
+        <div class="warranty-price">$199 <span data-i18n="w_per_year">/year</span></div>
         <ul class="warranty-features" role="list">
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 3-year extended warranty (parts + labor)</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Bi-annual inspection and maintenance</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Priority scheduling for repairs</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Discounted service calls (10% off)</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Annual water quality report</li>
-          <li><svg class="cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg> Emergency service</li>
-          <li><svg class="cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg> Free system upgrades</li>
+          <li data-i18n="w_s_f1" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 3-year extended warranty (parts + labor)</li>
+          <li data-i18n="w_s_f2" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Bi-annual inspection and maintenance</li>
+          <li data-i18n="w_s_f3" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Priority scheduling for repairs</li>
+          <li data-i18n="w_s_f4" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Discounted service calls (10% off)</li>
+          <li data-i18n="w_s_f5" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Annual water quality report</li>
+          <li data-i18n="w_s_f6" data-i18n-html="1"><svg class="cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg> Emergency service</li>
+          <li data-i18n="w_s_f7" data-i18n-html="1"><svg class="cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg> Free system upgrades</li>
         </ul>
       </div>
       <div class="warranty-card js-reveal">
-        <h3 class="warranty-name">Gold</h3>
-        <div class="warranty-price">$299 <span>/year</span></div>
+        <h3 class="warranty-name" data-i18n="w_gold">Gold</h3>
+        <div class="warranty-price">$299 <span data-i18n="w_per_year">/year</span></div>
         <ul class="warranty-features" role="list">
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 5-year extended warranty (parts + labor)</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Quarterly inspection and maintenance</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Emergency service (24-48 hour response)</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Free system upgrades (filters, valves)</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Discounted service calls (20% off)</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Bi-annual water quality testing</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Transferable warranty</li>
+          <li data-i18n="w_g_f1" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 5-year extended warranty (parts + labor)</li>
+          <li data-i18n="w_g_f2" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Quarterly inspection and maintenance</li>
+          <li data-i18n="w_g_f3" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Emergency service (24-48 hour response)</li>
+          <li data-i18n="w_g_f4" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Free system upgrades (filters, valves)</li>
+          <li data-i18n="w_g_f5" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Discounted service calls (20% off)</li>
+          <li data-i18n="w_g_f6" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Bi-annual water quality testing</li>
+          <li data-i18n="w_g_f7" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Transferable warranty</li>
         </ul>
       </div>
       <div class="warranty-card featured js-reveal">
-        <div class="product-badge" style="background: var(--cyan);">Best Value</div>
-        <h3 class="warranty-name">Platinum</h3>
-        <div class="warranty-price">$499 <span>/year</span></div>
+        <div class="product-badge" style="background: var(--cyan);" data-i18n="w_best_value">Best Value</div>
+        <h3 class="warranty-name" data-i18n="w_platinum">Platinum</h3>
+        <div class="warranty-price">$499 <span data-i18n="w_per_year">/year</span></div>
         <ul class="warranty-features" role="list">
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Lifetime warranty on all covered parts</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Discounted service calls (30% off)</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Guaranteed emergency response (&lt;24 hours)</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Free replacement if unrepairable</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Quarterly water quality testing</li>
+          <li data-i18n="w_p_f1" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Lifetime warranty on all covered parts</li>
+          <li data-i18n="w_p_f2" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Discounted service calls (30% off)</li>
+          <li data-i18n="w_p_f3" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Guaranteed emergency response (&lt;24 hours)</li>
+          <li data-i18n="w_p_f4" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Free replacement if unrepairable</li>
+          <li data-i18n="w_p_f5" data-i18n-html="1"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Quarterly water quality testing</li>
         </ul>
       </div>
     </div>
@@ -1228,29 +1308,29 @@ a, button, [role="button"], input, textarea, select {
 <section class="how-section section-pad" id="how">
   <div class="container">
     <div style="text-align: center;">
-      <p class="section-label js-reveal" style="color: var(--cyan);">How It Works</p>
-      <h2 class="section-title js-reveal" style="color: #fff; margin-inline: auto;">Four Steps to<br>Pure Water</h2>
+      <p class="section-label js-reveal" style="color: var(--cyan);" data-i18n="how_label">How It Works</p>
+      <h2 class="section-title js-reveal" style="color: #fff; margin-inline: auto;" data-i18n="how_title" data-i18n-html="1">Four Steps to<br>Pure Water</h2>
     </div>
     <div class="how-steps">
       <div class="how-step js-reveal">
         <div class="how-step-number">1</div>
-        <h3>Free Water Test</h3>
-        <p>Our certified technician visits your home and tests your water for hardness, chlorine, pH, TDS, and common contaminants. No cost, no obligation.</p>
+        <h3 data-i18n="how_s1_title">Free Water Test</h3>
+        <p data-i18n="how_s1_desc">Our certified technician visits your home and tests your water for hardness, chlorine, pH, TDS, and common contaminants. No cost, no obligation.</p>
       </div>
       <div class="how-step js-reveal">
         <div class="how-step-number">2</div>
-        <h3>Custom Recommendation</h3>
-        <p>Based on your results, we recommend the perfect Waterdrop system for your home size, water quality, and budget. Published prices, no surprises.</p>
+        <h3 data-i18n="how_s2_title">Custom Recommendation</h3>
+        <p data-i18n="how_s2_desc">Based on your results, we recommend the perfect Waterdrop system for your home size, water quality, and budget. Published prices, no surprises.</p>
       </div>
       <div class="how-step js-reveal">
         <div class="how-step-number">3</div>
-        <h3>Professional Installation</h3>
-        <p>Licensed technicians install your system, typically within the same week. One price includes everything. You own your equipment from day one.</p>
+        <h3 data-i18n="how_s3_title">Professional Installation</h3>
+        <p data-i18n="how_s3_desc">Licensed technicians install your system, typically within the same week. One price includes everything. You own your equipment from day one.</p>
       </div>
       <div class="how-step js-reveal">
         <div class="how-step-number">4</div>
-        <h3>Ongoing Support</h3>
-        <p>24/7 AI chat support, optional warranty plans, and a dedicated team ready to help whenever you need us. Your water, our commitment.</p>
+        <h3 data-i18n="how_s4_title">Ongoing Support</h3>
+        <p data-i18n="how_s4_desc">24/7 AI chat support, optional warranty plans, and a dedicated team ready to help whenever you need us. Your water, our commitment.</p>
       </div>
     </div>
   </div>
@@ -1262,8 +1342,8 @@ a, button, [role="button"], input, textarea, select {
 <section class="testimonials-section section-pad" id="testimonials">
   <div class="container">
     <div style="text-align: center;">
-      <p class="section-label js-reveal">Testimonials</p>
-      <h2 class="section-title js-reveal" style="margin-inline: auto;">What Miami<br>Homeowners Say</h2>
+      <p class="section-label js-reveal" data-i18n="test_label">Testimonials</p>
+      <h2 class="section-title js-reveal" style="margin-inline: auto;" data-i18n="test_title" data-i18n-html="1">What Miami<br>Homeowners Say</h2>
     </div>
     <div class="testimonials-grid">
       <div class="testimonial-card js-reveal">
@@ -1274,12 +1354,12 @@ a, button, [role="button"], input, textarea, select {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <p class="testimonial-text">"The water quality difference was noticeable immediately. We used to buy bottled water every week, now we drink straight from the tap. The installation was clean and professional."</p>
+        <p class="testimonial-text" data-i18n="test_1_text">"The water quality difference was noticeable immediately. We used to buy bottled water every week, now we drink straight from the tap. The installation was clean and professional."</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar">MR</div>
           <div>
             <div class="testimonial-name">Maria Rodriguez</div>
-            <div class="testimonial-location">Coral Gables</div>
+            <div class="testimonial-location" data-i18n="test_1_loc">Coral Gables</div>
           </div>
         </div>
       </div>
@@ -1291,12 +1371,12 @@ a, button, [role="button"], input, textarea, select {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <p class="testimonial-text">"I was paying a competitor $70/month for years. CrystalFlow saved me thousands with a one-time purchase. I wish I had found them sooner. The system is compact and works perfectly in my condo."</p>
+        <p class="testimonial-text" data-i18n="test_2_text">"I was paying a competitor $70/month for years. CrystalFlow saved me thousands with a one-time purchase. I wish I had found them sooner. The system is compact and works perfectly in my condo."</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar">JT</div>
           <div>
             <div class="testimonial-name">James Thompson</div>
-            <div class="testimonial-location">Brickell</div>
+            <div class="testimonial-location" data-i18n="test_2_loc">Brickell</div>
           </div>
         </div>
       </div>
@@ -1308,12 +1388,12 @@ a, button, [role="button"], input, textarea, select {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <p class="testimonial-text">"Transparent pricing, fast installation, and no pushy sales tactics. They showed up when they said they would and the whole-home system is incredible. Our skin and hair feel completely different."</p>
+        <p class="testimonial-text" data-i18n="test_3_text">"Transparent pricing, fast installation, and no pushy sales tactics. They showed up when they said they would and the whole-home system is incredible. Our skin and hair feel completely different."</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar">SP</div>
           <div>
             <div class="testimonial-name">Sofia Perez</div>
-            <div class="testimonial-location">Kendall</div>
+            <div class="testimonial-location" data-i18n="test_3_loc">Kendall</div>
           </div>
         </div>
       </div>
@@ -1327,62 +1407,62 @@ a, button, [role="button"], input, textarea, select {
 <section class="faq-section section-pad" id="faq">
   <div class="container">
     <div style="text-align: center;">
-      <p class="section-label js-reveal">FAQ</p>
-      <h2 class="section-title js-reveal" style="margin-inline: auto;">Frequently Asked<br>Questions</h2>
+      <p class="section-label js-reveal" data-i18n="faq_label">FAQ</p>
+      <h2 class="section-title js-reveal" style="margin-inline: auto;" data-i18n="faq_title" data-i18n-html="1">Frequently Asked<br>Questions</h2>
     </div>
     <div class="faq-list">
       <div class="faq-item js-reveal">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" onclick="toggleFaq(this)" data-i18n="faq_q1" data-i18n-html="1">
           How much does a water filtration system cost?
           <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Our Kitchen Guard starts at $699 (perfect for condos), Home Shield at $1,799 (whole-home coverage), and Pure Life at $2,699 (premium system with UV sterilization). All prices include professional installation. No hidden fees, no subscriptions.</div>
+          <div class="faq-answer-inner" data-i18n="faq_a1">Our Kitchen Guard starts at $699 (perfect for condos), Home Shield at $1,799 (whole-home coverage), and Pure Life at $2,699 (premium system with UV sterilization). All prices include professional installation. No hidden fees, no subscriptions.</div>
         </div>
       </div>
       <div class="faq-item js-reveal">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" onclick="toggleFaq(this)" data-i18n="faq_q2" data-i18n-html="1">
           How long does installation take?
           <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Under-sink systems take 2-3 hours. Whole-home systems take 3-5 hours. Most customers are scheduled within the same week of booking. All work is performed by licensed, certified technicians.</div>
+          <div class="faq-answer-inner" data-i18n="faq_a2">Under-sink systems take 2-3 hours. Whole-home systems take 3-5 hours. Most customers are scheduled within the same week of booking. All work is performed by licensed, certified technicians.</div>
         </div>
       </div>
       <div class="faq-item js-reveal">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" onclick="toggleFaq(this)" data-i18n="faq_q3" data-i18n-html="1">
           Do your systems work in condos and apartments?
           <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Absolutely. Our Kitchen Guard package is specifically designed for condo and apartment living. The compact under-sink design requires no major plumbing modifications and fits in any standard kitchen cabinet.</div>
+          <div class="faq-answer-inner" data-i18n="faq_a3">Absolutely. Our Kitchen Guard package is specifically designed for condo and apartment living. The compact under-sink design requires no major plumbing modifications and fits in any standard kitchen cabinet.</div>
         </div>
       </div>
       <div class="faq-item js-reveal">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" onclick="toggleFaq(this)" data-i18n="faq_q4" data-i18n-html="1">
           What does the free water test include?
           <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Our certified technician visits your home and tests your water for hardness, chlorine, pH, TDS, and common contaminants. You'll get a full report and personalized recommendation with no cost or obligation to purchase.</div>
+          <div class="faq-answer-inner" data-i18n="faq_a4">Our certified technician visits your home and tests your water for hardness, chlorine, pH, TDS, and common contaminants. You'll get a full report and personalized recommendation with no cost or obligation to purchase.</div>
         </div>
       </div>
       <div class="faq-item js-reveal">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" onclick="toggleFaq(this)" data-i18n="faq_q5" data-i18n-html="1">
           What warranty options do you offer?
           <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">We offer three warranty tiers: Silver ($199/yr) includes a 3-year extended warranty with parts and labor, bi-annual inspections, priority scheduling for repairs, and 10% off service calls. Gold ($299/yr) extends to 5 years with quarterly maintenance, free system upgrades, 24-48 hour emergency response, 20% off service calls, and a transferable warranty. Platinum ($499/yr) provides a lifetime warranty, 30% off service calls, guaranteed emergency response in less than 24 hours, free replacement if unrepairable, and quarterly water quality testing. All systems include a base 1-year parts and labor warranty.</div>
+          <div class="faq-answer-inner" data-i18n="faq_a5">We offer three warranty tiers: Silver ($199/yr) includes a 3-year extended warranty with parts and labor, bi-annual inspections, priority scheduling for repairs, and 10% off service calls. Gold ($299/yr) extends to 5 years with quarterly maintenance, free system upgrades, 24-48 hour emergency response, 20% off service calls, and a transferable warranty. Platinum ($499/yr) provides a lifetime warranty, 30% off service calls, guaranteed emergency response in less than 24 hours, free replacement if unrepairable, and quarterly water quality testing. All systems include a base 1-year parts and labor warranty.</div>
         </div>
       </div>
       <div class="faq-item js-reveal">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" onclick="toggleFaq(this)" data-i18n="faq_q6" data-i18n-html="1">
           Why should I buy instead of subscribing?
           <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Subscription competitors charge $70/month, which costs $4,200 over just 5 years and you never own the equipment. Our whole-home system starts at $1,799 as a one-time purchase. You save thousands and the system is yours forever.</div>
+          <div class="faq-answer-inner" data-i18n="faq_a6">Subscription competitors charge $70/month, which costs $4,200 over just 5 years and you never own the equipment. Our whole-home system starts at $1,799 as a one-time purchase. You save thousands and the system is yours forever.</div>
         </div>
       </div>
     </div>
@@ -1394,17 +1474,39 @@ a, button, [role="button"], input, textarea, select {
      ============================================================ -->
 <section class="cta-section section-pad-lg" id="contact">
   <div class="container" style="text-align: center;">
-    <p class="section-label js-reveal">Get Started</p>
-    <h2 class="section-title js-reveal" style="color: #fff; margin-inline: auto;">Ready for<br>Pure Water?</h2>
-    <p class="cta-description js-reveal" style="margin-top: var(--s6); margin-bottom: var(--s10);">Find out exactly what's in your water. No cost, no obligation. Get a personalized recommendation for your home.</p>
+    <p class="section-label js-reveal" data-i18n="cta_label">Get Started</p>
+    <h2 class="section-title js-reveal" style="color: #fff; margin-inline: auto;" data-i18n="cta_title" data-i18n-html="1">Ready for<br>Pure Water?</h2>
+    <p class="cta-description js-reveal" style="margin-top: var(--s6); margin-bottom: var(--s10);" data-i18n="cta_desc">Find out exactly what's in your water. No cost, no obligation. Get a personalized recommendation for your home.</p>
     <div class="js-reveal" style="display: flex; gap: var(--s4); justify-content: center; flex-wrap: wrap; margin-bottom: var(--s12);">
-      <a href="#" class="btn btn-primary btn-lg" onclick="openCalendly(event)">Schedule Free Water Test</a>
+      <a href="#" class="btn btn-primary btn-lg" onclick="openCalendly(event)" data-i18n="cta_schedule">Schedule Free Water Test</a>
       <a href="tel:+17869473824" class="btn btn-white btn-lg">(786) 947-3824</a>
     </div>
     <div class="js-reveal" style="display: flex; gap: var(--s10); justify-content: center; flex-wrap: wrap; color: rgba(255,255,255,0.45); font-size: var(--text-sm);">
-      <span>Mon &ndash; Sat, 8 AM &ndash; 5 PM ET</span>
+      <span data-i18n="cta_hours">Mon &ndash; Sat, 8 AM &ndash; 5 PM ET</span>
       <span>info@crystalflowmiami.com</span>
-      <span>Greater Miami-Dade County, FL</span>
+      <span data-i18n="cta_area">Greater Miami-Dade County, FL</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEWSLETTER / EMAIL CAPTURE
+     ============================================================ -->
+<section class="newsletter-bar section-pad" id="newsletter">
+  <div class="container">
+    <div class="newsletter-inner js-reveal">
+      <div class="newsletter-copy">
+        <h3 data-i18n="nl_title">Stay Informed About Your Water Quality</h3>
+        <p data-i18n="nl_desc">Get expert tips on water treatment, Miami water quality updates, and exclusive offers delivered to your inbox.</p>
+      </div>
+      <div>
+        <form class="newsletter-form" id="newsletter-form" novalidate>
+          <input type="email" id="nl-email" placeholder="you@example.com" required aria-label="Email address">
+          <button type="submit" class="btn btn-primary" data-i18n="nl_btn">Subscribe</button>
+        </form>
+        <p class="newsletter-privacy" data-i18n="nl_privacy">We respect your privacy. Unsubscribe anytime.</p>
+        <p class="newsletter-msg" id="nl-msg"></p>
+      </div>
     </div>
   </div>
 </section>
@@ -1429,20 +1531,20 @@ a, button, [role="button"], input, textarea, select {
             <span class="header-logo-sub">Miami</span>
           </div>
         </a>
-        <p>Own your water. One price. No subscriptions. Premium water treatment for Greater Miami-Dade County.</p>
+        <p data-i18n="footer_desc">Own your water. One price. No subscriptions. Premium water treatment for Greater Miami-Dade County.</p>
       </div>
       <div class="footer-col">
-        <h4>Quick Links</h4>
+        <h4 data-i18n="footer_links">Quick Links</h4>
         <ul role="list">
-          <li><a href="#packages">Packages</a></li>
-          <li><a href="#calculator">Cost Calculator</a></li>
-          <li><a href="#map">Water Quality Map</a></li>
-          <li><a href="#warranty">Warranty Plans</a></li>
+          <li><a href="#packages" data-i18n="nav_packages">Packages</a></li>
+          <li><a href="#calculator" data-i18n="footer_calc">Cost Calculator</a></li>
+          <li><a href="#map" data-i18n="footer_map">Water Quality Map</a></li>
+          <li><a href="#warranty" data-i18n="footer_warranty">Warranty Plans</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Service Areas</h4>
+        <h4 data-i18n="footer_areas">Service Areas</h4>
         <ul role="list">
           <li><a href="#map">Coral Gables</a></li>
           <li><a href="#map">Brickell</a></li>
@@ -1452,17 +1554,17 @@ a, button, [role="button"], input, textarea, select {
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contact</h4>
+        <h4 data-i18n="footer_contact">Contact</h4>
         <ul role="list">
           <li><a href="tel:+17869473824">(786) 947-3824</a></li>
           <li><a href="mailto:info@crystalflowmiami.com">info@crystalflowmiami.com</a></li>
-          <li>Mon &ndash; Sat, 8 AM &ndash; 5 PM</li>
-          <li>Miami-Dade County, FL</li>
+          <li data-i18n="footer_hours">Mon &ndash; Sat, 8 AM &ndash; 5 PM</li>
+          <li data-i18n="footer_location">Miami-Dade County, FL</li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 CrystalFlow Miami. All rights reserved.</p>
+      <p data-i18n="footer_copyright" data-i18n-html="1">&copy; 2026 CrystalFlow Miami. All rights reserved.</p>
       <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
     </div>
   </div>
@@ -1562,7 +1664,6 @@ a, button, [role="button"], input, textarea, select {
 
   function updateCalculator() {
     var years = parseInt(calcSlider.value);
-    calcDisplay.textContent = years + (years === 1 ? ' year' : ' years');
     var cfCost = cfBase;
     var subCost = subMonthly * 12 * years;
     var natCost = natBase + (natYearly * years);
@@ -1573,9 +1674,8 @@ a, button, [role="button"], input, textarea, select {
     document.getElementById('bar-cf').style.height = ((cfCost / maxCost) * 90) + '%';
     document.getElementById('bar-sub').style.height = ((subCost / maxCost) * 90) + '%';
     document.getElementById('bar-nat').style.height = ((natCost / maxCost) * 90) + '%';
-    var savings = subCost - cfCost;
-    document.getElementById('savings-amount').textContent = 'Save $' + savings.toLocaleString();
-    document.getElementById('savings-text').textContent = 'vs. subscription competitor over ' + years + (years === 1 ? ' year' : ' years');
+    /* Delegate dynamic text to translation-aware function */
+    if (typeof updateCalculatorLang === 'function') { updateCalculatorLang(); }
   }
 
   calcSlider.addEventListener('input', updateCalculator);
@@ -1652,9 +1752,15 @@ a, button, [role="button"], input, textarea, select {
       if (dot) dot.classList.add('active');
       activeMarker = marker;
 
-      // Update panel
+      // Update panel — store active key for language switching
+      if (typeof _activeMapKey !== 'undefined') _activeMapKey = key;
+      var t = (typeof _i18n !== 'undefined' && typeof _currentLang !== 'undefined') ? _i18n[_currentLang] : null;
+      var recKey = 'map_rec_' + key.replace(/-/g, '_');
       document.getElementById('map-area-name').textContent = data.name;
-      document.getElementById('map-area-subtitle').textContent = 'Water quality data for ' + data.name + ', Miami-Dade County';
+      document.getElementById('map-area-name').removeAttribute('data-i18n');
+      var subtitleEl = document.getElementById('map-area-subtitle');
+      subtitleEl.textContent = (t ? t.map_water_data : 'Water quality data for ') + data.name + (t ? t.map_county : ', Miami-Dade County');
+      subtitleEl.removeAttribute('data-i18n');
 
       var hardnessEl = document.getElementById('stat-hardness');
       hardnessEl.textContent = data.hardness + ' PPM';
@@ -1672,7 +1778,7 @@ a, button, [role="button"], input, textarea, select {
       document.getElementById('bar-chlorine').style.width = ((data.chlorine / 6) * 100) + '%';
       document.getElementById('bar-tds').style.width = ((data.tds / 500) * 100) + '%';
 
-      document.getElementById('map-rec-text').textContent = data.recommendation;
+      document.getElementById('map-rec-text').textContent = (t && t[recKey]) ? t[recKey] : data.recommendation;
       document.getElementById('map-recommendation').style.display = 'block';
       document.getElementById('map-cta').style.display = 'block';
     });
@@ -1712,6 +1818,640 @@ window.intercomSettings = {
   app_id: "sx0gvmky"
 };
 (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/sx0gvmky';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+
+/* ============================================================
+   BILINGUAL TRANSLATION SYSTEM (EN / ES)
+   ============================================================ */
+var _i18n = {
+  en: {
+    /* Navigation */
+    nav_water: 'Miami Water',
+    nav_packages: 'Packages',
+    nav_compare: 'Compare',
+    nav_area: 'Your Area',
+    nav_warranty: 'Warranty',
+    nav_contact: 'Contact',
+    nav_blog: 'Blog',
+    nav_account: 'My Account',
+    cta_book: 'Book Free Water Test',
+
+    /* Hero */
+    hero_tagline: 'Premium Water Treatment for Miami',
+    hero_title: 'Own your<br><em>water.</em>',
+    hero_desc: 'One price. No subscriptions. Professional installation of Waterdrop premium systems across Greater Miami-Dade County.',
+    hero_cta_packages: 'See Our Packages',
+
+    /* Stats Bar */
+    stat_removal: 'Contaminant Removal',
+    stat_fees: 'Hidden Fees or Subscriptions',
+    stat_concierge: 'Concierge Service',
+    stat_pricing: 'Transparent Pricing',
+
+    /* Problem Section */
+    problem_label: 'The Problem',
+    problem_title: "Miami's Water<br>Isn't as Clean<br>as You Think",
+    problem_desc: "Miami-Dade's water flows through the Biscayne Aquifer, one of the most porous limestone formations in the country. The result? Hard water, chlorine, and dissolved solids that damage your home and your health.",
+    problem_hardness_desc: 'Average water hardness in Miami-Dade',
+    problem_chlorine: 'High Chlorine',
+    problem_chlorine_desc: 'Used to treat surface water sources',
+    problem_pfas: 'PFAS Detected',
+    problem_pfas_desc: 'Potential forever chemicals in local supply',
+
+    /* Packages Section */
+    pkg_label: 'Our Packages',
+    pkg_title: 'Find Your<br>Perfect System',
+    pkg_subtitle: 'Every package includes professional installation. One price. You own it.',
+    pkg_installed: 'installed',
+    pkg_popular: 'Most Popular',
+
+    /* Kitchen Guard features */
+    kg_f1: 'Under-sink reverse osmosis system',
+    kg_f2: '500 GPD capacity (G5P500A)',
+    kg_f3: 'Compact design, perfect for condos',
+    kg_f4: 'Professional installation included',
+    kg_f5: 'Gooseneck faucet included',
+
+    /* Home Shield features */
+    hs_f1: 'Whole-home filtration + softening',
+    hs_f2: '800 GPD capacity (G3P800)',
+    hs_f3: 'LED smart faucet included',
+    hs_f4: 'Professional installation included',
+    hs_f5: 'Full-home water coverage',
+
+    /* Pure Life features */
+    pl_f1: 'Premium whole-home system',
+    pl_f2: '1600 GPD with UV sterilization (X16)',
+    pl_f3: 'Smart display with pH+ remineralization',
+    pl_f4: 'Professional installation included',
+    pl_f5: 'Advanced smart monitoring',
+
+    /* Calculator */
+    calc_label: 'Cost Calculator',
+    calc_title: 'See How Much<br>You Save',
+    calc_subtitle: 'Compare the total cost of ownership over time. Own your system outright or keep paying month after month?',
+    calc_slider_label: 'Years of ownership:',
+    calc_onetime: 'One-time purchase',
+    calc_sub_label: 'Subscription Competitor',
+    calc_sub_price: '$70/month',
+    calc_nat_label: 'National Brand',
+    calc_nat_price: '$5,000+ upfront',
+    calc_cta: 'Stop Renting Your Water',
+    calc_year: 'year',
+    calc_years: 'years',
+    calc_save: 'Save $',
+    calc_vs: 'vs. subscription competitor over ',
+
+    /* Map / Service Area */
+    map_label: 'Your Neighborhood',
+    map_title: 'Miami-Dade<br>Water Quality Map',
+    map_subtitle: 'Click your neighborhood to see local water quality data. Source: Miami-Dade Water and Sewer Department.',
+    map_select: 'Select a Neighborhood',
+    map_select_desc: 'Click any area on the map to view water quality data for that neighborhood.',
+    map_hardness: 'Water Hardness (PPM)',
+    map_chlorine: 'Chlorine (mg/L)',
+    map_tds: 'TDS (mg/L)',
+    map_rec_label: 'Our Recommendation',
+    map_water_data: 'Water quality data for ',
+    map_county: ', Miami-Dade County',
+    map_rec_aventura: 'With 285 PPM hardness and elevated TDS, we recommend the Home Shield or Pure Life package.',
+    map_rec_miami_beach: 'Miami Beach has some of the hardest water at 295 PPM. Pure Life with UV is ideal for coastal properties.',
+    map_rec_hialeah: 'Moderate-to-high hardness at 260 PPM. Home Shield provides excellent whole-home coverage.',
+    map_rec_miami_lakes: 'Miami Lakes at 250 PPM still damages appliances. Home Shield is our recommendation.',
+    map_rec_doral: 'Right at the county average of 270 PPM. Home Shield provides the best balance.',
+    map_rec_wynwood: 'Higher chlorine at 4.0 mg/L. Kitchen Guard is excellent for condos and lofts.',
+    map_rec_little_havana: 'Kitchen Guard is perfect for apartment living, starting at $699.',
+    map_rec_brickell: 'High-rise living means elevated TDS and chlorine. Kitchen Guard is the go-to for condos.',
+    map_rec_coconut_grove: 'Above-average hardness. Home Shield protects plumbing and appliances throughout the house.',
+    map_rec_coral_gables: 'Water runs through some of the oldest limestone aquifer channels. Home Shield or Pure Life.',
+    map_rec_key_biscayne: 'Highest readings in the county. Pure Life with UV sterilization strongly recommended.',
+    map_rec_pinecrest: 'Slightly lower hardness at 265 PPM but chlorine remains a concern. Home Shield recommended.',
+    map_rec_cutler_bay: 'Moderate hardness at 252 PPM. Kitchen Guard or Home Shield both excellent choices for this area.',
+    map_rec_kendall: 'Moderate hardness at 258 PPM. Home Shield is our most popular choice for suburban homes.',
+    map_rec_homestead: 'Lowest hardness in the county but still above recommended levels. Kitchen Guard or Home Shield.',
+
+    /* Warranty */
+    warranty_label: 'Protection Plans',
+    warranty_title: 'Warranty &amp;<br>Maintenance',
+    warranty_subtitle: 'Keep your system running at peak performance with our annual warranty plans.',
+    w_silver: 'Silver',
+    w_gold: 'Gold',
+    w_platinum: 'Platinum',
+    w_best_value: 'Best Value',
+    w_per_year: '/year',
+    w_s_f1: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 3-year extended warranty (parts + labor)',
+    w_s_f2: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Bi-annual inspection and maintenance',
+    w_s_f3: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Priority scheduling for repairs',
+    w_s_f4: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Discounted service calls (10% off)',
+    w_s_f5: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Annual water quality report',
+    w_s_f6: '<svg class="cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg> Emergency service',
+    w_s_f7: '<svg class="cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg> Free system upgrades',
+    w_g_f1: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 5-year extended warranty (parts + labor)',
+    w_g_f2: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Quarterly inspection and maintenance',
+    w_g_f3: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Emergency service (24-48 hour response)',
+    w_g_f4: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Free system upgrades (filters, valves)',
+    w_g_f5: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Discounted service calls (20% off)',
+    w_g_f6: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Bi-annual water quality testing',
+    w_g_f7: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Transferable warranty',
+    w_p_f1: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Lifetime warranty on all covered parts',
+    w_p_f2: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Discounted service calls (30% off)',
+    w_p_f3: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Guaranteed emergency response (&lt;24 hours)',
+    w_p_f4: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Free replacement if unrepairable',
+    w_p_f5: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Quarterly water quality testing',
+
+    /* How It Works */
+    how_label: 'How It Works',
+    how_title: 'Four Steps to<br>Pure Water',
+    how_s1_title: 'Free Water Test',
+    how_s1_desc: 'Our certified technician visits your home and tests your water for hardness, chlorine, pH, TDS, and common contaminants. No cost, no obligation.',
+    how_s2_title: 'Custom Recommendation',
+    how_s2_desc: 'Based on your results, we recommend the perfect Waterdrop system for your home size, water quality, and budget. Published prices, no surprises.',
+    how_s3_title: 'Professional Installation',
+    how_s3_desc: 'Licensed technicians install your system, typically within the same week. One price includes everything. You own your equipment from day one.',
+    how_s4_title: 'Ongoing Support',
+    how_s4_desc: '24/7 AI chat support, optional warranty plans, and a dedicated team ready to help whenever you need us. Your water, our commitment.',
+
+    /* Testimonials */
+    test_label: 'Testimonials',
+    test_title: 'What Miami<br>Homeowners Say',
+    test_1_text: '"The water quality difference was noticeable immediately. We used to buy bottled water every week, now we drink straight from the tap. The installation was clean and professional."',
+    test_1_loc: 'Coral Gables',
+    test_2_text: '"I was paying a competitor $70/month for years. CrystalFlow saved me thousands with a one-time purchase. I wish I had found them sooner. The system is compact and works perfectly in my condo."',
+    test_2_loc: 'Brickell',
+    test_3_text: '"Transparent pricing, fast installation, and no pushy sales tactics. They showed up when they said they would and the whole-home system is incredible. Our skin and hair feel completely different."',
+    test_3_loc: 'Kendall',
+
+    /* FAQ */
+    faq_label: 'FAQ',
+    faq_title: 'Frequently Asked<br>Questions',
+    faq_q1: 'How much does a water filtration system cost?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>',
+    faq_a1: 'Our Kitchen Guard starts at $699 (perfect for condos), Home Shield at $1,799 (whole-home coverage), and Pure Life at $2,699 (premium system with UV sterilization). All prices include professional installation. No hidden fees, no subscriptions.',
+    faq_q2: 'How long does installation take?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>',
+    faq_a2: 'Under-sink systems take 2-3 hours. Whole-home systems take 3-5 hours. Most customers are scheduled within the same week of booking. All work is performed by licensed, certified technicians.',
+    faq_q3: 'Do your systems work in condos and apartments?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>',
+    faq_a3: 'Absolutely. Our Kitchen Guard package is specifically designed for condo and apartment living. The compact under-sink design requires no major plumbing modifications and fits in any standard kitchen cabinet.',
+    faq_q4: 'What does the free water test include?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>',
+    faq_a4: "Our certified technician visits your home and tests your water for hardness, chlorine, pH, TDS, and common contaminants. You'll get a full report and personalized recommendation with no cost or obligation to purchase.",
+    faq_q5: 'What warranty options do you offer?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>',
+    faq_a5: 'We offer three warranty tiers: Silver ($199/yr) includes a 3-year extended warranty with parts and labor, bi-annual inspections, priority scheduling for repairs, and 10% off service calls. Gold ($299/yr) extends to 5 years with quarterly maintenance, free system upgrades, 24-48 hour emergency response, 20% off service calls, and a transferable warranty. Platinum ($499/yr) provides a lifetime warranty, 30% off service calls, guaranteed emergency response in less than 24 hours, free replacement if unrepairable, and quarterly water quality testing. All systems include a base 1-year parts and labor warranty.',
+    faq_q6: 'Why should I buy instead of subscribing?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>',
+    faq_a6: 'Subscription competitors charge $70/month, which costs $4,200 over just 5 years and you never own the equipment. Our whole-home system starts at $1,799 as a one-time purchase. You save thousands and the system is yours forever.',
+
+    /* CTA Section */
+    cta_label: 'Get Started',
+    cta_title: 'Ready for<br>Pure Water?',
+    cta_desc: 'Find out exactly what\'s in your water. No cost, no obligation. Get a personalized recommendation for your home.',
+    cta_schedule: 'Schedule Free Water Test',
+    cta_hours: 'Mon \u2013 Sat, 8 AM \u2013 5 PM ET',
+    cta_area: 'Greater Miami-Dade County, FL',
+
+    /* Footer */
+    footer_desc: 'Own your water. One price. No subscriptions. Premium water treatment for Greater Miami-Dade County.',
+    footer_links: 'Quick Links',
+    footer_calc: 'Cost Calculator',
+    footer_map: 'Water Quality Map',
+    footer_warranty: 'Warranty Plans',
+    footer_areas: 'Service Areas',
+    footer_contact: 'Contact',
+    footer_hours: 'Mon \u2013 Sat, 8 AM \u2013 5 PM',
+    footer_location: 'Miami-Dade County, FL',
+    footer_copyright: '&copy; 2026 CrystalFlow Miami. All rights reserved.',
+
+    /* Newsletter */
+    nl_title: 'Stay Informed About Your Water Quality',
+    nl_desc: 'Get expert tips on water treatment, Miami water quality updates, and exclusive offers delivered to your inbox.',
+    nl_btn: 'Subscribe',
+    nl_privacy: 'We respect your privacy. Unsubscribe anytime.',
+    nl_success: 'You\'re subscribed! Check your inbox to confirm.',
+    nl_error: 'Please enter a valid email address.',
+    nl_already: 'This email is already subscribed.',
+    nl_placeholder: 'you@example.com'
+  },
+
+  es: {
+    /* Navegaci\u00f3n */
+    nav_water: 'Agua de Miami',
+    nav_packages: 'Paquetes',
+    nav_compare: 'Comparar',
+    nav_area: 'Tu Zona',
+    nav_warranty: 'Garant\u00eda',
+    nav_contact: 'Contacto',
+    nav_blog: 'Blog',
+    nav_account: 'Mi Cuenta',
+    cta_book: 'Reserve su Prueba de Agua Gratis',
+
+    /* Hero */
+    hero_tagline: 'Tratamiento de Agua Premium para Miami',
+    hero_title: 'Su agua,<br><em>su propiedad.</em>',
+    hero_desc: 'Un solo pago. Sin suscripciones. Instalaci\u00f3n profesional de sistemas premium Waterdrop en todo el Condado Miami-Dade.',
+    hero_cta_packages: 'Ver Nuestros Paquetes',
+
+    /* Barra de Estad\u00edsticas */
+    stat_removal: 'Eliminaci\u00f3n de Contaminantes',
+    stat_fees: 'Cargos Ocultos ni Suscripciones',
+    stat_concierge: 'Servicio Personalizado',
+    stat_pricing: 'Precios Transparentes',
+
+    /* Secci\u00f3n del Problema */
+    problem_label: 'El Problema',
+    problem_title: 'El Agua de Miami<br>No Es Tan Limpia<br>Como Crees',
+    problem_desc: 'El agua de Miami-Dade fluye a trav\u00e9s del Acu\u00edfero Biscayne, una de las formaciones de piedra caliza m\u00e1s porosas del pa\u00eds. \u00bfEl resultado? Agua dura, cloro y s\u00f3lidos disueltos que da\u00f1an tu hogar y tu salud.',
+    problem_hardness_desc: 'Dureza promedio del agua en Miami-Dade',
+    problem_chlorine: 'Alto Nivel de Cloro',
+    problem_chlorine_desc: 'Utilizado para tratar fuentes de agua superficial',
+    problem_pfas: 'PFAS Detectados',
+    problem_pfas_desc: 'Posibles qu\u00edmicos permanentes en el suministro local',
+
+    /* Secci\u00f3n de Paquetes */
+    pkg_label: 'Nuestros Paquetes',
+    pkg_title: 'Encuentre Su<br>Sistema Ideal',
+    pkg_subtitle: 'Cada paquete incluye instalaci\u00f3n profesional. Un solo precio. Es suyo.',
+    pkg_installed: 'instalado',
+    pkg_popular: 'M\u00e1s Popular',
+
+    /* Caracter\u00edsticas Kitchen Guard */
+    kg_f1: 'Sistema de \u00f3smosis inversa bajo fregadero',
+    kg_f2: 'Capacidad de 500 GPD (G5P500A)',
+    kg_f3: 'Dise\u00f1o compacto, ideal para condominios',
+    kg_f4: 'Instalaci\u00f3n profesional incluida',
+    kg_f5: 'Grifo de cuello de cisne incluido',
+
+    /* Caracter\u00edsticas Home Shield */
+    hs_f1: 'Filtraci\u00f3n + suavizado para todo el hogar',
+    hs_f2: 'Capacidad de 800 GPD (G3P800)',
+    hs_f3: 'Grifo inteligente LED incluido',
+    hs_f4: 'Instalaci\u00f3n profesional incluida',
+    hs_f5: 'Cobertura de agua para todo el hogar',
+
+    /* Caracter\u00edsticas Pure Life */
+    pl_f1: 'Sistema premium para todo el hogar',
+    pl_f2: '1600 GPD con esterilizaci\u00f3n UV (X16)',
+    pl_f3: 'Pantalla inteligente con remineralizaci\u00f3n pH+',
+    pl_f4: 'Instalaci\u00f3n profesional incluida',
+    pl_f5: 'Monitoreo inteligente avanzado',
+
+    /* Calculadora */
+    calc_label: 'Calculadora de Costos',
+    calc_title: 'Vea Cu\u00e1nto<br>Ahorra',
+    calc_subtitle: 'Compare el costo total de propiedad a lo largo del tiempo. \u00bfComprar su sistema o seguir pagando mes a mes?',
+    calc_slider_label: 'A\u00f1os de propiedad:',
+    calc_onetime: 'Compra \u00fanica',
+    calc_sub_label: 'Competidor por Suscripci\u00f3n',
+    calc_sub_price: '$70/mes',
+    calc_nat_label: 'Marca Nacional',
+    calc_nat_price: '$5,000+ inicial',
+    calc_cta: 'Deje de Alquilar Su Agua',
+    calc_year: 'a\u00f1o',
+    calc_years: 'a\u00f1os',
+    calc_save: 'Ahorre $',
+    calc_vs: 'vs. competidor por suscripci\u00f3n en ',
+
+    /* Mapa / \u00c1rea de Servicio */
+    map_label: 'Su Vecindario',
+    map_title: 'Mapa de Calidad<br>del Agua de Miami-Dade',
+    map_subtitle: 'Haga clic en su vecindario para ver datos locales de calidad del agua. Fuente: Departamento de Agua y Alcantarillado de Miami-Dade.',
+    map_select: 'Seleccione un Vecindario',
+    map_select_desc: 'Haga clic en cualquier \u00e1rea del mapa para ver los datos de calidad del agua de ese vecindario.',
+    map_hardness: 'Dureza del Agua (PPM)',
+    map_chlorine: 'Cloro (mg/L)',
+    map_tds: 'TDS (mg/L)',
+    map_rec_label: 'Nuestra Recomendaci\u00f3n',
+    map_water_data: 'Datos de calidad del agua para ',
+    map_county: ', Condado Miami-Dade',
+    map_rec_aventura: 'Con 285 PPM de dureza y TDS elevado, recomendamos el paquete Home Shield o Pure Life.',
+    map_rec_miami_beach: 'Miami Beach tiene una de las aguas más duras con 295 PPM. Pure Life con UV es ideal para propiedades costeras.',
+    map_rec_hialeah: 'Dureza moderada a alta de 260 PPM. Home Shield brinda excelente cobertura para todo el hogar.',
+    map_rec_miami_lakes: 'Miami Lakes con 250 PPM aún daña los electrodomésticos. Home Shield es nuestra recomendación.',
+    map_rec_doral: 'Justo en el promedio del condado de 270 PPM. Home Shield ofrece el mejor equilibrio.',
+    map_rec_wynwood: 'Cloro más alto a 4.0 mg/L. Kitchen Guard es excelente para condominios y lofts.',
+    map_rec_little_havana: 'Kitchen Guard es perfecto para la vida en apartamentos, desde $699.',
+    map_rec_brickell: 'Vivir en edificios altos implica TDS y cloro elevados. Kitchen Guard es la mejor opción para condominios.',
+    map_rec_coconut_grove: 'Dureza superior al promedio. Home Shield protege la plomería y los electrodomésticos de todo el hogar.',
+    map_rec_coral_gables: 'El agua fluye por algunos de los canales más antiguos del acuífero de piedra caliza. Home Shield o Pure Life.',
+    map_rec_key_biscayne: 'Las lecturas más altas del condado. Se recomienda encarecidamente Pure Life con esterilización UV.',
+    map_rec_pinecrest: 'Dureza ligeramente menor a 265 PPM pero el cloro sigue siendo una preocupación. Se recomienda Home Shield.',
+    map_rec_cutler_bay: 'Dureza moderada de 252 PPM. Kitchen Guard o Home Shield son excelentes opciones para esta zona.',
+    map_rec_kendall: 'Dureza moderada de 258 PPM. Home Shield es nuestra opción más popular para hogares suburbanos.',
+    map_rec_homestead: 'La dureza más baja del condado pero aún por encima de los niveles recomendados. Kitchen Guard o Home Shield.',
+
+    /* Garant\u00eda */
+    warranty_label: 'Planes de Protecci\u00f3n',
+    warranty_title: 'Garant\u00eda y<br>Mantenimiento',
+    warranty_subtitle: 'Mantenga su sistema funcionando al m\u00e1ximo rendimiento con nuestros planes anuales de garant\u00eda.',
+    w_silver: 'Plata',
+    w_gold: 'Oro',
+    w_platinum: 'Platino',
+    w_best_value: 'Mejor Valor',
+    w_per_year: '/a\u00f1o',
+    w_s_f1: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Garant\u00eda extendida de 3 a\u00f1os (piezas + mano de obra)',
+    w_s_f2: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Inspecci\u00f3n y mantenimiento semestral',
+    w_s_f3: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Programaci\u00f3n prioritaria para reparaciones',
+    w_s_f4: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Descuento en visitas de servicio (10%)',
+    w_s_f5: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Informe anual de calidad del agua',
+    w_s_f6: '<svg class="cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg> Servicio de emergencia',
+    w_s_f7: '<svg class="cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg> Actualizaciones gratuitas del sistema',
+    w_g_f1: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Garant\u00eda extendida de 5 a\u00f1os (piezas + mano de obra)',
+    w_g_f2: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Inspecci\u00f3n y mantenimiento trimestral',
+    w_g_f3: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Servicio de emergencia (respuesta 24-48 horas)',
+    w_g_f4: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Actualizaciones gratuitas (filtros, v\u00e1lvulas)',
+    w_g_f5: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Descuento en visitas de servicio (20%)',
+    w_g_f6: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Pruebas de calidad del agua semestrales',
+    w_g_f7: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Garant\u00eda transferible',
+    w_p_f1: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Garant\u00eda de por vida en todas las piezas cubiertas',
+    w_p_f2: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Descuento en visitas de servicio (30%)',
+    w_p_f3: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Respuesta de emergencia garantizada (&lt;24 horas)',
+    w_p_f4: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Reemplazo gratuito si no es reparable',
+    w_p_f5: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Pruebas trimestrales de calidad del agua',
+
+    /* C\u00f3mo Funciona */
+    how_label: 'C\u00f3mo Funciona',
+    how_title: 'Cuatro Pasos hacia<br>Agua Pura',
+    how_s1_title: 'Prueba de Agua Gratis',
+    how_s1_desc: 'Nuestro t\u00e9cnico certificado visita su hogar y analiza el agua para detectar dureza, cloro, pH, TDS y contaminantes comunes. Sin costo, sin compromiso.',
+    how_s2_title: 'Recomendaci\u00f3n Personalizada',
+    how_s2_desc: 'Seg\u00fan sus resultados, le recomendamos el sistema Waterdrop perfecto para el tama\u00f1o de su hogar, calidad del agua y presupuesto. Precios publicados, sin sorpresas.',
+    how_s3_title: 'Instalaci\u00f3n Profesional',
+    how_s3_desc: 'T\u00e9cnicos certificados instalan su sistema, generalmente en la misma semana. Un solo precio incluye todo. Usted es due\u00f1o de su equipo desde el primer d\u00eda.',
+    how_s4_title: 'Soporte Continuo',
+    how_s4_desc: 'Soporte por chat con IA las 24 horas, planes de garant\u00eda opcionales y un equipo dedicado listo para ayudarle cuando lo necesite. Su agua, nuestro compromiso.',
+
+    /* Testimonios */
+    test_label: 'Testimonios',
+    test_title: 'Lo Que Dicen los<br>Propietarios de Miami',
+    test_1_text: '"La diferencia en la calidad del agua fue notable de inmediato. Sol\u00edamos comprar agua embotellada cada semana, ahora bebemos directamente del grifo. La instalaci\u00f3n fue limpia y profesional."',
+    test_1_loc: 'Coral Gables',
+    test_2_text: '"Estuve pagando a un competidor $70 al mes por a\u00f1os. CrystalFlow me ahorr\u00f3 miles con una sola compra. Ojal\u00e1 los hubiera encontrado antes. El sistema es compacto y funciona perfectamente en mi condominio."',
+    test_2_loc: 'Brickell',
+    test_3_text: '"Precios transparentes, instalaci\u00f3n r\u00e1pida y sin t\u00e1cticas de venta agresivas. Llegaron cuando dijeron que lo har\u00edan y el sistema para todo el hogar es incre\u00edble. Nuestra piel y cabello se sienten completamente diferentes."',
+    test_3_loc: 'Kendall',
+
+    /* Preguntas Frecuentes */
+    faq_label: 'Preguntas Frecuentes',
+    faq_title: 'Preguntas<br>Frecuentes',
+    faq_q1: '\u00bfCu\u00e1nto cuesta un sistema de filtraci\u00f3n de agua?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>',
+    faq_a1: 'Nuestro Kitchen Guard comienza en $699 (ideal para condominios), Home Shield en $1,799 (cobertura para todo el hogar) y Pure Life en $2,699 (sistema premium con esterilizaci\u00f3n UV). Todos los precios incluyen instalaci\u00f3n profesional. Sin cargos ocultos, sin suscripciones.',
+    faq_q2: '\u00bfCu\u00e1nto tarda la instalaci\u00f3n?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>',
+    faq_a2: 'Los sistemas bajo fregadero tardan 2-3 horas. Los sistemas para todo el hogar tardan 3-5 horas. La mayor\u00eda de los clientes se programan en la misma semana de la reserva. Todo el trabajo es realizado por t\u00e9cnicos certificados y licenciados.',
+    faq_q3: '\u00bfSus sistemas funcionan en condominios y apartamentos?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>',
+    faq_a3: 'Por supuesto. Nuestro paquete Kitchen Guard est\u00e1 dise\u00f1ado espec\u00edficamente para la vida en condominios y apartamentos. El dise\u00f1o compacto bajo fregadero no requiere modificaciones importantes de plomer\u00eda y cabe en cualquier gabinete de cocina est\u00e1ndar.',
+    faq_q4: '\u00bfQu\u00e9 incluye la prueba de agua gratuita?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>',
+    faq_a4: 'Nuestro t\u00e9cnico certificado visita su hogar y analiza el agua para detectar dureza, cloro, pH, TDS y contaminantes comunes. Recibir\u00e1 un informe completo y una recomendaci\u00f3n personalizada sin costo ni obligaci\u00f3n de compra.',
+    faq_q5: '\u00bfQu\u00e9 opciones de garant\u00eda ofrecen?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>',
+    faq_a5: 'Ofrecemos tres niveles de garant\u00eda: Plata ($199/a\u00f1o) incluye garant\u00eda extendida de 3 a\u00f1os con piezas y mano de obra, inspecciones semestrales, programaci\u00f3n prioritaria y 10% de descuento en visitas de servicio. Oro ($299/a\u00f1o) extiende a 5 a\u00f1os con mantenimiento trimestral, actualizaciones gratuitas, respuesta de emergencia en 24-48 horas, 20% de descuento y garant\u00eda transferible. Platino ($499/a\u00f1o) ofrece garant\u00eda de por vida, 30% de descuento, respuesta de emergencia garantizada en menos de 24 horas, reemplazo gratuito si no es reparable y pruebas trimestrales de calidad del agua. Todos los sistemas incluyen garant\u00eda base de 1 a\u00f1o en piezas y mano de obra.',
+    faq_q6: '\u00bfPor qu\u00e9 deber\u00eda comprar en vez de suscribirme?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>',
+    faq_a6: 'Los competidores por suscripci\u00f3n cobran $70 al mes, lo que cuesta $4,200 en solo 5 a\u00f1os y usted nunca es due\u00f1o del equipo. Nuestro sistema para todo el hogar comienza en $1,799 como compra \u00fanica. Ahorre miles y el sistema es suyo para siempre.',
+
+    /* Secci\u00f3n CTA */
+    cta_label: 'Comience Ahora',
+    cta_title: '\u00bfListo para<br>Agua Pura?',
+    cta_desc: 'Descubra exactamente qu\u00e9 contiene su agua. Sin costo, sin compromiso. Obtenga una recomendaci\u00f3n personalizada para su hogar.',
+    cta_schedule: 'Programe su Prueba de Agua Gratis',
+    cta_hours: 'Lun \u2013 S\u00e1b, 8 AM \u2013 5 PM ET',
+    cta_area: 'Condado Miami-Dade, FL',
+
+    /* Pie de P\u00e1gina */
+    footer_desc: 'Su agua, su propiedad. Un solo precio. Sin suscripciones. Tratamiento de agua premium para el Condado Miami-Dade.',
+    footer_links: 'Enlaces R\u00e1pidos',
+    footer_calc: 'Calculadora de Costos',
+    footer_map: 'Mapa de Calidad del Agua',
+    footer_warranty: 'Planes de Garant\u00eda',
+    footer_areas: '\u00c1reas de Servicio',
+    footer_contact: 'Contacto',
+    footer_hours: 'Lun \u2013 S\u00e1b, 8 AM \u2013 5 PM',
+    footer_location: 'Condado Miami-Dade, FL',
+    footer_copyright: '&copy; 2026 CrystalFlow Miami. Todos los derechos reservados.',
+
+    /* Bolet\u00edn */
+    nl_title: 'Mant\u00e9ngase Informado Sobre la Calidad de Su Agua',
+    nl_desc: 'Reciba consejos de expertos sobre tratamiento de agua, actualizaciones de calidad del agua en Miami y ofertas exclusivas en su bandeja de entrada.',
+    nl_btn: 'Suscribirse',
+    nl_privacy: 'Respetamos su privacidad. Canc\u00e9lese cuando quiera.',
+    nl_success: '\u00a1Est\u00e1 suscrito! Revise su bandeja de entrada para confirmar.',
+    nl_error: 'Por favor ingrese un correo electr\u00f3nico v\u00e1lido.',
+    nl_already: 'Este correo ya est\u00e1 suscrito.',
+    nl_placeholder: 'usted@ejemplo.com'
+  }
+};
+
+/* Current language state */
+var _currentLang = 'en';
+var _activeMapKey = null;
+
+function setLanguage(lang) {
+  if (!_i18n[lang]) return;
+  _currentLang = lang;
+
+  /* Update all static i18n elements */
+  var elements = document.querySelectorAll('[data-i18n]');
+  for (var i = 0; i < elements.length; i++) {
+    var el = elements[i];
+    var key = el.getAttribute('data-i18n');
+    var val = _i18n[lang][key];
+    if (val !== undefined) {
+      if (el.getAttribute('data-i18n-html') === '1') {
+        el.innerHTML = val;
+      } else {
+        el.textContent = val;
+      }
+    }
+  }
+
+  /* Sync desktop toggle */
+  var enBtn = document.getElementById('lang-en');
+  var esBtn = document.getElementById('lang-es');
+  if (enBtn && esBtn) {
+    enBtn.classList.toggle('active', lang === 'en');
+    esBtn.classList.toggle('active', lang === 'es');
+  }
+
+  /* Sync mobile toggle */
+  var mobileBtns = document.querySelectorAll('.lang-toggle-mobile button');
+  for (var j = 0; j < mobileBtns.length; j++) {
+    var txt = mobileBtns[j].textContent.trim();
+    mobileBtns[j].classList.toggle('active', (txt === 'EN' && lang === 'en') || (txt === 'ES' && lang === 'es'));
+  }
+
+  /* Update calculator dynamic text */
+  updateCalculatorLang();
+
+  /* Update map panel text for current language */
+  var mapAreaName = document.getElementById('map-area-name');
+  if (mapAreaName) {
+    if (typeof _activeMapKey !== 'undefined' && _activeMapKey) {
+      /* A neighborhood is selected — update subtitle and recommendation */
+      var areaData = (typeof neighborhoods !== 'undefined') ? null : null;
+      var t = _i18n[lang];
+      var subtitleEl = document.getElementById('map-area-subtitle');
+      if (subtitleEl) subtitleEl.textContent = t.map_water_data + mapAreaName.textContent + t.map_county;
+      var recText = document.getElementById('map-rec-text');
+      var recKey = 'map_rec_' + _activeMapKey.replace(/-/g, '_');
+      if (recText && t[recKey]) recText.textContent = t[recKey];
+    } else {
+      /* No marker active — show default select text */
+      mapAreaName.textContent = _i18n[lang].map_select;
+      document.getElementById('map-area-subtitle').textContent = _i18n[lang].map_select_desc;
+    }
+  }
+
+  /* Update html lang attribute */
+  document.documentElement.setAttribute('lang', lang === 'es' ? 'es' : 'en');
+
+  /* Persist preference */
+  try { localStorage.setItem('cf_lang', lang); } catch(e) {}
+}
+
+/* Translation-aware calculator update */
+function updateCalculatorLang() {
+  var calcSlider = document.getElementById('calc-years');
+  if (!calcSlider) return;
+  var years = parseInt(calcSlider.value);
+  var t = _i18n[_currentLang];
+  var calcDisplay = document.getElementById('calc-years-display');
+  if (calcDisplay) {
+    calcDisplay.textContent = years + ' ' + (years === 1 ? t.calc_year : t.calc_years);
+  }
+  var cfCost = 2699;
+  var subCost = 70 * 12 * years;
+  var savings = subCost - cfCost;
+  var savingsAmount = document.getElementById('savings-amount');
+  var savingsText = document.getElementById('savings-text');
+  if (savingsAmount) {
+    savingsAmount.textContent = t.calc_save + savings.toLocaleString();
+  }
+  if (savingsText) {
+    savingsText.textContent = t.calc_vs + years + ' ' + (years === 1 ? t.calc_year : t.calc_years);
+  }
+}
+
+/* Wire up desktop toggle */
+(function() {
+  var enBtn = document.getElementById('lang-en');
+  var esBtn = document.getElementById('lang-es');
+  if (enBtn) enBtn.addEventListener('click', function() { setLanguage('en'); });
+  if (esBtn) esBtn.addEventListener('click', function() { setLanguage('es'); });
+
+  /* Load saved preference */
+  try {
+    var saved = localStorage.getItem('cf_lang');
+    if (saved === 'es') {
+      setLanguage('es');
+    }
+  } catch(e) {}
+})();
+
+/* ============================================================
+   NEWSLETTER FORM SUBMISSION
+   ============================================================
+   TODO: Replace MAILCHIMP_FORM_ACTION_URL below with your actual
+   Mailchimp form action URL. To get it:
+     1. Go to Mailchimp > Audience > Signup forms > Embedded forms
+     2. Copy the form action URL (looks like:
+        https://YOUR_DOMAIN.usX.list-manage.com/subscribe/post?u=USER_ID&id=bbcc070cbe)
+     3. For the JSONP endpoint, change /subscribe/post to /subscribe/post-json
+   ============================================================ */
+var MAILCHIMP_JSONP_URL = 'https://crystalflowmiami.us10.list-manage.com/subscribe/post-json?u=e5226e448eb494800fbdc668f&id=bbcc070cbe';
+
+(function() {
+  var form = document.getElementById('newsletter-form');
+  var emailInput = document.getElementById('nl-email');
+  var msgEl = document.getElementById('nl-msg');
+  if (!form) return;
+
+  /* Update placeholder on language switch */
+  var origSetLang = setLanguage;
+  setLanguage = function(lang) {
+    origSetLang(lang);
+    if (emailInput && _i18n[lang]) {
+      emailInput.setAttribute('placeholder', _i18n[lang].nl_placeholder || 'you@example.com');
+    }
+  };
+
+  function showMsg(key, type) {
+    var t = _i18n[_currentLang];
+    msgEl.textContent = t[key] || key;
+    msgEl.className = 'newsletter-msg ' + type;
+  }
+
+  function clearMsg() { msgEl.className = 'newsletter-msg'; msgEl.textContent = ''; }
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  /* Store in localStorage backup queue */
+  function queueEmail(email) {
+    try {
+      var queue = JSON.parse(localStorage.getItem('cf_nl_queue') || '[]');
+      if (queue.indexOf(email) === -1) {
+        queue.push(email);
+        localStorage.setItem('cf_nl_queue', JSON.stringify(queue));
+      }
+    } catch(e) {}
+  }
+
+  /* Check if already subscribed locally */
+  function isQueued(email) {
+    try {
+      var queue = JSON.parse(localStorage.getItem('cf_nl_queue') || '[]');
+      return queue.indexOf(email) !== -1;
+    } catch(e) { return false; }
+  }
+
+  /* Mailchimp JSONP subscribe */
+  function subscribeMailchimp(email, onDone) {
+    if (!MAILCHIMP_JSONP_URL) { onDone('local_only'); return; }
+    var callbackName = '_mc_cb_' + Date.now();
+    var script = document.createElement('script');
+    var url = MAILCHIMP_JSONP_URL + '&EMAIL=' + encodeURIComponent(email) + '&c=' + callbackName;
+    window[callbackName] = function(resp) {
+      document.head.removeChild(script);
+      delete window[callbackName];
+      if (resp && resp.result === 'success') { onDone('success'); }
+      else if (resp && resp.msg && resp.msg.indexOf('already subscribed') > -1) { onDone('already'); }
+      else { onDone('error'); }
+    };
+    script.src = url;
+    script.onerror = function() { delete window[callbackName]; onDone('error'); };
+    document.head.appendChild(script);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    clearMsg();
+    var email = emailInput.value.trim();
+
+    if (!email || !isValidEmail(email)) {
+      showMsg('nl_error', 'error');
+      return;
+    }
+
+    if (isQueued(email)) {
+      showMsg('nl_already', 'error');
+      return;
+    }
+
+    /* Attempt Mailchimp JSONP, fall back to localStorage queue */
+    subscribeMailchimp(email, function(result) {
+      if (result === 'success' || result === 'local_only') {
+        queueEmail(email);
+        showMsg('nl_success', 'success');
+        emailInput.value = '';
+      } else if (result === 'already') {
+        queueEmail(email);
+        showMsg('nl_already', 'error');
+      } else {
+        /* Network error — queue locally and still show success */
+        queueEmail(email);
+        showMsg('nl_success', 'success');
+        emailInput.value = '';
+      }
+    });
+  });
+
+  /* Sync placeholder with current language on init */
+  if (_i18n[_currentLang] && _i18n[_currentLang].nl_placeholder) {
+    emailInput.setAttribute('placeholder', _i18n[_currentLang].nl_placeholder);
+  }
+})();
 </script>
 
 </body>
