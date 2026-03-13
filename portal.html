@@ -1,481 +1,1684 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-<!--
-   ______                            __
-  / ____/___  ____ ___  ____  __  __/ /____  _____
- / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
-/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
-\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
-                    /_/
-        Created with Perplexity Computer
-        https://www.perplexity.ai/computer
--->
-<meta name="generator" content="Perplexity Computer">
-<meta name="author" content="Perplexity Computer">
-<meta property="og:see_also" content="https://www.perplexity.ai/computer">
-<link rel="author" href="https://www.perplexity.ai/computer">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CrystalFlow Miami — My Account</title>
-<link rel="stylesheet" href="./base.css">
-<link rel="stylesheet" href="./portal-style.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<title>Customer Portal — CrystalFlow Miami</title>
+<meta name="description" content="Manage your CrystalFlow Miami water treatment system, schedule service, and view invoices.">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Fonts: Instrument Serif (display) + Satoshi (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
+
+<!-- Calendly -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<style>
+/* ============================================================
+   DESIGN TOKENS — matching main site
+   ============================================================ */
+:root {
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Satoshi', 'Helvetica Neue', sans-serif;
+
+  --blue: #0066CC;
+  --teal: #00A5A8;
+  --cyan: #00C9DB;
+  --pink: #E8439A;
+  --pink-hover: #D03888;
+  --orange: #FF6B35;
+  --navy: #0A1628;
+  --navy-light: #0F1F3A;
+
+  --bg: #FAFBFC;
+  --bg-warm: #F5F3F0;
+  --bg-cool: #EFF4F9;
+  --surface: #FFFFFF;
+  --surface-2: #F4F5F8;
+  --surface-offset: #ECEEF3;
+  --divider: #DDE1E8;
+  --border: #CDD3DE;
+  --text: #0A1628;
+  --text-muted: #5A6580;
+  --text-faint: #A0AAC0;
+  --text-inverse: #FAFBFC;
+  --primary: #E8439A;
+  --primary-hover: #D03888;
+
+  --shadow-sm: 0 1px 3px rgba(10, 22, 40, 0.06);
+  --shadow-md: 0 4px 20px rgba(10, 22, 40, 0.08);
+  --shadow-lg: 0 12px 48px rgba(10, 22, 40, 0.1);
+
+  --text-xs:   clamp(0.7rem,  0.65rem + 0.25vw, 0.8rem);
+  --text-sm:   clamp(0.85rem, 0.8rem  + 0.25vw, 0.95rem);
+  --text-base: clamp(1rem,    0.95rem + 0.25vw, 1.1rem);
+  --text-lg:   clamp(1.15rem, 1rem    + 0.75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,  1.2rem  + 1.25vw, 2.25rem);
+  --text-2xl:  clamp(2rem,    1.2rem  + 2.5vw,  3.5rem);
+
+  --s1: 0.25rem; --s2: 0.5rem; --s3: 0.75rem; --s4: 1rem;
+  --s5: 1.25rem; --s6: 1.5rem; --s8: 2rem; --s10: 2.5rem;
+  --s12: 3rem; --s16: 4rem; --s20: 5rem; --s24: 6rem;
+
+  --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
+  --radius-xl: 1rem; --radius-2xl: 1.5rem; --radius-full: 9999px;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 180ms var(--ease);
+  --transition-smooth: 400ms var(--ease);
+
+  --content-narrow: 640px;
+  --content-default: 960px;
+  --content-wide: 1200px;
+}
+
+/* ============================================================
+   BASE RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100dvh;
+  line-height: 1.6;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
+input, button, textarea, select { font: inherit; color: inherit; }
+h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.1; }
+p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
+button { cursor: pointer; background: none; border: none; }
+table { border-collapse: collapse; width: 100%; }
+
+a, button, [role="button"], input, textarea, select {
+  transition: color var(--transition-fast), background var(--transition-fast),
+    border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+::selection { background: rgba(232, 67, 154, 0.15); color: var(--text); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   PORTAL HEADER
+   ============================================================ */
+.portal-header {
+  background: var(--navy);
+  padding: var(--s4) 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.portal-header-inner {
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding-inline: var(--s6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.portal-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  text-decoration: none;
+  color: #fff;
+}
+.portal-logo-icon {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--cyan), var(--teal));
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.85rem; color: #fff;
+}
+.portal-logo-text {
+  display: flex; flex-direction: column; line-height: 1.1;
+}
+.portal-logo-name {
+  font-family: var(--font-body); font-weight: 700; font-size: 1rem; letter-spacing: -0.02em; color: #fff;
+}
+.portal-logo-sub {
+  font-family: var(--font-body); font-weight: 400; font-size: 0.65rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--cyan);
+}
+.portal-header-actions {
+  display: flex; align-items: center; gap: var(--s4);
+}
+.portal-header-actions a {
+  font-size: var(--text-sm); color: rgba(255,255,255,0.7); text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.portal-header-actions a:hover { color: #fff; }
+.portal-user-name {
+  font-size: var(--text-sm); color: rgba(255,255,255,0.5); margin-right: var(--s2);
+}
+
+/* ============================================================
+   AUTH VIEWS
+   ============================================================ */
+.auth-wrapper {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s8);
+  background: var(--bg);
+}
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-2xl);
+  padding: var(--s10);
+  box-shadow: var(--shadow-md);
+}
+.auth-logo-block {
+  text-align: center;
+  margin-bottom: var(--s8);
+}
+.auth-logo-mark {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--cyan), var(--teal));
+  border-radius: var(--radius-lg);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1.1rem; color: #fff;
+  margin-bottom: var(--s3);
+}
+.auth-logo-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--text);
+  margin-bottom: var(--s1);
+}
+.auth-logo-subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+.auth-form { display: flex; flex-direction: column; gap: var(--s4); }
+.form-group { display: flex; flex-direction: column; gap: var(--s1); }
+.form-label {
+  font-size: var(--text-sm); font-weight: 600; color: var(--text);
+}
+.form-input {
+  width: 100%;
+  padding: var(--s3) var(--s4);
+  background: var(--surface-2);
+  border: 1.5px solid var(--divider);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-base);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(232, 67, 154, 0.1);
+}
+.form-input::placeholder { color: var(--text-faint); }
+.form-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--s4);
+}
+.form-error {
+  font-size: var(--text-xs); color: var(--pink); margin-top: var(--s1);
+}
+.auth-alert {
+  padding: var(--s3) var(--s4);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  display: none;
+}
+.auth-alert.error {
+  background: rgba(232, 67, 154, 0.08);
+  color: var(--pink);
+  border: 1px solid rgba(232, 67, 154, 0.15);
+}
+.auth-alert.success {
+  background: rgba(0, 201, 219, 0.08);
+  color: var(--teal);
+  border: 1px solid rgba(0, 201, 219, 0.15);
+}
+.auth-alert.visible { display: block; }
+.auth-links {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: var(--s4);
+  font-size: var(--text-sm);
+}
+.auth-links a {
+  color: var(--primary); text-decoration: none; font-weight: 500;
+}
+.auth-links a:hover { text-decoration: underline; }
+
+/* ============================================================
+   BUTTONS (portal)
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--s2);
+  padding: var(--s3) var(--s6); font-family: var(--font-body);
+  font-size: var(--text-sm); font-weight: 600; border-radius: var(--radius-full);
+  text-decoration: none; cursor: pointer; border: none; white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+.btn-lg { padding: var(--s4) var(--s8); font-size: var(--text-base); }
+.btn-sm { padding: var(--s2) var(--s4); font-size: var(--text-xs); }
+
+.btn-primary { background: var(--pink); color: #fff; }
+.btn-primary:hover { background: var(--pink-hover); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232, 67, 154, 0.3); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.btn-ghost { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+.btn-ghost:hover { border-color: var(--text); transform: translateY(-1px); }
+
+.btn-outline-pink { background: transparent; color: var(--pink); border: 1.5px solid var(--pink); }
+.btn-outline-pink:hover { background: var(--pink); color: #fff; transform: translateY(-1px); }
+
+.btn-danger { background: transparent; color: #D32F2F; border: 1.5px solid #D32F2F; }
+.btn-danger:hover { background: #D32F2F; color: #fff; }
+
+.btn-block { width: 100%; justify-content: center; }
+
+/* ============================================================
+   DASHBOARD LAYOUT
+   ============================================================ */
+.dashboard {
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding: var(--s8) var(--s6);
+}
+
+/* Tab Navigation */
+.tab-nav {
+  display: flex;
+  gap: var(--s1);
+  border-bottom: 1px solid var(--divider);
+  margin-bottom: var(--s8);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tab-nav::-webkit-scrollbar { display: none; }
+.tab-btn {
+  padding: var(--s3) var(--s5);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+  border: none;
+  background: none;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+  margin-bottom: -1px;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* Tab Panels */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ============================================================
+   CARDS & COMPONENTS
+   ============================================================ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-2xl);
+  padding: var(--s6);
+  box-shadow: var(--shadow-sm);
+}
+.card-lg { padding: var(--s8); }
+.card + .card { margin-top: var(--s4); }
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: var(--s4);
+}
+.card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--text);
+}
+.card-subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-top: var(--s1);
+}
+
+/* Overview Grid */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--s6);
+  margin-bottom: var(--s8);
+}
+
+/* Stat Cards */
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-xl);
+  padding: var(--s5);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s4);
+}
+.stat-icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+}
+.stat-icon.pink { background: rgba(232,67,154,0.08); color: var(--pink); }
+.stat-icon.cyan { background: rgba(0,201,219,0.08); color: var(--cyan); }
+.stat-icon.blue { background: rgba(0,102,204,0.08); color: var(--blue); }
+.stat-icon.orange { background: rgba(255,107,53,0.08); color: var(--orange); }
+.stat-info { flex: 1; }
+.stat-label { font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+.stat-value { font-family: var(--font-display); font-size: var(--text-xl); color: var(--text); display: block; line-height: 1.2; }
+
+/* Badges */
+.badge {
+  display: inline-flex; align-items: center;
+  padding: var(--s1) var(--s3);
+  font-size: var(--text-xs); font-weight: 600;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+.badge-green { background: rgba(0,180,100,0.08); color: #00945E; }
+.badge-yellow { background: rgba(212,160,32,0.08); color: #9A7500; }
+.badge-red { background: rgba(211,47,47,0.08); color: #C62828; }
+.badge-blue { background: rgba(0,102,204,0.08); color: #0055AA; }
+.badge-gray { background: var(--surface-2); color: var(--text-muted); }
+.badge-pink { background: rgba(232,67,154,0.08); color: var(--pink); }
+
+/* Data Table */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  text-align: left;
+  font-size: var(--text-xs); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding: var(--s3) var(--s4);
+  border-bottom: 1px solid var(--divider);
+}
+.data-table td {
+  padding: var(--s3) var(--s4);
+  font-size: var(--text-sm);
+  border-bottom: 1px solid var(--surface-2);
+  vertical-align: middle;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--surface-2); }
+
+/* Responsive Table Wrapper */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* Detail List */
+.detail-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--s4); }
+.detail-item {}
+.detail-label { font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: var(--s1); }
+.detail-value { font-size: var(--text-sm); color: var(--text); font-weight: 500; }
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: var(--s16) var(--s8);
+}
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: var(--s4);
+  opacity: 0.3;
+}
+.empty-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--text);
+  margin-bottom: var(--s2);
+}
+.empty-text {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  max-width: 40ch;
+  margin-inline: auto;
+  margin-bottom: var(--s6);
+}
+
+/* Loading Spinner */
+.loading {
+  text-align: center;
+  padding: var(--s12);
+  color: var(--text-muted);
+}
+.spinner {
+  width: 32px; height: 32px;
+  border: 3px solid var(--divider);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto var(--s4);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(10, 22, 40, 0.5);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s6);
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 560px;
+  max-height: 90dvh;
+  overflow-y: auto;
+  padding: var(--s8);
+}
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: var(--s6);
+}
+.modal-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+}
+.modal-close {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  font-size: 1.25rem;
+}
+.modal-close:hover { background: var(--surface-2); color: var(--text); }
+
+/* Textarea */
+.form-textarea {
+  width: 100%;
+  padding: var(--s3) var(--s4);
+  background: var(--surface-2);
+  border: 1.5px solid var(--divider);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-base);
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(232, 67, 154, 0.1);
+}
+.form-select {
+  width: 100%;
+  padding: var(--s3) var(--s4);
+  background: var(--surface-2);
+  border: 1.5px solid var(--divider);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-base);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%235A6580' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--s4) center;
+  padding-right: var(--s10);
+  cursor: pointer;
+}
+.form-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(232, 67, 154, 0.1);
+}
+
+/* ============================================================
+   UPSELL CTA BANNER
+   ============================================================ */
+.upsell-banner {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  border-radius: var(--radius-2xl);
+  padding: var(--s8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s6);
+  margin-bottom: var(--s8);
+  flex-wrap: wrap;
+}
+.upsell-content { flex: 1; min-width: 240px; }
+.upsell-label {
+  font-size: var(--text-xs); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--cyan); margin-bottom: var(--s2);
+}
+.upsell-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: #fff;
+  margin-bottom: var(--s2);
+}
+.upsell-text {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.6);
+  max-width: 48ch;
+}
+.upsell-banner .btn-primary { flex-shrink: 0; }
+
+/* Quick Actions Grid */
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--s4);
+  margin-bottom: var(--s8);
+}
+.quick-action {
+  background: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-xl);
+  padding: var(--s5);
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
+  transition: all var(--transition-fast);
+}
+.quick-action:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.quick-action-icon { font-size: 1.5rem; margin-bottom: var(--s2); }
+.quick-action-label { font-size: var(--text-sm); font-weight: 600; }
+
+/* Section Title */
+.section-label {
+  font-family: var(--font-body); font-size: var(--text-xs); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.18em; color: var(--pink);
+  margin-bottom: var(--s4);
+}
+.section-title {
+  font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 400;
+  line-height: 1.05; color: var(--text); margin-bottom: var(--s2);
+}
+
+/* ============================================================
+   SYSTEM INFO CARDS
+   ============================================================ */
+.system-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--s6);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.portal-footer {
+  text-align: center;
+  padding: var(--s8) var(--s6);
+  border-top: 1px solid var(--divider);
+  margin-top: var(--s12);
+}
+.portal-footer p {
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  max-width: none;
+}
+.portal-footer a {
+  color: var(--primary);
+  text-decoration: none;
+}
+.portal-footer a:hover { text-decoration: underline; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 640px) {
+  .form-row { grid-template-columns: 1fr; }
+  .auth-card { padding: var(--s6); }
+  .modal { padding: var(--s6); }
+  .dashboard { padding: var(--s4) var(--s4); }
+  .overview-grid { grid-template-columns: 1fr; }
+  .upsell-banner { padding: var(--s6); }
+  .tab-btn { padding: var(--s3) var(--s4); font-size: var(--text-xs); }
+  .data-table th, .data-table td { padding: var(--s2) var(--s3); font-size: var(--text-xs); }
+  .portal-header-inner { flex-wrap: wrap; gap: var(--s3); }
+}
+</style>
+<!-- Klaviyo.js — Onsite Tracking -->
+<script type="text/javascript">
+!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();
+</script>
+<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=QTCPJF"></script>
 </head>
 <body>
 
-<!-- ===== LOGIN SCREEN ===== -->
-<div class="login-screen" id="loginScreen">
-  <div class="login-gradient-bar"></div>
-  <div class="login-card">
-    <div class="login-logo">
-      <svg width="40" height="40" viewBox="0 0 36 36" fill="none">
-        <rect width="36" height="36" rx="8" fill="url(#lg)"/>
-        <path d="M10 18C10 13.58 13.58 10 18 10C18 14.42 21.58 18 26 18C26 22.42 22.42 26 18 26C18 21.58 14.42 18 10 18Z" fill="white" opacity="0.9"/>
-        <circle cx="18" cy="18" r="3" fill="white"/>
-        <defs>
-          <linearGradient id="lg" x1="0" y1="0" x2="36" y2="36">
-            <stop stop-color="#E8439A"/>
-            <stop offset="0.5" stop-color="#5B6BF5"/>
-            <stop offset="1" stop-color="#00C9DB"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <div>
-        <div class="login-logo-text">CrystalFlow</div>
-        <div class="login-logo-sub">My Account</div>
+<!-- ============================================================
+     VIEW: AUTH (login / register / forgot / reset)
+     ============================================================ -->
+<div id="view-auth" class="auth-wrapper" style="display:none;">
+  <!-- LOGIN -->
+  <div id="auth-login" class="auth-card" style="display:none;">
+    <div class="auth-logo-block">
+      <div class="auth-logo-mark">CF</div>
+      <h1 class="auth-logo-title">Welcome Back</h1>
+      <p class="auth-logo-subtitle">Sign in to your CrystalFlow portal</p>
+    </div>
+    <div id="login-alert" class="auth-alert"></div>
+    <form id="login-form" class="auth-form" autocomplete="on">
+      <div class="form-group">
+        <label class="form-label" for="login-email">Email</label>
+        <input class="form-input" id="login-email" type="email" placeholder="you@example.com" required autocomplete="email">
       </div>
+      <div class="form-group">
+        <label class="form-label" for="login-password">Password</label>
+        <input class="form-input" id="login-password" type="password" placeholder="Your password" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
+    </form>
+    <div class="auth-links">
+      <a href="#forgot">Forgot password?</a>
+      <a href="#register">Create an account</a>
     </div>
-    <!-- Login Form -->
-    <div id="loginSection">
-      <h1 class="login-heading">Welcome Back</h1>
-      <p class="login-subtext">Sign in to manage your water filtration system</p>
-      <div class="login-error" id="loginError" style="display:none; background: rgba(248,113,113,0.12); color: #F87171; padding: 10px 14px; border-radius: 6px; font-size: 0.875rem; margin-bottom: 16px;"></div>
-      <form class="login-form" id="loginForm">
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input class="form-input" type="email" placeholder="you@email.com" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Password</label>
-          <input class="form-input" type="password" placeholder="Enter your password" required>
-        </div>
-        <button class="btn btn-primary btn-block" type="submit">Sign In</button>
-        <div class="login-links">
-          <a href="#" id="forgotPasswordLink">Forgot password?</a>
-          <span>Don't have an account? <a href="#" id="registerLink">Create one</a></span>
-        </div>
-      </form>
-    </div>
+  </div>
 
-    <!-- Forgot Password Form -->
-    <div id="forgotPasswordSection" style="display:none;">
-      <h1 class="login-heading">Reset Password</h1>
-      <p class="login-subtext">Enter your email and we'll send you a reset link</p>
-      <div class="login-error" id="forgotError" style="display:none; background: rgba(248,113,113,0.12); color: #F87171; padding: 10px 14px; border-radius: 6px; font-size: 0.875rem; margin-bottom: 16px;"></div>
-      <div class="login-success" id="forgotSuccess" style="display:none; background: rgba(52,211,153,0.12); color: #34D399; padding: 10px 14px; border-radius: 6px; font-size: 0.875rem; margin-bottom: 16px;"></div>
-      <form class="login-form" id="forgotPasswordForm">
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input class="form-input" type="email" placeholder="you@email.com" required>
-        </div>
-        <button class="btn btn-primary btn-block" type="submit">Send Reset Link</button>
-        <div class="login-links">
-          <a href="#" id="backToLoginFromForgot">Back to Sign In</a>
-        </div>
-      </form>
+  <!-- REGISTER -->
+  <div id="auth-register" class="auth-card" style="display:none;">
+    <div class="auth-logo-block">
+      <div class="auth-logo-mark">CF</div>
+      <h1 class="auth-logo-title">Create Account</h1>
+      <p class="auth-logo-subtitle">Get started with your CrystalFlow portal</p>
     </div>
-
-    <!-- Reset Password Form (shown when ?reset_token=... is in URL) -->
-    <div id="resetPasswordSection" style="display:none;">
-      <h1 class="login-heading">Set New Password</h1>
-      <p class="login-subtext">Choose a new password for your account</p>
-      <div class="login-error" id="resetError" style="display:none; background: rgba(248,113,113,0.12); color: #F87171; padding: 10px 14px; border-radius: 6px; font-size: 0.875rem; margin-bottom: 16px;"></div>
-      <div class="login-success" id="resetSuccess" style="display:none; background: rgba(52,211,153,0.12); color: #34D399; padding: 10px 14px; border-radius: 6px; font-size: 0.875rem; margin-bottom: 16px;"></div>
-      <form class="login-form" id="resetPasswordForm">
+    <div id="register-alert" class="auth-alert"></div>
+    <form id="register-form" class="auth-form" autocomplete="on">
+      <div class="form-row">
         <div class="form-group">
-          <label class="form-label">New Password</label>
-          <input class="form-input" type="password" name="new_password" placeholder="At least 6 characters" minlength="6" required>
+          <label class="form-label" for="reg-first">First Name</label>
+          <input class="form-input" id="reg-first" type="text" placeholder="First" required autocomplete="given-name">
         </div>
         <div class="form-group">
-          <label class="form-label">Confirm Password</label>
-          <input class="form-input" type="password" name="confirm_password" placeholder="Confirm your password" minlength="6" required>
+          <label class="form-label" for="reg-last">Last Name</label>
+          <input class="form-input" id="reg-last" type="text" placeholder="Last" required autocomplete="family-name">
         </div>
-        <button class="btn btn-primary btn-block" type="submit">Reset Password</button>
-        <div class="login-links">
-          <a href="#" id="backToLoginFromReset">Back to Sign In</a>
-        </div>
-      </form>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="reg-email">Email</label>
+        <input class="form-input" id="reg-email" type="email" placeholder="you@example.com" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="reg-phone">Phone</label>
+        <input class="form-input" id="reg-phone" type="tel" placeholder="(786) 555-0100" autocomplete="tel">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="reg-address">Address</label>
+        <input class="form-input" id="reg-address" type="text" placeholder="123 Main St, Miami, FL" autocomplete="street-address">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="reg-password">Password</label>
+        <input class="form-input" id="reg-password" type="password" placeholder="Min. 8 characters" required minlength="8" autocomplete="new-password">
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Create Account</button>
+    </form>
+    <div class="auth-links">
+      <span></span>
+      <a href="#login">Already have an account? Sign in</a>
     </div>
+  </div>
 
-    <!-- Register Form -->
-    <div id="registerSection" style="display:none;">
-      <h1 class="login-heading">Create Account</h1>
-      <p class="login-subtext">Set up your CrystalFlow customer account</p>
-      <div class="login-error" id="registerError" style="display:none; background: rgba(248,113,113,0.12); color: #F87171; padding: 10px 14px; border-radius: 6px; font-size: 0.875rem; margin-bottom: 16px;"></div>
-      <form class="login-form" id="registerForm">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);">
-          <div class="form-group">
-            <label class="form-label">First Name</label>
-            <input class="form-input" type="text" name="first_name" placeholder="First name" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Last Name</label>
-            <input class="form-input" type="text" name="last_name" placeholder="Last name" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input class="form-input" type="email" placeholder="you@email.com" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Phone</label>
-          <input class="form-input" type="tel" placeholder="(305) 555-0123">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Password</label>
-          <input class="form-input" type="password" placeholder="Create a password" required minlength="6">
-        </div>
-        <button class="btn btn-primary btn-block" type="submit">Create Account</button>
-        <div class="login-links">
-          <span>Already have an account? <a href="#" id="loginLink">Sign in</a></span>
-        </div>
-      </form>
+  <!-- FORGOT PASSWORD -->
+  <div id="auth-forgot" class="auth-card" style="display:none;">
+    <div class="auth-logo-block">
+      <div class="auth-logo-mark">CF</div>
+      <h1 class="auth-logo-title">Reset Password</h1>
+      <p class="auth-logo-subtitle">Enter your email to receive a reset link</p>
+    </div>
+    <div id="forgot-alert" class="auth-alert"></div>
+    <form id="forgot-form" class="auth-form">
+      <div class="form-group">
+        <label class="form-label" for="forgot-email">Email</label>
+        <input class="form-input" id="forgot-email" type="email" placeholder="you@example.com" required autocomplete="email">
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Send Reset Link</button>
+    </form>
+    <div class="auth-links">
+      <a href="#login">Back to sign in</a>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- RESET PASSWORD -->
+  <div id="auth-reset" class="auth-card" style="display:none;">
+    <div class="auth-logo-block">
+      <div class="auth-logo-mark">CF</div>
+      <h1 class="auth-logo-title">New Password</h1>
+      <p class="auth-logo-subtitle">Choose a new password for your account</p>
+    </div>
+    <div id="reset-alert" class="auth-alert"></div>
+    <form id="reset-form" class="auth-form">
+      <div class="form-group">
+        <label class="form-label" for="reset-password">New Password</label>
+        <input class="form-input" id="reset-password" type="password" placeholder="Min. 8 characters" required minlength="8" autocomplete="new-password">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="reset-confirm">Confirm Password</label>
+        <input class="form-input" id="reset-confirm" type="password" placeholder="Repeat password" required minlength="8" autocomplete="new-password">
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Set New Password</button>
+    </form>
+    <div class="auth-links">
+      <a href="#login">Back to sign in</a>
+      <span></span>
     </div>
   </div>
 </div>
 
-<!-- ===== PORTAL SHELL ===== -->
-<div class="portal-shell" id="portalShell">
-
-  <!-- Top bar -->
-  <header class="portal-topbar">
-    <div class="topbar-left">
-      <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
-        <rect width="36" height="36" rx="8" fill="url(#lg2)"/>
-        <path d="M10 18C10 13.58 13.58 10 18 10C18 14.42 21.58 18 26 18C26 22.42 22.42 26 18 26C18 21.58 14.42 18 10 18Z" fill="white" opacity="0.9"/>
-        <circle cx="18" cy="18" r="3" fill="white"/>
-        <defs>
-          <linearGradient id="lg2" x1="0" y1="0" x2="36" y2="36">
-            <stop stop-color="#E8439A"/>
-            <stop offset="0.5" stop-color="#5B6BF5"/>
-            <stop offset="1" stop-color="#00C9DB"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <div>
-        <div class="topbar-brand">CrystalFlow</div>
-        <div class="topbar-brand-sub">My Account</div>
+<!-- ============================================================
+     VIEW: DASHBOARD
+     ============================================================ -->
+<div id="view-dashboard" style="display:none;">
+  <header class="portal-header">
+    <div class="portal-header-inner">
+      <a href="./index.html" class="portal-logo">
+        <div class="portal-logo-icon">CF</div>
+        <div class="portal-logo-text">
+          <span class="portal-logo-name">CrystalFlow</span>
+          <span class="portal-logo-sub">Customer Portal</span>
+        </div>
+      </a>
+      <div class="portal-header-actions">
+        <span class="portal-user-name" id="header-user-name"></span>
+        <a href="./index.html">Main Site</a>
+        <a href="#" id="logout-btn">Sign Out</a>
       </div>
-    </div>
-    <div class="topbar-right">
-      <span class="topbar-greeting">Hi, <strong id="portalGreetingName">there</strong></span>
-      <button class="btn btn-secondary btn-sm" id="signOutBtn">Sign Out</button>
     </div>
   </header>
 
-  <div class="portal-body">
-    <!-- Sidebar navigation -->
-    <aside class="portal-sidebar">
-      <nav class="portal-nav">
-        <a class="portal-nav-item active" data-tab="overview">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-          Overview
+  <main class="dashboard">
+    <!-- Tab Navigation -->
+    <nav class="tab-nav" role="tablist">
+      <button class="tab-btn active" role="tab" data-tab="overview">Overview</button>
+      <button class="tab-btn" role="tab" data-tab="system">My System</button>
+      <button class="tab-btn" role="tab" data-tab="appointments">Appointments</button>
+      <button class="tab-btn" role="tab" data-tab="service">Service Requests</button>
+      <button class="tab-btn" role="tab" data-tab="warranty">Warranty</button>
+      <button class="tab-btn" role="tab" data-tab="invoices">Invoices</button>
+    </nav>
+
+    <!-- ===== OVERVIEW TAB ===== -->
+    <div id="tab-overview" class="tab-panel active" role="tabpanel">
+      <div id="overview-upsell"></div>
+      <div id="overview-stats" class="overview-grid"></div>
+      <div class="quick-actions" id="quick-actions">
+        <a class="quick-action" href="#" data-tab-link="appointments">
+          <div class="quick-action-icon">&#128197;</div>
+          <div class="quick-action-label">Appointments</div>
         </a>
-        <a class="portal-nav-item" data-tab="appointments">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          Appointments
+        <a class="quick-action" href="#" data-tab-link="service">
+          <div class="quick-action-icon">&#128295;</div>
+          <div class="quick-action-label">Request Service</div>
         </a>
-        <a class="portal-nav-item" data-tab="invoices">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-          Invoices &amp; Payments
+        <a class="quick-action" href="#" data-tab-link="warranty">
+          <div class="quick-action-icon">&#128737;</div>
+          <div class="quick-action-label">Warranty Info</div>
         </a>
-        <a class="portal-nav-item" data-tab="warranty">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Warranty
+        <a class="quick-action" href="#" data-tab-link="invoices">
+          <div class="quick-action-icon">&#128196;</div>
+          <div class="quick-action-label">View Invoices</div>
         </a>
-        <a class="portal-nav-item" data-tab="service">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-          Service Requests
-        </a>
-        <a class="portal-nav-item" data-tab="system">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.32 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-          My System
-        </a>
-      </nav>
-    </aside>
-
-    <!-- Content -->
-    <div class="portal-content">
-
-      <!-- ====== OVERVIEW ====== -->
-      <div class="portal-view active" id="tab-overview">
-        <div class="overview-grid">
-          <div class="overview-welcome" id="overviewWelcome">
-            <h2 id="welcomeHeading">Welcome to your CrystalFlow account.</h2>
-            <p id="welcomeSubtext">Loading your system information...</p>
-          </div>
-
-          <div class="card" id="nextApptCard">
-            <div class="card-title">Next Appointment</div>
-            <div class="card-subtitle">Upcoming service visit</div>
-            <div id="nextApptContent">
-              <p style="font-size: var(--text-sm); color: var(--color-text-muted);">No appointments scheduled yet.</p>
-              <button class="btn btn-secondary btn-sm" style="margin-top: var(--space-3);" onclick="window.open('https://calendly.com/isaiah-pacheco5321/30min','_blank')">Book Consultation</button>
-            </div>
-          </div>
-
-          <div class="card" id="systemHealthCard">
-            <div class="card-title">System Health</div>
-            <div class="card-subtitle">Real-time status</div>
-            <div id="systemHealthContent">
-              <p style="font-size: var(--text-sm); color: var(--color-text-muted);">No system installed yet. Contact us to schedule your installation.</p>
-            </div>
-          </div>
-
-          <div class="quick-actions">
-            <a class="quick-action-btn" data-action="service">
-              <div class="quick-action-icon cyan">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-              </div>
-              <span class="quick-action-label">Request Service</span>
-            </a>
-            <a class="quick-action-btn" data-action="invoices">
-              <div class="quick-action-icon pink">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-              </div>
-              <span class="quick-action-label">Pay Invoice</span>
-            </a>
-            <a class="quick-action-btn" id="emergencyBtn" data-action="service">
-              <div class="quick-action-icon" style="background: var(--color-error-bg); color: var(--color-error);">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-              </div>
-              <span class="quick-action-label">Emergency Service</span>
-            </a>
-          </div>
-        </div>
       </div>
-
-      <!-- ====== APPOINTMENTS ====== -->
-      <div class="portal-view" id="tab-appointments">
-        <div class="section-title">Upcoming</div>
-        <div id="upcomingApptsContainer">
-          <p style="font-size: var(--text-sm); color: var(--color-text-muted); padding: var(--space-4) 0;">No upcoming appointments.</p>
+      <div id="overview-upcoming" class="card" style="display:none;">
+        <div class="card-header">
+          <h3 class="card-title">Upcoming Appointments</h3>
         </div>
-
-        <div class="section-title" style="margin-top: var(--space-8);">Past Appointments</div>
-        <div id="pastApptsContainer">
-          <p style="font-size: var(--text-sm); color: var(--color-text-muted); padding: var(--space-4) 0;">No past appointments.</p>
-        </div>
-
-        <button class="btn btn-primary" style="margin-top: var(--space-6);" onclick="window.open('https://calendly.com/isaiah-pacheco5321/30min','_blank')">Request New Appointment</button>
+        <div id="overview-upcoming-list"></div>
       </div>
+    </div>
 
-      <!-- ====== INVOICES & PAYMENTS ====== -->
-      <div class="portal-view" id="tab-invoices">
-        <div class="invoice-summary" id="invoiceSummary">
-          <div class="invoice-stat">
-            <div class="invoice-stat-value" id="totalPaid">$0.00</div>
-            <div class="invoice-stat-label">Total Paid</div>
-          </div>
-          <div class="invoice-stat">
-            <div class="invoice-stat-value" id="pendingBalance">$0.00</div>
-            <div class="invoice-stat-label">Pending Balance</div>
-          </div>
-        </div>
-
-        <div id="invoicesContainer">
-          <p style="font-size: var(--text-sm); color: var(--color-text-muted); padding: var(--space-4) 0;">No invoices yet. Invoices will appear here after your installation.</p>
-        </div>
+    <!-- ===== MY SYSTEM TAB ===== -->
+    <div id="tab-system" class="tab-panel" role="tabpanel">
+      <div id="system-content">
+        <div class="loading"><div class="spinner"></div><p>Loading system info...</p></div>
       </div>
+    </div>
 
-      <!-- ====== WARRANTY ====== -->
-      <div class="portal-view" id="tab-warranty">
-        <div id="warrantyContainer">
-          <div class="warranty-card-portal">
-            <div class="warranty-header">
-              <div class="warranty-shield cyan">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <div>
-                <div class="warranty-name" id="warrantyName">Standard Warranty</div>
-                <div class="warranty-equip" id="warrantyEquip">Contact us to view your warranty details</div>
-              </div>
-            </div>
-            <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Your warranty information will appear here after system installation.</p>
-          </div>
-        </div>
-
-        <!-- Warranty Upsell (shown for customers without warranty) -->
-        <div id="warrantyUpsell" style="display:none;">
-          <div style="background: linear-gradient(135deg, rgba(0,197,219,0.08), rgba(91,107,245,0.08)); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--space-5); margin-top: var(--space-4);">
-            <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-3);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;color:var(--color-cyan);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <div style="font-weight:600;font-size:var(--text-base);color:var(--color-text);">Protect Your Investment</div>
-            </div>
-            <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-3);">Your system does not have an active warranty plan. Upgrade to protect against unexpected repairs, parts failure, and more.</p>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-3);margin-bottom:var(--space-4);">
-              <div style="background:var(--color-surface-2);border-radius:var(--radius-md);padding:var(--space-3);text-align:center;">
-                <div style="font-weight:600;color:var(--color-text);">Silver</div>
-                <div style="font-size:var(--text-sm);color:var(--color-text-muted);">$199/yr</div>
-                <div style="font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-1);">Parts + Labor</div>
-              </div>
-              <div style="background:var(--color-surface-2);border-radius:var(--radius-md);padding:var(--space-3);text-align:center;border:1px solid var(--color-cyan);">
-                <div style="font-weight:600;color:var(--color-cyan);">Gold</div>
-                <div style="font-size:var(--text-sm);color:var(--color-text-muted);">$299/yr</div>
-                <div style="font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-1);">Parts + Labor + Filters</div>
-              </div>
-              <div style="background:var(--color-surface-2);border-radius:var(--radius-md);padding:var(--space-3);text-align:center;">
-                <div style="font-weight:600;color:var(--color-pink);">Platinum</div>
-                <div style="font-size:var(--text-sm);color:var(--color-text-muted);">$499/yr</div>
-                <div style="font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-1);">All-Inclusive + Priority</div>
-              </div>
-            </div>
-            <a href="https://calendly.com/isaiah-pacheco5321/30min" target="_blank" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:var(--space-2);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-              Book a Free Water Test
-            </a>
-          </div>
-        </div>
-
-        <!-- File Warranty Claim Section -->
-        <div id="warrantyClaimSection" style="margin-top: var(--space-5);">
-          <div style="font-weight:600;font-size:var(--text-base);color:var(--color-text);margin-bottom:var(--space-3);">File a Warranty Claim</div>
-          <div id="warrantyClaimFormCard" class="service-form-card">
-            <form id="warrantyClaimForm">
-              <div class="form-group">
-                <label class="form-label">Category</label>
-                <select class="form-select" id="wcClaimCategory" required>
-                  <option value="defective_part">Defective Part</option>
-                  <option value="installation_issue">Installation Issue</option>
-                  <option value="water_quality">Water Quality</option>
-                  <option value="leak">Leak</option>
-                  <option value="system_malfunction">System Malfunction</option>
-                  <option value="filter_issue">Filter Issue</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Description</label>
-                <textarea class="form-textarea" id="wcClaimDescription" placeholder="Describe the issue with your system..." required></textarea>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Equipment Affected</label>
-                <input class="form-input" type="text" id="wcClaimEquipment" placeholder="e.g. RO Membrane, UV Lamp, Softener Tank">
-              </div>
-              <div id="warrantyClaimError" class="form-error" style="display:none;"></div>
-              <div id="warrantyClaimSuccess" style="display:none;background:rgba(0,197,219,0.1);border:1px solid var(--color-cyan);border-radius:var(--radius-md);padding:var(--space-3);font-size:var(--text-sm);color:var(--color-cyan);"></div>
-              <button type="submit" class="btn btn-pink" id="submitWarrantyClaimBtn" style="margin-top: var(--space-3);">Submit Warranty Claim</button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Past Warranty Claims -->
-        <div style="margin-top: var(--space-5);">
-          <div style="font-weight:600;font-size:var(--text-base);color:var(--color-text);margin-bottom:var(--space-3);">Your Claims</div>
-          <div id="warrantyClaimsList">
-            <p style="font-size: var(--text-sm); color: var(--color-text-faint);">No warranty claims filed yet.</p>
-          </div>
-        </div>
+    <!-- ===== APPOINTMENTS TAB ===== -->
+    <div id="tab-appointments" class="tab-panel" role="tabpanel">
+      <div class="card-header">
+        <h3 class="card-title">Your Appointments</h3>
       </div>
-
-      <!-- ====== SERVICE REQUESTS ====== -->
-      <div class="portal-view" id="tab-service">
-        <div class="service-form-card" id="serviceFormCard">
-          <div class="service-form-title">New Service Request</div>
-          <form id="serviceForm">
-            <div class="form-group">
-              <label class="form-label">Issue Type</label>
-              <select class="form-select" id="issueType">
-                <option value="">Select an issue...</option>
-                <option value="filter">Filter Change</option>
-                <option value="pressure">Low Pressure</option>
-                <option value="leak">Leak</option>
-                <option value="taste">Strange Taste</option>
-                <option value="warranty_claim">Warranty Claim</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Description</label>
-              <textarea class="form-textarea" placeholder="Describe the issue..." id="issueDesc"></textarea>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Urgency</label>
-                <select class="form-select" id="issueUrgency">
-                  <option value="normal">Normal</option>
-                  <option value="urgent">Urgent</option>
-                  <option value="emergency">Emergency</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Preferred Date</label>
-                <input class="form-input" type="date" id="issueDate">
-              </div>
-            </div>
-            <div id="emergencyNotice" style="display:none; background: var(--color-error-bg); border: 1px solid var(--color-error); border-radius: var(--radius-lg); padding: var(--space-3) var(--space-4); margin-bottom: var(--space-4); font-size: var(--text-xs); color: var(--color-error);">
-              Emergency requests are prioritized. Our team will contact you within 1 hour during business hours.
-            </div>
-            <button class="btn btn-primary" type="submit">Submit Request</button>
-          </form>
-        </div>
-
-        <div class="service-success" id="serviceSuccess">
-          <div class="service-success-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-          </div>
-          <div style="font-size: var(--text-lg); font-weight: 700; color: var(--color-dark); margin-bottom: var(--space-2);">Request Submitted</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">Your service request has been received. We will contact you shortly.</div>
-          <button class="btn btn-secondary" id="newRequestBtn">Submit Another Request</button>
-        </div>
-
-        <div class="section-title" style="margin-top: var(--space-8);">Past Requests</div>
-        <div id="pastRequestsContainer">
-          <p style="font-size: var(--text-sm); color: var(--color-text-muted); padding: var(--space-4) 0;">No previous service requests.</p>
-        </div>
+      <div id="appointments-content">
+        <div class="loading"><div class="spinner"></div><p>Loading appointments...</p></div>
       </div>
+    </div>
 
-      <!-- ====== MY SYSTEM ====== -->
-      <div class="portal-view" id="tab-system">
-        <div class="system-details-grid">
-          <div class="card">
-            <div class="card-title">System Details</div>
-            <div class="card-subtitle">Your CrystalFlow installation</div>
-            <div id="systemDetailsContent">
-              <p style="font-size: var(--text-sm); color: var(--color-text-muted);">No system installed yet. Schedule a free water test to get started.</p>
-              <button class="btn btn-primary btn-sm" style="margin-top: var(--space-3);" onclick="window.open('https://calendly.com/isaiah-pacheco5321/30min','_blank')">Book a Free Water Test</button>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-title">Water Quality</div>
-            <div class="card-subtitle">TDS readings over time (ppm)</div>
-            <div class="chart-container" id="tdsChartContainer" style="display:none;">
-              <canvas id="tdsChart"></canvas>
-            </div>
-            <p id="noTdsData" style="font-size: var(--text-sm); color: var(--color-text-muted);">Water quality data will appear after installation.</p>
-          </div>
-        </div>
-
-        <div class="card" id="maintenanceCard" style="display:none;">
-          <div class="card-title">Maintenance Schedule</div>
-          <div class="card-subtitle">Filter replacement timeline</div>
-          <div id="maintenanceContent"></div>
-        </div>
+    <!-- ===== SERVICE REQUESTS TAB ===== -->
+    <div id="tab-service" class="tab-panel" role="tabpanel">
+      <div class="card-header">
+        <h3 class="card-title">Service Requests</h3>
+        <button class="btn btn-primary btn-sm" id="new-service-btn">New Request</button>
       </div>
+      <div id="service-content">
+        <div class="loading"><div class="spinner"></div><p>Loading service requests...</p></div>
+      </div>
+    </div>
 
-    </div><!-- /.portal-content -->
-  </div><!-- /.portal-body -->
-</div><!-- /.portal-shell -->
+    <!-- ===== WARRANTY TAB ===== -->
+    <div id="tab-warranty" class="tab-panel" role="tabpanel">
+      <div class="card-header">
+        <h3 class="card-title">Warranty Information</h3>
+        <button class="btn btn-outline-pink btn-sm" id="new-claim-btn">File a Claim</button>
+      </div>
+      <div id="warranty-content">
+        <div class="loading"><div class="spinner"></div><p>Loading warranty info...</p></div>
+      </div>
+    </div>
 
-<!-- Footer -->
-<footer style="position: fixed; bottom: 0; right: 0; padding: 4px 12px; font-size: 10px; color: var(--color-text-faint); z-index: 50;">
-  <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none; opacity: 0.6;">
-    Created with Perplexity Computer
-  </a>
-</footer>
+    <!-- ===== INVOICES TAB ===== -->
+    <div id="tab-invoices" class="tab-panel" role="tabpanel">
+      <div class="card-header">
+        <h3 class="card-title">Invoices &amp; Payments</h3>
+      </div>
+      <div id="invoices-content">
+        <div class="loading"><div class="spinner"></div><p>Loading invoices...</p></div>
+      </div>
+    </div>
+  </main>
 
-<script src="./portal-app.js"></script>
+  <footer class="portal-footer">
+    <p>CrystalFlow Miami &mdash; (786) 947-3824 &mdash; <a href="mailto:info@crystalflowmiami.com">info@crystalflowmiami.com</a></p>
+    <p style="margin-top:var(--s2)"><a href="./index.html">Back to main site</a></p>
+  </footer>
+</div>
+
+<!-- ============================================================
+     MODAL: New Service Request
+     ============================================================ -->
+<div class="modal-overlay" id="modal-service">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title">New Service Request</h2>
+      <button class="modal-close" data-close-modal="modal-service">&times;</button>
+    </div>
+    <div id="service-modal-alert" class="auth-alert" style="margin-bottom:var(--s4);"></div>
+    <form id="service-form" class="auth-form">
+      <div class="form-group">
+        <label class="form-label" for="svc-type">Request Type</label>
+        <select class="form-select" id="svc-type" required>
+          <option value="">Select a type...</option>
+          <option value="maintenance">Routine Maintenance</option>
+          <option value="repair">Repair</option>
+          <option value="filter_replacement">Filter Replacement</option>
+          <option value="water_test">Water Quality Test</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="svc-priority">Priority</label>
+        <select class="form-select" id="svc-priority">
+          <option value="normal">Normal</option>
+          <option value="high">High</option>
+          <option value="urgent">Urgent</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="svc-desc">Description</label>
+        <textarea class="form-textarea" id="svc-desc" placeholder="Describe the issue or request..." required></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="svc-preferred-date">Preferred Date (optional)</label>
+        <input class="form-input" id="svc-preferred-date" type="date">
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Submit Request</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL: File Warranty Claim
+     ============================================================ -->
+<div class="modal-overlay" id="modal-claim">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title">File a Warranty Claim</h2>
+      <button class="modal-close" data-close-modal="modal-claim">&times;</button>
+    </div>
+    <div id="claim-modal-alert" class="auth-alert" style="margin-bottom:var(--s4);"></div>
+    <form id="claim-form" class="auth-form">
+      <div class="form-group">
+        <label class="form-label" for="claim-issue">Issue Type</label>
+        <select class="form-select" id="claim-issue" required>
+          <option value="">Select an issue...</option>
+          <option value="leak">System Leak</option>
+          <option value="low_pressure">Low Water Pressure</option>
+          <option value="taste_odor">Taste or Odor Issue</option>
+          <option value="noise">Unusual Noise</option>
+          <option value="malfunction">System Malfunction</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="claim-desc">Description</label>
+        <textarea class="form-textarea" id="claim-desc" placeholder="Describe the issue in detail..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Submit Claim</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============================================================
+     JAVASCRIPT — SPA ROUTER + API INTEGRATION
+     ============================================================ -->
+<script>
+(function() {
+  'use strict';
+
+  var API_BASE = 'https://crystalflow-api.onrender.com/api/portal';
+  var TOKEN_KEY = 'cf_portal_token';
+  var CUSTOMER_KEY = 'cf_portal_customer';
+
+  // ---- Helpers ----
+  function $(sel, ctx) { return (ctx || document).querySelector(sel); }
+  function $$(sel, ctx) { return Array.from((ctx || document).querySelectorAll(sel)); }
+
+  function getToken() { return localStorage.getItem(TOKEN_KEY); }
+  function setToken(t) { localStorage.setItem(TOKEN_KEY, t); }
+  function getCustomer() { try { return JSON.parse(localStorage.getItem(CUSTOMER_KEY)); } catch(e) { return null; } }
+  function setCustomer(c) { localStorage.setItem(CUSTOMER_KEY, JSON.stringify(c)); }
+  function clearAuth() { localStorage.removeItem(TOKEN_KEY); localStorage.removeItem(CUSTOMER_KEY); }
+
+  function showAlert(id, msg, type) {
+    var el = $(id);
+    if (!el) return;
+    el.textContent = msg;
+    el.className = 'auth-alert visible ' + (type || 'error');
+  }
+  function hideAlert(id) {
+    var el = $(id);
+    if (el) { el.className = 'auth-alert'; el.textContent = ''; }
+  }
+
+  function formatDate(str) {
+    if (!str) return '--';
+    var d = new Date(str);
+    if (isNaN(d.getTime())) return str;
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+  function formatDateTime(str) {
+    if (!str) return '--';
+    var d = new Date(str);
+    if (isNaN(d.getTime())) return str;
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) +
+      ' at ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+  }
+  function formatCurrency(n) {
+    if (n == null || isNaN(n)) return '--';
+    return '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function statusBadge(status) {
+    if (!status) return '<span class="badge badge-gray">Unknown</span>';
+    var s = String(status).toLowerCase().replace(/[_\s]/g, '');
+    var map = {
+      'active': 'green', 'completed': 'green', 'paid': 'green', 'approved': 'green', 'resolved': 'green', 'closed': 'green',
+      'scheduled': 'blue', 'pending': 'yellow', 'open': 'yellow', 'inprogress': 'yellow', 'inreview': 'yellow', 'processing': 'yellow',
+      'cancelled': 'gray', 'expired': 'gray', 'draft': 'gray',
+      'overdue': 'red', 'rejected': 'red', 'denied': 'red', 'urgent': 'red',
+    };
+    var color = map[s] || 'gray';
+    var label = String(status).replace(/_/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+    return '<span class="badge badge-' + color + '">' + label + '</span>';
+  }
+
+  // ---- API Fetch ----
+  function apiFetch(endpoint, opts) {
+    opts = opts || {};
+    var headers = { 'Content-Type': 'application/json' };
+    var token = getToken();
+    if (token) headers['Authorization'] = 'Bearer ' + token;
+
+    return fetch(API_BASE + endpoint, {
+      method: opts.method || 'GET',
+      headers: headers,
+      body: opts.body ? JSON.stringify(opts.body) : undefined,
+    }).then(function(res) {
+      if (res.status === 401 || res.status === 403) {
+        clearAuth();
+        navigateTo('login');
+        return Promise.reject(new Error('Session expired'));
+      }
+      return res.json().then(function(data) {
+        if (!res.ok) return Promise.reject(data);
+        return data;
+      });
+    });
+  }
+
+  // ---- Calendly ----
+  function openCalendly() {
+    if (window.Calendly) {
+      Calendly.initPopupWidget({ url: 'https://calendly.com/isaiah-pacheco5321/30min' });
+    }
+  }
+
+  // ---- Routing ----
+  var currentTab = 'overview';
+  var loadedTabs = {};
+
+  function navigateTo(route) {
+    window.location.hash = route;
+  }
+
+  function handleRoute() {
+    var hash = window.location.hash.replace('#', '') || '';
+    var token = getToken();
+
+    // Auth routes
+    if (['login', 'register', 'forgot'].indexOf(hash) !== -1 || hash.indexOf('reset') === 0) {
+      if (token && hash === 'login') { navigateTo('dashboard'); return; }
+      showView('auth');
+      showAuthPanel(hash);
+      return;
+    }
+
+    // Dashboard routes
+    if (token) {
+      showView('dashboard');
+      var customer = getCustomer();
+      if (customer) {
+        var name = customer.firstName || customer.first_name || '';
+        $('#header-user-name').textContent = name;
+      }
+      var tab = hash.replace('dashboard/', '').replace('dashboard', '') || 'overview';
+      if (['overview', 'system', 'appointments', 'service', 'warranty', 'invoices'].indexOf(tab) === -1) tab = 'overview';
+      switchTab(tab);
+    } else {
+      navigateTo('login');
+    }
+  }
+
+  function showView(name) {
+    $('#view-auth').style.display = name === 'auth' ? 'flex' : 'none';
+    $('#view-dashboard').style.display = name === 'dashboard' ? 'block' : 'none';
+  }
+
+  function showAuthPanel(panel) {
+    var panels = ['login', 'register', 'forgot', 'reset'];
+    var active = panel.indexOf('reset') === 0 ? 'reset' : panel;
+    panels.forEach(function(p) {
+      var el = $('#auth-' + p);
+      if (el) el.style.display = p === active ? 'block' : 'none';
+    });
+  }
+
+  function switchTab(tab) {
+    currentTab = tab;
+    $$('.tab-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.tab === tab);
+    });
+    $$('.tab-panel').forEach(function(panel) {
+      panel.classList.toggle('active', panel.id === 'tab-' + tab);
+    });
+    if (!loadedTabs[tab]) {
+      loadedTabs[tab] = true;
+      loadTabData(tab);
+    }
+  }
+
+  // ---- Data Loaders ----
+  function loadTabData(tab) {
+    switch (tab) {
+      case 'overview': loadOverview(); break;
+      case 'system': loadSystem(); break;
+      case 'appointments': loadAppointments(); break;
+      case 'service': loadServiceRequests(); break;
+      case 'warranty': loadWarranty(); break;
+      case 'invoices': loadInvoices(); break;
+    }
+  }
+
+  function loadOverview() {
+    // Load profile + system for stats
+    Promise.all([
+      apiFetch('/profile').catch(function() { return {}; }),
+      apiFetch('/system').catch(function() { return null; }),
+      apiFetch('/appointments').catch(function() { return []; }),
+      apiFetch('/invoices').catch(function() { return []; }),
+    ]).then(function(results) {
+      var profile = results[0].customer || results[0] || {};
+      var system = results[1];
+      var sysData = system ? (system.system || system) : null;
+      var appts = results[2].appointments || results[2] || [];
+      if (!Array.isArray(appts)) appts = [];
+      var invoices = results[3].invoices || results[3] || [];
+      if (!Array.isArray(invoices)) invoices = [];
+
+      // Upsell banner if no system
+      var upsellEl = $('#overview-upsell');
+      if (!sysData || (sysData && !sysData.systemType && !sysData.system_type && !sysData.name)) {
+        upsellEl.innerHTML =
+          '<div class="upsell-banner">' +
+            '<div class="upsell-content">' +
+              '<div class="upsell-label">Get Started</div>' +
+              '<h3 class="upsell-title">Book a Free Water Test</h3>' +
+              '<p class="upsell-text">Find out what is in your water and get a personalized recommendation for your home.</p>' +
+            '</div>' +
+            '<button class="btn btn-primary btn-lg" onclick="(' + openCalendly.toString() + ')()">Schedule Now</button>' +
+          '</div>';
+      } else {
+        upsellEl.innerHTML = '';
+      }
+
+      // Stats
+      var statsHtml = '';
+      if (sysData && (sysData.systemType || sysData.system_type || sysData.name)) {
+        statsHtml +=
+          '<div class="stat-card">' +
+            '<div class="stat-icon cyan"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>' +
+            '<div class="stat-info"><div class="stat-label">System</div><div class="stat-value" style="font-size:var(--text-lg);">' + (sysData.systemType || sysData.system_type || sysData.name || '--') + '</div></div>' +
+          '</div>';
+      }
+      statsHtml +=
+        '<div class="stat-card">' +
+          '<div class="stat-icon blue"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>' +
+          '<div class="stat-info"><div class="stat-label">Appointments</div><div class="stat-value">' + appts.length + '</div></div>' +
+        '</div>' +
+        '<div class="stat-card">' +
+          '<div class="stat-icon pink"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>' +
+          '<div class="stat-info"><div class="stat-label">Invoices</div><div class="stat-value">' + invoices.length + '</div></div>' +
+        '</div>';
+      $('#overview-stats').innerHTML = statsHtml;
+
+      // Upcoming appointments
+      var upcoming = appts.filter(function(a) {
+        var d = new Date(a.date || a.scheduledDate || a.scheduled_date);
+        return d >= new Date();
+      }).slice(0, 3);
+
+      if (upcoming.length > 0) {
+        var upEl = $('#overview-upcoming');
+        upEl.style.display = 'block';
+        var listHtml = '<div class="table-wrap"><table class="data-table"><thead><tr><th>Date</th><th>Type</th><th>Status</th></tr></thead><tbody>';
+        upcoming.forEach(function(a) {
+          listHtml += '<tr>' +
+            '<td>' + formatDate(a.date || a.scheduledDate || a.scheduled_date) + '</td>' +
+            '<td>' + (a.type || a.serviceType || a.service_type || '--') + '</td>' +
+            '<td>' + statusBadge(a.status) + '</td>' +
+          '</tr>';
+        });
+        listHtml += '</tbody></table></div>';
+        $('#overview-upcoming-list').innerHTML = listHtml;
+      }
+    });
+  }
+
+  function loadSystem() {
+    var container = $('#system-content');
+    apiFetch('/system').then(function(data) {
+      var sys = data.system || data;
+      if (!sys || (!sys.systemType && !sys.system_type && !sys.name && !sys.model)) {
+        container.innerHTML =
+          '<div class="empty-state">' +
+            '<div class="empty-icon">&#9881;</div>' +
+            '<h3 class="empty-title">No System Registered</h3>' +
+            '<p class="empty-text">You don\'t have a water treatment system on file yet. Book a free water test to get started.</p>' +
+            '<button class="btn btn-primary" onclick="(' + openCalendly.toString() + ')()">Book a Free Water Test</button>' +
+          '</div>';
+        return;
+      }
+
+      var html = '<div class="system-grid">';
+
+      // System details card
+      html += '<div class="card card-lg"><h3 class="card-title" style="margin-bottom:var(--s4);">System Details</h3><div class="detail-list">';
+      var fields = [
+        ['System Type', sys.systemType || sys.system_type || sys.name],
+        ['Model', sys.model || sys.modelNumber || sys.model_number],
+        ['Serial Number', sys.serialNumber || sys.serial_number],
+        ['Install Date', formatDate(sys.installDate || sys.install_date || sys.installedAt || sys.installed_at)],
+        ['Location', sys.location || sys.installLocation || sys.install_location],
+        ['Status', null, sys.status],
+      ];
+      fields.forEach(function(f) {
+        if (f[1] || f[2]) {
+          html += '<div class="detail-item"><div class="detail-label">' + f[0] + '</div><div class="detail-value">' + (f[2] ? statusBadge(f[2]) : (f[1] || '--')) + '</div></div>';
+        }
+      });
+      html += '</div></div>';
+
+      // Maintenance / next service
+      if (sys.nextService || sys.next_service || sys.nextMaintenanceDate || sys.next_maintenance_date) {
+        html += '<div class="card card-lg"><h3 class="card-title" style="margin-bottom:var(--s4);">Next Scheduled Service</h3>' +
+          '<p style="font-size:var(--text-lg);color:var(--primary);font-weight:600;">' +
+          formatDate(sys.nextService || sys.next_service || sys.nextMaintenanceDate || sys.next_maintenance_date) +
+          '</p></div>';
+      }
+
+      html += '</div>';
+      container.innerHTML = html;
+    }).catch(function(err) {
+      container.innerHTML = '<div class="empty-state"><div class="empty-icon">&#9888;</div><h3 class="empty-title">Unable to Load</h3><p class="empty-text">' + (err.message || 'Something went wrong.') + '</p></div>';
+    });
+  }
+
+  function loadAppointments() {
+    var container = $('#appointments-content');
+    apiFetch('/appointments').then(function(data) {
+      var items = data.appointments || data || [];
+      if (!Array.isArray(items)) items = [];
+
+      if (items.length === 0) {
+        container.innerHTML =
+          '<div class="empty-state">' +
+            '<div class="empty-icon">&#128197;</div>' +
+            '<h3 class="empty-title">No Appointments</h3>' +
+            '<p class="empty-text">You have no appointments scheduled. Need a service call?</p>' +
+            '<button class="btn btn-primary" onclick="(' + openCalendly.toString() + ')()">Schedule Appointment</button>' +
+          '</div>';
+        return;
+      }
+
+      var html = '<div class="table-wrap"><table class="data-table"><thead><tr><th>Date</th><th>Time</th><th>Type</th><th>Technician</th><th>Status</th></tr></thead><tbody>';
+      items.forEach(function(a) {
+        var dateStr = a.date || a.scheduledDate || a.scheduled_date || '';
+        html += '<tr>' +
+          '<td>' + formatDate(dateStr) + '</td>' +
+          '<td>' + (a.time || a.scheduledTime || a.scheduled_time || '--') + '</td>' +
+          '<td>' + (a.type || a.serviceType || a.service_type || '--') + '</td>' +
+          '<td>' + (a.technician || a.technicianName || a.technician_name || '--') + '</td>' +
+          '<td>' + statusBadge(a.status) + '</td>' +
+        '</tr>';
+      });
+      html += '</tbody></table></div>';
+      container.innerHTML = html;
+    }).catch(function(err) {
+      container.innerHTML = '<div class="empty-state"><div class="empty-icon">&#9888;</div><h3 class="empty-title">Unable to Load</h3><p class="empty-text">' + (err.message || 'Something went wrong.') + '</p></div>';
+    });
+  }
+
+  function loadServiceRequests() {
+    var container = $('#service-content');
+    apiFetch('/service-requests').then(function(data) {
+      var items = data.serviceRequests || data.service_requests || data || [];
+      if (!Array.isArray(items)) items = [];
+
+      if (items.length === 0) {
+        container.innerHTML =
+          '<div class="empty-state">' +
+            '<div class="empty-icon">&#128295;</div>' +
+            '<h3 class="empty-title">No Service Requests</h3>' +
+            '<p class="empty-text">You haven\'t submitted any service requests yet.</p>' +
+          '</div>';
+        return;
+      }
+
+      var html = '<div class="table-wrap"><table class="data-table"><thead><tr><th>Date</th><th>Type</th><th>Priority</th><th>Status</th><th>Description</th></tr></thead><tbody>';
+      items.forEach(function(r) {
+        html += '<tr>' +
+          '<td>' + formatDate(r.createdAt || r.created_at || r.date) + '</td>' +
+          '<td>' + (r.type || r.requestType || r.request_type || '--') + '</td>' +
+          '<td>' + statusBadge(r.priority) + '</td>' +
+          '<td>' + statusBadge(r.status) + '</td>' +
+          '<td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + (r.description || '--') + '</td>' +
+        '</tr>';
+      });
+      html += '</tbody></table></div>';
+      container.innerHTML = html;
+    }).catch(function(err) {
+      container.innerHTML = '<div class="empty-state"><div class="empty-icon">&#9888;</div><h3 class="empty-title">Unable to Load</h3><p class="empty-text">' + (err.message || 'Something went wrong.') + '</p></div>';
+    });
+  }
+
+  function loadWarranty() {
+    var container = $('#warranty-content');
+    Promise.all([
+      apiFetch('/warranty').catch(function() { return null; }),
+      apiFetch('/warranty-claims').catch(function() { return []; }),
+    ]).then(function(results) {
+      var warranty = results[0];
+      var wData = warranty ? (warranty.warranty || warranty) : null;
+      var claims = results[1].claims || results[1].warranty_claims || results[1].warrantyClaims || results[1] || [];
+      if (!Array.isArray(claims)) claims = [];
+
+      var html = '';
+
+      // Warranty info
+      if (wData && (wData.plan || wData.type || wData.status)) {
+        html += '<div class="card card-lg" style="margin-bottom:var(--s6);"><h3 class="card-title" style="margin-bottom:var(--s4);">Warranty Plan</h3><div class="detail-list">';
+        var wFields = [
+          ['Plan', wData.plan || wData.type || wData.name],
+          ['Status', null, wData.status],
+          ['Start Date', formatDate(wData.startDate || wData.start_date)],
+          ['End Date', formatDate(wData.endDate || wData.end_date || wData.expiresAt || wData.expires_at)],
+          ['Coverage', wData.coverage || wData.description],
+        ];
+        wFields.forEach(function(f) {
+          if (f[1] || f[2]) {
+            html += '<div class="detail-item"><div class="detail-label">' + f[0] + '</div><div class="detail-value">' + (f[2] ? statusBadge(f[2]) : (f[1] || '--')) + '</div></div>';
+          }
+        });
+        html += '</div></div>';
+      } else {
+        html += '<div class="card" style="margin-bottom:var(--s6);"><div class="empty-state" style="padding:var(--s8);">' +
+          '<h3 class="empty-title">No Warranty On File</h3>' +
+          '<p class="empty-text">Contact us to learn about our warranty plans.</p>' +
+          '<a href="tel:+17869473824" class="btn btn-outline-pink">Call (786) 947-3824</a>' +
+        '</div></div>';
+      }
+
+      // Claims
+      if (claims.length > 0) {
+        html += '<div class="card card-lg"><h3 class="card-title" style="margin-bottom:var(--s4);">Warranty Claims</h3>';
+        html += '<div class="table-wrap"><table class="data-table"><thead><tr><th>Date</th><th>Issue</th><th>Status</th><th>Resolution</th></tr></thead><tbody>';
+        claims.forEach(function(c) {
+          html += '<tr>' +
+            '<td>' + formatDate(c.createdAt || c.created_at || c.date) + '</td>' +
+            '<td>' + (c.issue || c.issueType || c.issue_type || c.type || '--') + '</td>' +
+            '<td>' + statusBadge(c.status) + '</td>' +
+            '<td>' + (c.resolution || c.notes || '--') + '</td>' +
+          '</tr>';
+        });
+        html += '</tbody></table></div></div>';
+      }
+
+      container.innerHTML = html || '<div class="empty-state"><div class="empty-icon">&#128737;</div><h3 class="empty-title">No Warranty Data</h3><p class="empty-text">Contact us for warranty information.</p></div>';
+    });
+  }
+
+  function loadInvoices() {
+    var container = $('#invoices-content');
+    apiFetch('/invoices').then(function(data) {
+      var items = data.invoices || data || [];
+      if (!Array.isArray(items)) items = [];
+
+      if (items.length === 0) {
+        container.innerHTML =
+          '<div class="empty-state">' +
+            '<div class="empty-icon">&#128196;</div>' +
+            '<h3 class="empty-title">No Invoices</h3>' +
+            '<p class="empty-text">You don\'t have any invoices yet.</p>' +
+          '</div>';
+        return;
+      }
+
+      var html = '<div class="table-wrap"><table class="data-table"><thead><tr><th>Invoice #</th><th>Date</th><th>Description</th><th>Amount</th><th>Status</th></tr></thead><tbody>';
+      items.forEach(function(inv) {
+        html += '<tr>' +
+          '<td style="font-weight:600;">' + (inv.invoiceNumber || inv.invoice_number || inv.id || '--') + '</td>' +
+          '<td>' + formatDate(inv.date || inv.createdAt || inv.created_at || inv.issuedAt || inv.issued_at) + '</td>' +
+          '<td>' + (inv.description || inv.lineItems || inv.items || '--') + '</td>' +
+          '<td style="font-weight:600;">' + formatCurrency(inv.amount || inv.total) + '</td>' +
+          '<td>' + statusBadge(inv.status) + '</td>' +
+        '</tr>';
+      });
+      html += '</tbody></table></div>';
+      container.innerHTML = html;
+    }).catch(function(err) {
+      container.innerHTML = '<div class="empty-state"><div class="empty-icon">&#9888;</div><h3 class="empty-title">Unable to Load</h3><p class="empty-text">' + (err.message || 'Something went wrong.') + '</p></div>';
+    });
+  }
+
+  // ---- Auth Forms ----
+  $('#login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    hideAlert('#login-alert');
+    var email = $('#login-email').value.trim();
+    var password = $('#login-password').value;
+    if (!email || !password) { showAlert('#login-alert', 'Please fill in all fields.'); return; }
+
+    var btn = this.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Signing in...';
+
+    apiFetch('/login', { method: 'POST', body: { email: email, password: password } })
+      .then(function(data) {
+        var tkn = data.token || data.access_token;
+        if (!tkn) { showAlert('#login-alert', 'Login failed. Please try again.'); return; }
+        setToken(tkn);
+        setCustomer(data.customer || data.user || {});
+        loadedTabs = {};
+        navigateTo('dashboard');
+      })
+      .catch(function(err) {
+        var msg = '';
+        if (typeof err === 'object' && err.detail) msg = err.detail;
+        else if (typeof err === 'object' && err.message) msg = err.message;
+        else msg = 'Invalid email or password.';
+        showAlert('#login-alert', msg);
+      })
+      .finally(function() { btn.disabled = false; btn.textContent = 'Sign In'; });
+  });
+
+  $('#register-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    hideAlert('#register-alert');
+    var body = {
+      first_name: $('#reg-first').value.trim(),
+      last_name: $('#reg-last').value.trim(),
+      email: $('#reg-email').value.trim(),
+      phone: $('#reg-phone').value.trim() || null,
+      address: $('#reg-address') ? $('#reg-address').value.trim() || null : null,
+      password: $('#reg-password').value,
+    };
+    if (!body.first_name || !body.last_name || !body.email || !body.password) {
+      showAlert('#register-alert', 'Please fill in all required fields.');
+      return;
+    }
+    if (body.password.length < 8) {
+      showAlert('#register-alert', 'Password must be at least 8 characters.');
+      return;
+    }
+
+    var btn = this.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Creating account...';
+
+    apiFetch('/register', { method: 'POST', body: body })
+      .then(function(data) {
+        var tkn = data.token || data.access_token;
+        if (tkn) {
+          setToken(tkn);
+          setCustomer(data.customer || data.user || {});
+          loadedTabs = {};
+          navigateTo('dashboard');
+        } else {
+          showAlert('#register-alert', 'Account created. Please sign in.', 'success');
+          setTimeout(function() { navigateTo('login'); }, 2000);
+        }
+      })
+      .catch(function(err) {
+        var msg = '';
+        if (typeof err === 'object' && err.detail) msg = err.detail;
+        else if (typeof err === 'object' && err.message) msg = err.message;
+        else if (typeof err === 'string') msg = err;
+        else msg = 'Registration failed. Please try again.';
+        showAlert('#register-alert', msg);
+      })
+      .finally(function() { btn.disabled = false; btn.textContent = 'Create Account'; });
+  });
+
+  $('#forgot-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    hideAlert('#forgot-alert');
+    var email = $('#forgot-email').value.trim();
+    if (!email) { showAlert('#forgot-alert', 'Please enter your email.'); return; }
+
+    var btn = this.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Sending...';
+
+    apiFetch('/forgot-password', { method: 'POST', body: { email: email } })
+      .then(function() {
+        showAlert('#forgot-alert', 'If an account exists with that email, a reset link has been sent.', 'success');
+      })
+      .catch(function() {
+        // Always show success to prevent email enumeration
+        showAlert('#forgot-alert', 'If an account exists with that email, a reset link has been sent.', 'success');
+      })
+      .finally(function() { btn.disabled = false; btn.textContent = 'Send Reset Link'; });
+  });
+
+  $('#reset-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    hideAlert('#reset-alert');
+    var password = $('#reset-password').value;
+    var confirm = $('#reset-confirm').value;
+
+    if (!password || !confirm) { showAlert('#reset-alert', 'Please fill in both fields.'); return; }
+    if (password.length < 8) { showAlert('#reset-alert', 'Password must be at least 8 characters.'); return; }
+    if (password !== confirm) { showAlert('#reset-alert', 'Passwords do not match.'); return; }
+
+    // Extract token from hash: #reset?token=xxx or #reset/xxx
+    var hash = window.location.hash.replace('#reset', '');
+    var resetToken = '';
+    if (hash.indexOf('?token=') === 0) resetToken = hash.split('?token=')[1];
+    else if (hash.indexOf('/') === 0) resetToken = hash.substring(1);
+    else if (hash.indexOf('=') !== -1) resetToken = hash.split('=').pop();
+
+    if (!resetToken) { showAlert('#reset-alert', 'Invalid or missing reset token.'); return; }
+
+    var btn = this.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Saving...';
+
+    apiFetch('/reset-password', { method: 'POST', body: { token: resetToken, password: password } })
+      .then(function() {
+        showAlert('#reset-alert', 'Password updated. Redirecting to sign in...', 'success');
+        setTimeout(function() { navigateTo('login'); }, 2000);
+      })
+      .catch(function(err) {
+        showAlert('#reset-alert', err.message || err.error || 'Failed to reset password. The link may have expired.');
+      })
+      .finally(function() { btn.disabled = false; btn.textContent = 'Set New Password'; });
+  });
+
+  // ---- Logout ----
+  $('#logout-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    clearAuth();
+    loadedTabs = {};
+    navigateTo('login');
+  });
+
+  // ---- Tab Navigation ----
+  $$('.tab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tab = this.dataset.tab;
+      navigateTo('dashboard/' + tab);
+    });
+  });
+
+  // Quick action tab links
+  $$('[data-tab-link]').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      navigateTo('dashboard/' + this.dataset.tabLink);
+    });
+  });
+
+  // ---- Modals ----
+  function openModal(id) { $('#' + id).classList.add('open'); }
+  function closeModal(id) { $('#' + id).classList.remove('open'); }
+
+  $$('[data-close-modal]').forEach(function(btn) {
+    btn.addEventListener('click', function() { closeModal(this.dataset.closeModal); });
+  });
+
+  // Close modal on overlay click
+  $$('.modal-overlay').forEach(function(overlay) {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) { overlay.classList.remove('open'); }
+    });
+  });
+
+  $('#new-service-btn').addEventListener('click', function() { openModal('modal-service'); });
+  $('#new-claim-btn').addEventListener('click', function() { openModal('modal-claim'); });
+
+  // Service Request Form
+  $('#service-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    hideAlert('#service-modal-alert');
+    var body = {
+      type: $('#svc-type').value,
+      priority: $('#svc-priority').value,
+      description: $('#svc-desc').value.trim(),
+      preferredDate: $('#svc-preferred-date').value || undefined,
+    };
+    if (!body.type || !body.description) {
+      showAlert('#service-modal-alert', 'Please fill in required fields.');
+      return;
+    }
+
+    var btn = this.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Submitting...';
+
+    apiFetch('/service-requests', { method: 'POST', body: body })
+      .then(function() {
+        showAlert('#service-modal-alert', 'Service request submitted.', 'success');
+        loadedTabs['service'] = false;
+        if (currentTab === 'service') loadServiceRequests();
+        setTimeout(function() { closeModal('modal-service'); $('#service-form').reset(); hideAlert('#service-modal-alert'); }, 1500);
+      })
+      .catch(function(err) {
+        showAlert('#service-modal-alert', err.message || err.error || 'Failed to submit request.');
+      })
+      .finally(function() { btn.disabled = false; btn.textContent = 'Submit Request'; });
+  });
+
+  // Warranty Claim Form
+  $('#claim-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    hideAlert('#claim-modal-alert');
+    var body = {
+      issueType: $('#claim-issue').value,
+      description: $('#claim-desc').value.trim(),
+    };
+    if (!body.issueType || !body.description) {
+      showAlert('#claim-modal-alert', 'Please fill in all fields.');
+      return;
+    }
+
+    var btn = this.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Submitting...';
+
+    apiFetch('/warranty-claims', { method: 'POST', body: body })
+      .then(function() {
+        showAlert('#claim-modal-alert', 'Warranty claim submitted.', 'success');
+        loadedTabs['warranty'] = false;
+        if (currentTab === 'warranty') loadWarranty();
+        setTimeout(function() { closeModal('modal-claim'); $('#claim-form').reset(); hideAlert('#claim-modal-alert'); }, 1500);
+      })
+      .catch(function(err) {
+        showAlert('#claim-modal-alert', err.message || err.error || 'Failed to submit claim.');
+      })
+      .finally(function() { btn.disabled = false; btn.textContent = 'Submit Claim'; });
+  });
+
+  // ---- Init ----
+  window.addEventListener('hashchange', handleRoute);
+  handleRoute();
+})();
+</script>
+
 </body>
 </html>
