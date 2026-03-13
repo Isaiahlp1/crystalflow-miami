@@ -498,6 +498,145 @@ a, button, input {
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+/* ============================================================
+   FINANCING SECTION
+   ============================================================ */
+.financing-section {
+  margin: var(--s10) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s6);
+}
+.financing-badge {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s4);
+  padding: var(--s6);
+  background: var(--surface-2);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--divider);
+}
+.financing-badge svg {
+  flex-shrink: 0;
+  color: var(--teal);
+  margin-top: 2px;
+}
+.financing-badge strong {
+  display: block;
+  font-size: var(--text-base);
+  margin-bottom: var(--s1);
+  color: var(--text);
+}
+.financing-badge p {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+.financing-calc {
+  background: linear-gradient(135deg, var(--navy) 0%, #0D2240 100%);
+  border-radius: var(--radius-2xl);
+  padding: var(--s8);
+  color: #fff;
+}
+.financing-headline {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  text-align: center;
+  margin-bottom: var(--s6);
+  color: #fff;
+}
+.financing-examples {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s4);
+}
+.financing-example {
+  text-align: center;
+  padding: var(--s5);
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.financing-pkg {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--cyan);
+  margin-bottom: var(--s2);
+}
+.financing-monthly {
+  display: block;
+  font-size: var(--text-base);
+  color: #fff;
+  margin-bottom: var(--s1);
+}
+.financing-monthly strong {
+  font-size: var(--text-lg);
+  color: var(--pink);
+}
+.financing-note {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.5);
+}
+.financing-disclaimer {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  margin-top: var(--s5);
+}
+
+/* ============================================================
+   PRODUCT SPECS
+   ============================================================ */
+.product-specs-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s1);
+  font-size: var(--text-xs);
+  color: var(--teal);
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: var(--s3);
+  padding: 0;
+  background: none;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.product-specs-toggle:hover { color: var(--blue); }
+.product-specs {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  margin-top: var(--s3);
+}
+.product-specs.open { max-height: 500px; }
+.product-specs-inner {
+  padding: var(--s4);
+  background: var(--surface-2);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--divider);
+}
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--s2) 0;
+  font-size: var(--text-xs);
+  border-bottom: 1px solid var(--divider);
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-label { color: var(--text-muted); font-weight: 500; }
+.spec-value { color: var(--text); font-weight: 600; text-align: right; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 600px) {
+  .financing-examples { grid-template-columns: 1fr; }
+}
 @media (max-width: 640px) {
   .header-nav-links { display: none; }
   .trust-bar { gap: var(--s6); padding: var(--s6); }
@@ -532,9 +671,10 @@ a, button, input {
 
       <nav class="header-nav-links">
         <a href="index.html#packages">Packages</a>
-        <a href="index.html#calculator">Compare</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="why-crystalflow.html">Why CrystalFlow</a>
+        <a href="water-quality.html">Water Quality</a>
         <a href="blog.html">Blog</a>
-        <a href="portal.html">My Account</a>
       </nav>
 
       <div class="header-actions">
@@ -593,6 +733,18 @@ a, button, input {
           <li>Professional installation included</li>
           <li>1-year manufacturer warranty</li>
         </ul>
+        <button class="product-specs-toggle" onclick="toggleSpecs(this)"><span class="specs-arrow">+</span> View Specs</button>
+        <div class="product-specs">
+          <div class="product-specs-inner">
+            <div class="spec-row"><span class="spec-label">Filtration Stages</span><span class="spec-value">5</span></div>
+            <div class="spec-row"><span class="spec-label">Flow Rate</span><span class="spec-value">400 GPD</span></div>
+            <div class="spec-row"><span class="spec-label">Tank Capacity</span><span class="spec-value">2.5 gallons</span></div>
+            <div class="spec-row"><span class="spec-label">Dimensions</span><span class="spec-value">14" x 5" x 18"</span></div>
+            <div class="spec-row"><span class="spec-label">Filter Life</span><span class="spec-value">12 mo (RO membrane: 24 mo)</span></div>
+            <div class="spec-row"><span class="spec-label">Certifications</span><span class="spec-value">NSF/ANSI 42, 53, 58</span></div>
+            <div class="spec-row"><span class="spec-label">Removes</span><span class="spec-value">Chlorine, lead, fluoride, arsenic, TDS, bacteria</span></div>
+          </div>
+        </div>
         <button class="btn btn-outline-pink" onclick="checkout('kitchen-g5p500a')">Purchase for $699</button>
       </div>
 
@@ -614,6 +766,18 @@ a, button, input {
           <li>Professional installation included</li>
           <li>1-year manufacturer warranty</li>
         </ul>
+        <button class="product-specs-toggle" onclick="toggleSpecs(this)"><span class="specs-arrow">+</span> View Specs</button>
+        <div class="product-specs">
+          <div class="product-specs-inner">
+            <div class="spec-row"><span class="spec-label">Filtration Stages</span><span class="spec-value">7 (Tankless)</span></div>
+            <div class="spec-row"><span class="spec-label">Flow Rate</span><span class="spec-value">600 GPD</span></div>
+            <div class="spec-row"><span class="spec-label">Tank</span><span class="spec-value">Tankless design</span></div>
+            <div class="spec-row"><span class="spec-label">Dimensions</span><span class="spec-value">14.7" x 5.7" x 17.8"</span></div>
+            <div class="spec-row"><span class="spec-label">Filter Life</span><span class="spec-value">12 mo (RO membrane: 24 mo)</span></div>
+            <div class="spec-row"><span class="spec-label">Certifications</span><span class="spec-value">NSF/ANSI 42, 53, 58, 401</span></div>
+            <div class="spec-row"><span class="spec-label">Removes</span><span class="spec-value">Chlorine, lead, fluoride, arsenic, PFAS, TDS</span></div>
+          </div>
+        </div>
         <button class="btn btn-outline-pink" onclick="checkout('kitchen-t3m')">Purchase for $849</button>
       </div>
 
@@ -650,6 +814,16 @@ a, button, input {
           <li>Professional installation included</li>
           <li>1-year manufacturer warranty</li>
         </ul>
+        <button class="product-specs-toggle" onclick="toggleSpecs(this)"><span class="specs-arrow">+</span> View Specs</button>
+        <div class="product-specs">
+          <div class="product-specs-inner">
+            <div class="spec-row"><span class="spec-label">Includes</span><span class="spec-value">G3P600 RO + Whole-Home Softener</span></div>
+            <div class="spec-row"><span class="spec-label">Softener Capacity</span><span class="spec-value">48,000 grains</span></div>
+            <div class="spec-row"><span class="spec-label">RO Flow Rate</span><span class="spec-value">600 GPD</span></div>
+            <div class="spec-row"><span class="spec-label">Certifications</span><span class="spec-value">NSF/ANSI 42, 44, 53, 58</span></div>
+            <div class="spec-row"><span class="spec-label">Removes</span><span class="spec-value">Hard minerals, scale, chlorine, lead, TDS</span></div>
+          </div>
+        </div>
         <button class="btn btn-outline-pink" onclick="checkout('home-g3p600')">Purchase for $1,799</button>
       </div>
 
@@ -671,6 +845,17 @@ a, button, input {
           <li>Professional installation included</li>
           <li>1-year manufacturer warranty</li>
         </ul>
+        <button class="product-specs-toggle" onclick="toggleSpecs(this)"><span class="specs-arrow">+</span> View Specs</button>
+        <div class="product-specs">
+          <div class="product-specs-inner">
+            <div class="spec-row"><span class="spec-label">Includes</span><span class="spec-value">G3P800 RO + Whole-Home Softener</span></div>
+            <div class="spec-row"><span class="spec-label">Softener Capacity</span><span class="spec-value">48,000 grains</span></div>
+            <div class="spec-row"><span class="spec-label">RO Flow Rate</span><span class="spec-value">800 GPD</span></div>
+            <div class="spec-row"><span class="spec-label">Smart Features</span><span class="spec-value">Filter life monitoring</span></div>
+            <div class="spec-row"><span class="spec-label">Certifications</span><span class="spec-value">NSF/ANSI 42, 44, 53, 58</span></div>
+            <div class="spec-row"><span class="spec-label">Removes</span><span class="spec-value">Hard minerals, scale, chlorine, lead, PFAS, TDS</span></div>
+          </div>
+        </div>
         <button class="btn btn-primary" onclick="checkout('home-g3p800')">Purchase for $2,199</button>
       </div>
 
@@ -707,6 +892,18 @@ a, button, input {
           <li>Professional installation included</li>
           <li>2-year extended warranty</li>
         </ul>
+        <button class="product-specs-toggle" onclick="toggleSpecs(this)"><span class="specs-arrow">+</span> View Specs</button>
+        <div class="product-specs">
+          <div class="product-specs-inner">
+            <div class="spec-row"><span class="spec-label">Includes</span><span class="spec-value">X12 RO + Softener + UV Sterilizer</span></div>
+            <div class="spec-row"><span class="spec-label">Softener Capacity</span><span class="spec-value">48,000 grains</span></div>
+            <div class="spec-row"><span class="spec-label">RO Flow Rate</span><span class="spec-value">1200 GPD</span></div>
+            <div class="spec-row"><span class="spec-label">UV Sterilization</span><span class="spec-value">Yes</span></div>
+            <div class="spec-row"><span class="spec-label">Mineral Remineralization</span><span class="spec-value">Yes</span></div>
+            <div class="spec-row"><span class="spec-label">Certifications</span><span class="spec-value">NSF/ANSI 42, 44, 53, 58, Class B UV</span></div>
+            <div class="spec-row"><span class="spec-label">Removes</span><span class="spec-value">Everything in Home Shield + bacteria, viruses</span></div>
+          </div>
+        </div>
         <button class="btn btn-outline-pink" onclick="checkout('pure-x12')">Purchase for $2,699</button>
       </div>
 
@@ -728,9 +925,56 @@ a, button, input {
           <li>Professional installation included</li>
           <li>2-year extended warranty</li>
         </ul>
+        <button class="product-specs-toggle" onclick="toggleSpecs(this)"><span class="specs-arrow">+</span> View Specs</button>
+        <div class="product-specs">
+          <div class="product-specs-inner">
+            <div class="spec-row"><span class="spec-label">Includes</span><span class="spec-value">X16 RO + Softener + UV + Smart Monitoring</span></div>
+            <div class="spec-row"><span class="spec-label">Softener Capacity</span><span class="spec-value">48,000 grains</span></div>
+            <div class="spec-row"><span class="spec-label">RO Flow Rate</span><span class="spec-value">1600 GPD</span></div>
+            <div class="spec-row"><span class="spec-label">UV Sterilization</span><span class="spec-value">Yes</span></div>
+            <div class="spec-row"><span class="spec-label">Mineral Remineralization</span><span class="spec-value">Yes</span></div>
+            <div class="spec-row"><span class="spec-label">Smart Features</span><span class="spec-value">App monitoring, filter alerts</span></div>
+            <div class="spec-row"><span class="spec-label">Certifications</span><span class="spec-value">NSF/ANSI 42, 44, 53, 58, Class B UV</span></div>
+            <div class="spec-row"><span class="spec-label">Removes</span><span class="spec-value">Everything + real-time water quality monitoring</span></div>
+          </div>
+        </div>
         <button class="btn btn-primary" onclick="checkout('pure-x16')">Purchase for $3,199</button>
       </div>
 
+    </div>
+
+    <!-- ============================================================
+         FINANCING SECTION
+         ============================================================ -->
+    <div class="financing-section js-reveal">
+      <div class="financing-badge">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <div>
+          <strong>Flexible Payment Options</strong>
+          <p>We accept all major credit cards, financing available through select partners. HSA/FSA eligible for qualifying systems. Ask during your consultation.</p>
+        </div>
+      </div>
+      <div class="financing-calc">
+        <p class="financing-headline">Invest in your home's water quality</p>
+        <div class="financing-examples">
+          <div class="financing-example">
+            <span class="financing-pkg">Kitchen Guard</span>
+            <span class="financing-monthly">As low as <strong>$29/mo</strong></span>
+            <span class="financing-note">with 24-month financing</span>
+          </div>
+          <div class="financing-example">
+            <span class="financing-pkg">Home Shield</span>
+            <span class="financing-monthly">As low as <strong>$75/mo</strong></span>
+            <span class="financing-note">with 24-month financing</span>
+          </div>
+          <div class="financing-example">
+            <span class="financing-pkg">Pure Life</span>
+            <span class="financing-monthly">As low as <strong>$112/mo</strong></span>
+            <span class="financing-note">with 24-month financing</span>
+          </div>
+        </div>
+        <p class="financing-disclaimer">Financing subject to credit approval. Contact us for details.</p>
+      </div>
     </div>
 
   </div>
@@ -868,6 +1112,21 @@ if (window.innerWidth <= 640) {
     }
   }
 })();
+
+// ── Toggle Specs ──────────────────────────────────────────────
+function toggleSpecs(btn) {
+  var specs = btn.nextElementSibling;
+  var isOpen = specs.classList.contains('open');
+  // Close all other specs
+  document.querySelectorAll('.product-specs.open').forEach(function(s) {
+    s.classList.remove('open');
+    s.previousElementSibling.querySelector('.specs-arrow').textContent = '+';
+  });
+  if (!isOpen) {
+    specs.classList.add('open');
+    btn.querySelector('.specs-arrow').textContent = '-';
+  }
+}
 
 // ── Checkout Function ─────────────────────────────────────────
 async function checkout(productId) {
