@@ -1450,13 +1450,19 @@ a, button, [role="button"], input, textarea, select {
 
     apiFetch('/login', { method: 'POST', body: { email: email, password: password } })
       .then(function(data) {
-        setToken(data.token);
+        var tkn = data.token || data.access_token;
+        if (!tkn) { showAlert('#login-alert', 'Login failed. Please try again.'); return; }
+        setToken(tkn);
         setCustomer(data.customer || data.user || {});
         loadedTabs = {};
         navigateTo('dashboard');
       })
       .catch(function(err) {
-        showAlert('#login-alert', err.message || err.error || 'Invalid email or password.');
+        var msg = '';
+        if (typeof err === 'object' && err.detail) msg = err.detail;
+        else if (typeof err === 'object' && err.message) msg = err.message;
+        else msg = 'Invalid email or password.';
+        showAlert('#login-alert', msg);
       })
       .finally(function() { btn.disabled = false; btn.textContent = 'Sign In'; });
   });
