@@ -268,7 +268,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: calc(80px + var(--promo-height, 40px));
 }
 
 body {
@@ -373,7 +373,7 @@ a, button, [role="button"], input, textarea, select {
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   padding: var(--s5) 0; background: transparent;
-  transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+  transition: background 0.4s, box-shadow 0.4s, padding 0.4s, top 0.3s ease;
 }
 .site-header.scrolled {
   background: rgba(250, 251, 252, 0.92); backdrop-filter: blur(20px);
@@ -927,8 +927,17 @@ a, button, [role="button"], input, textarea, select {
   padding: var(--s3) var(--s4);
   font-size: var(--text-sm);
   font-weight: 500;
-  position: relative;
-  z-index: 1001;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+}
+.promo-banner ~ .site-header {
+  top: var(--promo-height, 40px);
+}
+.promo-banner.hidden ~ .site-header {
+  top: 0;
 }
 .promo-banner .container { display: flex; align-items: center; justify-content: center; gap: var(--s4); }
 .promo-banner p { margin: 0; }
@@ -1054,7 +1063,7 @@ a, button, [role="button"], input, textarea, select {
 <div class="promo-banner" id="promo-banner">
   <div class="container container--max">
     <p>Spring Special: <strong>$100 OFF</strong> any whole-home system. Limited time. <a href="#" onclick="openCalendly(event); return false;">Book Now</a></p>
-    <button class="promo-close" onclick="document.getElementById('promo-banner').style.display='none'; document.body.style.paddingTop='0';" aria-label="Close promotion">&times;</button>
+    <button class="promo-close" onclick="var b=document.getElementById('promo-banner'); b.classList.add('hidden'); b.style.display='none';" aria-label="Close promotion">&times;</button>
   </div>
 </div>
 
@@ -1826,6 +1835,18 @@ a, button, [role="button"], input, textarea, select {
 <script>
 (function() {
   'use strict';
+
+  /* ---- Promo Banner Height ---- */
+  var promoBanner = document.getElementById('promo-banner');
+  function setPromoHeight() {
+    if (promoBanner && promoBanner.style.display !== 'none') {
+      document.documentElement.style.setProperty('--promo-height', promoBanner.offsetHeight + 'px');
+    } else {
+      document.documentElement.style.setProperty('--promo-height', '0px');
+    }
+  }
+  setPromoHeight();
+  window.addEventListener('resize', setPromoHeight);
 
   /* ---- Theme Toggle ---- */
   var toggle = document.querySelector('[data-theme-toggle]');
