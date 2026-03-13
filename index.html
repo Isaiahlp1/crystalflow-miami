@@ -20,6 +20,12 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Klaviyo.js — Onsite Tracking -->
+<script type="text/javascript">
+!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();
+</script>
+<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=QTCPJF"></script>
 <title>CrystalFlow Miami — Premium Water Treatment &amp; Purification Installation</title>
 <meta name="description" content="CrystalFlow Miami provides professional water treatment and purification installation across Greater Miami-Dade County. Own your water. One price. No subscriptions. Book your free water test today.">
 <meta name="keywords" content="water treatment Miami, RO system installation Miami, water purification Miami-Dade, reverse osmosis Miami, water softener Miami">
@@ -2446,7 +2452,35 @@ var MAILCHIMP_JSONP_URL = 'https://crystalflowmiami.us10.list-manage.com/subscri
       return;
     }
 
-    /* Attempt Mailchimp JSONP, fall back to localStorage queue */
+    /* Subscribe to Klaviyo */
+    function subscribeKlaviyo(email) {
+      try {
+        if (window.klaviyo) {
+          window.klaviyo.identify({ email: email });
+          window.klaviyo.track('Newsletter Signup', { source: 'website_footer' });
+        }
+        /* Also hit Klaviyo Client API directly as fallback */
+        fetch('https://a.klaviyo.com/client/subscriptions/?company_id=QTCPJF', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'revision': '2024-10-15' },
+          body: JSON.stringify({
+            data: {
+              type: 'subscription',
+              attributes: {
+                profile: { data: { type: 'profile', attributes: { email: email } } },
+                custom_source: 'CrystalFlow Website'
+              },
+              relationships: {
+                list: { data: { type: 'list', id: 'Ys8pcA' } }
+              }
+            }
+          })
+        }).catch(function() {});
+      } catch(e) {}
+    }
+
+    /* Attempt Mailchimp JSONP + Klaviyo, fall back to localStorage queue */
+    subscribeKlaviyo(email);
     subscribeMailchimp(email, function(result) {
       if (result === 'success' || result === 'local_only') {
         queueEmail(email);
