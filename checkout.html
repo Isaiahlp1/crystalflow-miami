@@ -600,7 +600,7 @@ a, button, input {
       <div class="checkout-card js-reveal" data-product="kitchen-t3m">
         <span class="checkout-card-badge">Upgrade</span>
         <div class="checkout-card-image">
-          <img src="./assets/product-t3m.jpg" alt="Waterdrop T-3M tankless smart RO system" loading="lazy" width="300" height="300">
+          <img src="./assets/product-t3m.png" alt="Waterdrop T-3M under-sink RO system with faucet" loading="lazy" width="300" height="300">
         </div>
         <span class="checkout-card-model">Waterdrop T-3M</span>
         <h3 class="checkout-card-name">Kitchen Guard</h3>
@@ -935,7 +935,12 @@ async function checkout(productId) {
       errorMsg.style.cssText = 'color: #E53E3E; font-size: var(--text-sm); margin-top: var(--s3); text-align: center;';
       btn.after(errorMsg);
     }
-    errorMsg.textContent = error.message || 'Something went wrong. Please try again or call (786) 947-3824.';
+    const msg = error.message || '';
+    if (msg.includes('Stripe is not configured')) {
+      errorMsg.textContent = 'Online checkout is being set up. Please call (786) 947-3824 to place your order.';
+    } else {
+      errorMsg.textContent = msg || 'Something went wrong. Please try again or call (786) 947-3824.';
+    }
 
     // Remove error after 5s
     setTimeout(() => errorMsg.remove(), 5000);
