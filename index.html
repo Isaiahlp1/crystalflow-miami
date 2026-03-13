@@ -1714,6 +1714,22 @@ a, button, [role="button"], input, textarea, select {
     maxZoom: 19
   }).addTo(map);
 
+  /* Fix: invalidateSize once the map container becomes visible (js-reveal hides it initially) */
+  var mapLayout = document.querySelector('.map-layout');
+  if (mapLayout) {
+    var mapVisObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          setTimeout(function() { map.invalidateSize(); }, 350);
+          mapVisObs.disconnect();
+        }
+      });
+    }, { threshold: 0.05 });
+    mapVisObs.observe(mapLayout);
+  }
+  /* Also invalidate after a generous timeout in case observer misses */
+  setTimeout(function() { map.invalidateSize(); }, 2000);
+
   var activeMarker = null;
   var markers = {};
 
@@ -2303,6 +2319,7 @@ function setLanguage(lang) {
 function updateCalculatorLang() {
   var calcSlider = document.getElementById('calc-years');
   if (!calcSlider) return;
+  if (typeof _i18n === 'undefined' || !_i18n || typeof _currentLang === 'undefined' || !_i18n[_currentLang]) return;
   var years = parseInt(calcSlider.value);
   var t = _i18n[_currentLang];
   var calcDisplay = document.getElementById('calc-years-display');

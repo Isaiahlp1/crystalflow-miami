@@ -1465,14 +1465,13 @@ a, button, [role="button"], input, textarea, select {
     e.preventDefault();
     hideAlert('#register-alert');
     var body = {
-      firstName: $('#reg-first').value.trim(),
-      lastName: $('#reg-last').value.trim(),
+      first_name: $('#reg-first').value.trim(),
+      last_name: $('#reg-last').value.trim(),
       email: $('#reg-email').value.trim(),
-      phone: $('#reg-phone').value.trim(),
-      address: $('#reg-address').value.trim(),
+      phone: $('#reg-phone').value.trim() || null,
       password: $('#reg-password').value,
     };
-    if (!body.firstName || !body.lastName || !body.email || !body.password) {
+    if (!body.first_name || !body.last_name || !body.email || !body.password) {
       showAlert('#register-alert', 'Please fill in all required fields.');
       return;
     }
