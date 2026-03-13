@@ -1469,6 +1469,7 @@ a, button, [role="button"], input, textarea, select {
       last_name: $('#reg-last').value.trim(),
       email: $('#reg-email').value.trim(),
       phone: $('#reg-phone').value.trim() || null,
+      address: $('#reg-address') ? $('#reg-address').value.trim() || null : null,
       password: $('#reg-password').value,
     };
     if (!body.first_name || !body.last_name || !body.email || !body.password) {
@@ -1485,18 +1486,24 @@ a, button, [role="button"], input, textarea, select {
 
     apiFetch('/register', { method: 'POST', body: body })
       .then(function(data) {
-        if (data.token) {
-          setToken(data.token);
+        var tkn = data.token || data.access_token;
+        if (tkn) {
+          setToken(tkn);
           setCustomer(data.customer || data.user || {});
           loadedTabs = {};
           navigateTo('dashboard');
         } else {
           showAlert('#register-alert', 'Account created. Please sign in.', 'success');
-          setTimeout(function() { navigateTo('login'); }, 1500);
+          setTimeout(function() { navigateTo('login'); }, 2000);
         }
       })
       .catch(function(err) {
-        showAlert('#register-alert', err.message || err.error || 'Registration failed. Please try again.');
+        var msg = '';
+        if (typeof err === 'object' && err.detail) msg = err.detail;
+        else if (typeof err === 'object' && err.message) msg = err.message;
+        else if (typeof err === 'string') msg = err;
+        else msg = 'Registration failed. Please try again.';
+        showAlert('#register-alert', msg);
       })
       .finally(function() { btn.disabled = false; btn.textContent = 'Create Account'; });
   });
