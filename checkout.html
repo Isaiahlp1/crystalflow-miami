@@ -235,6 +235,21 @@ a, button, input {
 
 .header-actions { display: flex; align-items: center; gap: var(--s4); }
 
+/* Mobile hamburger toggle */
+.mobile-toggle { display: none; flex-direction: column; gap: 5px; width: 24px; padding: 0; cursor: pointer; background: none; border: none; }
+.mobile-toggle span { display: block; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+[data-theme="dark"] .mobile-toggle span { background: #fff; }
+
+/* Mobile nav drawer */
+.mobile-nav {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background: var(--bg); padding: calc(80px + var(--s8)) var(--s6) var(--s8);
+  flex-direction: column; gap: var(--s6); overflow-y: auto;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a { font-size: var(--text-xl); font-family: var(--font-display); color: var(--text); text-decoration: none; padding: var(--s3) 0; border-bottom: 1px solid var(--divider); }
+.mobile-nav .btn { margin-top: var(--s4); text-align: center; justify-content: center; }
+
 .theme-toggle {
   display: flex; align-items: center; justify-content: center; width: 36px; height: 36px;
   border-radius: var(--radius-full); color: var(--text-muted); transition: all var(--transition-fast);
@@ -637,8 +652,11 @@ a, button, input {
 @media (max-width: 600px) {
   .financing-examples { grid-template-columns: 1fr; }
 }
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .header-nav-links { display: none; }
+  .mobile-toggle { display: flex; }
+}
+@media (max-width: 640px) {
   .trust-bar { gap: var(--s6); padding: var(--s6); }
   .trust-item { font-size: var(--text-xs); }
   .checkout-card { padding: var(--s6); }
@@ -685,10 +703,27 @@ a, button, input {
           </svg>
         </button>
         <a href="tel:+17869473824" class="btn btn-primary" style="display: none;" id="header-cta">(786) 947-3824</a>
+        <button class="mobile-toggle" aria-label="Open menu" onclick="toggleMobileNav()">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </div>
 </header>
+
+<!-- Mobile Navigation -->
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="index.html" onclick="closeMobileNav()">Home</a>
+  <a href="index.html#packages" onclick="closeMobileNav()">Packages</a>
+  <a href="how-it-works.html" onclick="closeMobileNav()">How It Works</a>
+  <a href="why-crystalflow.html" onclick="closeMobileNav()">Why CrystalFlow</a>
+  <a href="water-quality.html" onclick="closeMobileNav()">Water Quality</a>
+  <a href="checkout.html" onclick="closeMobileNav()">Shop</a>
+  <a href="faq.html" onclick="closeMobileNav()">FAQ</a>
+  <a href="blog.html" onclick="closeMobileNav()">Blog</a>
+  <a href="portal.html" onclick="closeMobileNav()">My Account</a>
+  <button class="btn btn-primary" onclick="openCalendly(event);closeMobileNav();">Book Free Water Test</button>
+</nav>
 
 
 <!-- ============================================================
@@ -1056,6 +1091,19 @@ a, button, input {
      ============================================================ -->
 <script>
 const API_BASE = 'https://crystalflow-api.onrender.com';
+
+// ── Mobile Nav ───────────────────────────────────────────────
+function toggleMobileNav() {
+  document.getElementById('mobile-nav').classList.toggle('open');
+}
+function closeMobileNav() {
+  document.getElementById('mobile-nav').classList.remove('open');
+}
+function openCalendly(e) {
+  if (e) e.preventDefault();
+  Calendly.initPopupWidget({ url: 'https://calendly.com/isaiah-pacheco5321/30min' });
+  return false;
+}
 
 // ── Theme Toggle ──────────────────────────────────────────────
 function toggleTheme() {

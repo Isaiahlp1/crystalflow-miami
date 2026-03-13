@@ -202,6 +202,8 @@ a, button, [role="button"], input, textarea, select {
   background: var(--navy);
   padding: var(--s5) 0;
   border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  z-index: 1000;
 }
 .header-inner {
   display: flex; align-items: center; justify-content: space-between;
@@ -211,10 +213,6 @@ a, button, [role="button"], input, textarea, select {
 }
 .header-logo-mark {
   width: 36px; height: 36px; flex-shrink: 0;
-  background: linear-gradient(135deg, var(--cyan), var(--teal));
-  border-radius: var(--radius-md);
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 0.85rem; color: #fff;
 }
 .header-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
 .header-logo-name { font-family: var(--font-body); font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
@@ -227,6 +225,27 @@ a, button, [role="button"], input, textarea, select {
 }
 .header-nav a:hover { color: #fff; }
 .header-nav a.active { color: #fff; }
+
+.header-actions { display: flex; align-items: center; gap: var(--s4); }
+
+/* Mobile hamburger toggle */
+.mobile-toggle { display: none; flex-direction: column; gap: 5px; width: 24px; padding: 0; cursor: pointer; background: none; border: none; }
+.mobile-toggle span { display: block; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+
+/* Mobile nav drawer */
+.mobile-nav {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background: var(--bg); padding: calc(80px + var(--s8)) var(--s6) var(--s8);
+  flex-direction: column; gap: var(--s6); overflow-y: auto;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a { font-size: var(--text-xl); font-family: var(--font-display); color: var(--text); text-decoration: none; padding: var(--s3) 0; border-bottom: 1px solid var(--divider); }
+.mobile-nav .btn { margin-top: var(--s4); text-align: center; justify-content: center; }
+
+@media (max-width: 900px) {
+  .header-nav { display: none; }
+  .mobile-toggle { display: flex; }
+}
 
 /* ============================================================
    BUTTONS
@@ -447,8 +466,6 @@ a, button, [role="button"], input, textarea, select {
    RESPONSIVE
    ============================================================ */
 @media (max-width: 640px) {
-  .header-nav { gap: var(--s4); }
-  .header-nav a { font-size: var(--text-xs); }
   .blog-card-body { padding: var(--s5); }
 }
 </style>
@@ -460,7 +477,13 @@ a, button, [role="button"], input, textarea, select {
   <div class="container">
     <div class="header-inner">
       <a href="./index.html" class="header-logo">
-        <div class="header-logo-mark">CF</div>
+        <svg class="header-logo-mark" viewBox="0 0 36 36" fill="none" aria-hidden="true" style="color: #fff;">
+          <path d="M18 3 L28 14 L18 33 L8 14 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M8 14 L28 14" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+          <path d="M12 14 L18 33" stroke="currentColor" stroke-width="1" opacity="0.18"/>
+          <path d="M24 14 L18 33" stroke="currentColor" stroke-width="1" opacity="0.18"/>
+          <path d="M14 16 L18 28 L22 16" stroke="#00C9DB" stroke-width="1.2" fill="none" opacity="0.75"/>
+        </svg>
         <div class="header-logo-text">
           <span class="header-logo-name">CrystalFlow</span>
           <span class="header-logo-sub">Miami</span>
@@ -475,9 +498,28 @@ a, button, [role="button"], input, textarea, select {
         <a href="./faq.html">FAQ</a>
         <a href="./blog.html" class="active">Blog</a>
       </nav>
+      <div class="header-actions">
+        <button class="mobile-toggle" aria-label="Open menu" onclick="toggleMobileNav()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </div>
 </header>
+
+<!-- Mobile Navigation -->
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="./index.html" onclick="closeMobileNav()">Home</a>
+  <a href="./index.html#packages" onclick="closeMobileNav()">Packages</a>
+  <a href="./how-it-works.html" onclick="closeMobileNav()">How It Works</a>
+  <a href="./why-crystalflow.html" onclick="closeMobileNav()">Why CrystalFlow</a>
+  <a href="./water-quality.html" onclick="closeMobileNav()">Water Quality</a>
+  <a href="./checkout.html" onclick="closeMobileNav()">Shop</a>
+  <a href="./faq.html" onclick="closeMobileNav()">FAQ</a>
+  <a href="./blog.html" onclick="closeMobileNav()">Blog</a>
+  <a href="./portal.html" onclick="closeMobileNav()">My Account</a>
+  <button class="btn btn-primary" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isaiah-pacheco5321/30min'});closeMobileNav();return false;">Book Free Water Test</button>
+</nav>
 
 <!-- BLOG HERO -->
 <section class="blog-hero">
@@ -569,6 +611,16 @@ a, button, [role="button"], input, textarea, select {
     </div>
   </div>
 </footer>
+
+<script>
+/* ---- Mobile Nav ---- */
+function toggleMobileNav() {
+  document.getElementById('mobile-nav').classList.toggle('open');
+}
+function closeMobileNav() {
+  document.getElementById('mobile-nav').classList.remove('open');
+}
+</script>
 
 </body>
 </html>
