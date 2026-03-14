@@ -1,1 +1,2406 @@
-CONTENT_PLACEHOLDER_21
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What's In Your Water? | Miami-Dade Water Quality Lookup | CrystalFlow Miami</title>
+<meta name="description" content="Look up water quality data for your Miami-Dade ZIP code. Understand common contaminants in your local water supply and how professional water treatment can help.">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+
+<!-- Calendly -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Satoshi', 'Helvetica Neue', sans-serif;
+
+  --blue: #0066CC;
+  --teal: #00A5A8;
+  --cyan: #00C9DB;
+  --pink: #E8439A;
+  --pink-hover: #D03888;
+  --orange: #FF6B35;
+  --navy: #0A1628;
+  --navy-light: #0F1F3A;
+
+  --bg: #FAFBFC;
+  --bg-warm: #F5F3F0;
+  --bg-cool: #EFF4F9;
+  --surface: #FFFFFF;
+  --surface-2: #F4F5F8;
+  --surface-offset: #ECEEF3;
+  --divider: #DDE1E8;
+  --border: #CDD3DE;
+  --text: #0A1628;
+  --text-muted: #5A6580;
+  --text-faint: #A0AAC0;
+  --text-inverse: #FAFBFC;
+  --primary: #E8439A;
+  --primary-hover: #D03888;
+
+  --shadow-sm: 0 1px 3px rgba(10, 22, 40, 0.06);
+  --shadow-md: 0 4px 20px rgba(10, 22, 40, 0.08);
+  --shadow-lg: 0 12px 48px rgba(10, 22, 40, 0.1);
+  --shadow-xl: 0 24px 64px rgba(10, 22, 40, 0.14);
+
+  --text-xs:   clamp(0.7rem,  0.65rem + 0.25vw, 0.8rem);
+  --text-sm:   clamp(0.85rem, 0.8rem  + 0.25vw, 0.95rem);
+  --text-base: clamp(1rem,    0.95rem + 0.25vw, 1.1rem);
+  --text-lg:   clamp(1.15rem, 1rem    + 0.75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,  1.2rem  + 1.25vw, 2.25rem);
+  --text-2xl:  clamp(2rem,    1.2rem  + 2.5vw,  3.5rem);
+  --text-3xl:  clamp(2.5rem,  1rem    + 4vw,    5rem);
+  --text-hero: clamp(3.5rem,  1rem    + 8vw,    8.5rem);
+
+  --s1: 0.25rem; --s2: 0.5rem; --s3: 0.75rem; --s4: 1rem;
+  --s5: 1.25rem; --s6: 1.5rem; --s8: 2rem; --s10: 2.5rem;
+  --s12: 3rem; --s16: 4rem; --s20: 5rem; --s24: 6rem; --s32: 8rem;
+
+  --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
+  --radius-xl: 1rem; --radius-2xl: 1.5rem; --radius-full: 9999px;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 180ms var(--ease);
+  --transition-smooth: 400ms var(--ease);
+
+  --content-narrow: 640px;
+  --content-default: 960px;
+  --content-wide: 1200px;
+  --content-max: 1400px;
+}
+
+/* DARK MODE */
+[data-theme="dark"] {
+  --bg: #0A1628;
+  --bg-warm: #0E1A2E;
+  --bg-cool: #0C1524;
+  --surface: #111D32;
+  --surface-2: #162440;
+  --surface-offset: #1A2844;
+  --divider: #1E3050;
+  --border: #2A3E60;
+  --text: #E8ECF2;
+  --text-muted: #8A96B0;
+  --text-faint: #5A6680;
+  --text-inverse: #0A1628;
+  --primary: #E8439A;
+  --primary-hover: #F060AD;
+  --navy: #060E1C;
+  --navy-light: #0A1628;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.6);
+}
+
+/* ============================================================
+   BASE RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  min-height: 100dvh;
+  line-height: 1.6;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
+ul[role="list"], ol[role="list"] { list-style: none; }
+input, button, textarea, select { font: inherit; color: inherit; }
+h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.1; }
+p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
+button { cursor: pointer; background: none; border: none; }
+table { border-collapse: collapse; width: 100%; }
+
+a, button, [role="button"], input, textarea, select {
+  transition: color var(--transition-fast), background var(--transition-fast),
+    border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+::selection { background: rgba(232, 67, 154, 0.15); color: var(--text); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important; scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   SCROLL ANIMATIONS
+   ============================================================ */
+.js-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.js-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container { width: 100%; max-width: var(--content-wide); margin-inline: auto; padding-inline: var(--s6); }
+.container--narrow { max-width: var(--content-default); }
+.container--max { max-width: var(--content-max); }
+.section-pad { padding-block: clamp(var(--s20), 10vw, var(--s32)); }
+.section-pad-lg { padding-block: clamp(var(--s24), 12vw, 10rem); }
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+.section-label {
+  font-family: var(--font-body); font-size: var(--text-xs); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.18em; color: var(--pink);
+  margin-bottom: var(--s4);
+}
+
+.section-title {
+  font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 400;
+  line-height: 1.05; color: var(--text); letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  font-size: var(--text-lg); color: var(--text-muted); line-height: 1.55; max-width: 52ch;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--s2);
+  padding: var(--s4) var(--s8); font-family: var(--font-body);
+  font-size: var(--text-sm); font-weight: 600; border-radius: var(--radius-full);
+  text-decoration: none; cursor: pointer; border: none; white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+.btn-lg { padding: var(--s5) var(--s10); font-size: var(--text-base); }
+
+.btn-primary { background: var(--pink); color: #fff; }
+.btn-primary:hover { background: var(--pink-hover); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232, 67, 154, 0.35); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-ghost { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+.btn-ghost:hover { border-color: var(--text); transform: translateY(-2px); }
+.btn-ghost:active { transform: translateY(0); }
+
+.btn-outline-pink { background: transparent; color: var(--pink); border: 1.5px solid var(--pink); }
+.btn-outline-pink:hover { background: var(--pink); color: #fff; transform: translateY(-2px); }
+
+.btn-white { background: #fff; color: var(--navy); }
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,255,255,0.2); }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: var(--s5) 0; background: transparent;
+  transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+}
+.site-header.scrolled {
+  background: rgba(250, 251, 252, 0.92); backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); box-shadow: var(--shadow-sm); padding: var(--s3) 0;
+}
+[data-theme="dark"] .site-header.scrolled { background: rgba(10, 22, 40, 0.92); }
+
+.header-inner { display: flex; align-items: center; justify-content: space-between; }
+
+.header-logo { display: flex; align-items: center; gap: var(--s3); text-decoration: none; color: #fff; }
+.site-header.scrolled .header-logo { color: var(--text); }
+[data-theme="dark"] .header-logo { color: #fff; }
+
+.header-logo-mark { width: 36px; height: 36px; flex-shrink: 0; }
+.header-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.header-logo-name { font-family: var(--font-body); font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
+.header-logo-sub { font-family: var(--font-body); font-weight: 400; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cyan); }
+
+.header-nav { display: flex; align-items: center; gap: var(--s8); }
+.header-nav-list { display: flex; gap: var(--s6); list-style: none; }
+.header-nav-list a { font-size: var(--text-sm); font-weight: 500; color: rgba(255,255,255,0.7); text-decoration: none; transition: color var(--transition-fast); }
+.header-nav-list a:hover { color: #fff; }
+.site-header.scrolled .header-nav-list a { color: var(--text-muted); }
+.site-header.scrolled .header-nav-list a:hover { color: var(--text); }
+
+.header-actions { display: flex; align-items: center; gap: var(--s4); }
+
+.theme-toggle {
+  display: flex; align-items: center; justify-content: center; width: 36px; height: 36px;
+  border-radius: var(--radius-full); color: rgba(255,255,255,0.7); transition: all var(--transition-fast);
+}
+.theme-toggle:hover { color: #fff; background: rgba(255,255,255,0.1); }
+.site-header.scrolled .theme-toggle { color: var(--text-muted); }
+.site-header.scrolled .theme-toggle:hover { color: var(--text); background: var(--surface-2); }
+
+.header-cta { display: none; }
+.mobile-toggle { display: none; flex-direction: column; gap: 5px; width: 24px; padding: 0; }
+.mobile-toggle span { display: block; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+.site-header.scrolled .mobile-toggle span { background: var(--text); }
+
+.mobile-nav {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background: var(--bg); padding: calc(80px + var(--s8)) var(--s6) var(--s8);
+  flex-direction: column; gap: var(--s6);
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a { font-size: var(--text-xl); font-family: var(--font-display); color: var(--text); text-decoration: none; padding: var(--s3) 0; border-bottom: 1px solid var(--divider); }
+.mobile-nav .btn { margin-top: var(--s4); text-align: center; justify-content: center; }
+.mobile-nav .lang-toggle-mobile { display: flex; align-items: center; gap: var(--s3); padding: var(--s3) 0; border-bottom: 1px solid var(--divider); font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600; }
+.mobile-nav .lang-toggle-mobile button { background: none; border: none; font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600; color: var(--text-muted); cursor: pointer; padding: var(--s1) var(--s3); border-radius: var(--radius-full); transition: all var(--transition-fast); }
+.mobile-nav .lang-toggle-mobile button.active { color: var(--primary); }
+
+/* Language Toggle */
+.lang-toggle {
+  display: inline-flex; align-items: center; gap: 2px;
+  font-family: var(--font-body); font-size: var(--text-xs); font-weight: 600;
+  background: rgba(255,255,255,0.08); border-radius: var(--radius-full);
+  padding: 2px; margin-right: var(--s2);
+}
+.lang-toggle button {
+  padding: 4px 8px; border-radius: var(--radius-full); font-size: var(--text-xs);
+  font-weight: 600; font-family: var(--font-body); cursor: pointer;
+  color: rgba(255,255,255,0.5); background: transparent; border: none;
+  transition: all var(--transition-fast); line-height: 1;
+}
+.lang-toggle button.active { color: #fff; background: var(--primary); }
+.lang-toggle button:hover:not(.active) { color: rgba(255,255,255,0.8); }
+.site-header.scrolled .lang-toggle { background: var(--surface-2); }
+.site-header.scrolled .lang-toggle button { color: var(--text-muted); }
+.site-header.scrolled .lang-toggle button.active { color: #fff; background: var(--primary); }
+.site-header.scrolled .lang-toggle button:hover:not(.active) { color: var(--text); }
+
+@media (max-width: 900px) {
+  .header-nav-list { display: none; }
+  .header-cta { display: none !important; }
+  .mobile-toggle { display: flex; }
+}
+@media (min-width: 901px) { .header-cta { display: inline-flex; } }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer { background: var(--navy); color: rgba(255,255,255,0.7); padding: var(--s20) 0 var(--s8); }
+
+.footer-grid { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: var(--s10); margin-bottom: var(--s12); }
+@media (max-width: 767px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+
+.footer-brand-col .header-logo { color: #fff; margin-bottom: var(--s4); }
+.footer-brand-col p { font-size: var(--text-sm); line-height: 1.6; max-width: 30ch; }
+
+.footer-col h4 { font-family: var(--font-body); font-size: var(--text-xs); font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--s4); }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: var(--s3); }
+.footer-col a { font-size: var(--text-sm); color: rgba(255,255,255,0.45); text-decoration: none; transition: color var(--transition-fast); }
+.footer-col a:hover { color: #fff; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08); padding-top: var(--s6);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--s4);
+}
+.footer-bottom p { font-size: var(--text-xs); color: rgba(255,255,255,0.3); }
+.footer-bottom a { font-size: var(--text-xs); color: rgba(255,255,255,0.3); text-decoration: none; }
+.footer-bottom a:hover { color: rgba(255,255,255,0.6); }
+
+/* ============================================================
+   HERO — WATER QUALITY PAGE
+   ============================================================ */
+.wq-hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  background: var(--navy);
+  overflow: hidden;
+}
+
+.wq-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(0, 165, 168, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(0, 201, 219, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 50% 50%, rgba(232, 67, 154, 0.05) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.wq-hero-content {
+  position: relative;
+  z-index: 2;
+  padding-top: 160px;
+  padding-bottom: var(--s20);
+  width: 100%;
+  text-align: center;
+}
+
+.wq-hero-label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  margin-bottom: var(--s6);
+}
+
+.wq-hero-title {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: 400;
+  line-height: 0.95;
+  color: #fff;
+  margin-bottom: var(--s6);
+}
+.wq-hero-title em {
+  font-style: italic;
+  color: var(--pink);
+}
+
+.wq-hero-subtitle {
+  font-size: var(--text-lg);
+  color: rgba(255,255,255,0.55);
+  max-width: 52ch;
+  margin-inline: auto;
+  line-height: 1.65;
+  margin-bottom: var(--s12);
+}
+
+/* ZIP Code Input */
+.zip-lookup {
+  max-width: 540px;
+  margin-inline: auto;
+}
+
+.zip-input-wrapper {
+  display: flex;
+  gap: var(--s3);
+  align-items: stretch;
+}
+
+.zip-input {
+  flex: 1;
+  padding: var(--s5) var(--s6);
+  font-size: var(--text-lg);
+  font-family: var(--font-body);
+  font-weight: 600;
+  background: rgba(255,255,255,0.08);
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius-full);
+  color: #fff;
+  letter-spacing: 0.08em;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+.zip-input::placeholder {
+  color: rgba(255,255,255,0.3);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+.zip-input:focus {
+  outline: none;
+  border-color: var(--cyan);
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 0 4px rgba(0, 201, 219, 0.15);
+}
+
+.zip-submit {
+  padding: var(--s5) var(--s10);
+  font-size: var(--text-base);
+  font-weight: 700;
+  background: var(--pink);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+.zip-submit:hover {
+  background: var(--pink-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(232, 67, 154, 0.35);
+}
+
+.zip-hint {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.35);
+  margin-top: var(--s4);
+  text-align: center;
+}
+
+/* Decorative watermark */
+.wq-hero-watermark {
+  position: absolute;
+  bottom: -2vw;
+  right: -2vw;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 18vw, 22rem);
+  font-weight: 400;
+  color: rgba(255,255,255,0.02);
+  line-height: 0.85;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   ANIMATED STATS BAR
+   ============================================================ */
+.wq-stats-bar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--divider);
+  padding: var(--s10) 0;
+}
+
+.wq-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s8);
+}
+
+.wq-stat-item {
+  text-align: center;
+}
+
+.wq-stat-value {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--text);
+  display: block;
+  line-height: 1;
+}
+
+.wq-stat-suffix {
+  font-family: var(--font-display);
+  color: var(--teal);
+}
+
+.wq-stat-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-top: var(--s2);
+}
+
+@media (max-width: 600px) {
+  .wq-stats-grid { grid-template-columns: repeat(2, 1fr); gap: var(--s6); }
+}
+
+/* ============================================================
+   RESULTS PANEL
+   ============================================================ */
+.results-section {
+  background: var(--bg);
+  display: none;
+}
+.results-section.visible {
+  display: block;
+}
+
+.results-container {
+  max-width: var(--content-default);
+  margin-inline: auto;
+}
+
+/* ===== TOXIN GAUGE ===== */
+.gauge-card {
+  background: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-2xl);
+  padding: var(--s10) var(--s10) var(--s6);
+  text-align: center;
+  margin-bottom: var(--s10);
+  box-shadow: var(--shadow-md);
+}
+.gauge-location {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--s2);
+}
+.gauge-location span { font-weight: 600; color: var(--text); }
+.gauge-utility {
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  margin-bottom: var(--s8);
+}
+.gauge-svg-wrap {
+  position: relative;
+  width: 260px;
+  height: 150px;
+  margin: 0 auto var(--s4);
+}
+.gauge-svg-wrap svg { display: block; }
+.gauge-center {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.gauge-number {
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  line-height: 1;
+  color: var(--pink);
+}
+.gauge-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 2px;
+}
+.gauge-arc-bg {
+  fill: none;
+  stroke: var(--surface-2);
+  stroke-width: 18;
+  stroke-linecap: round;
+}
+.gauge-arc-fill {
+  fill: none;
+  stroke-width: 18;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gauge-scale {
+  display: flex;
+  justify-content: space-between;
+  max-width: 240px;
+  margin: 0 auto var(--s6);
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+}
+.gauge-explore-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--teal);
+  padding: var(--s3) var(--s4);
+  border-radius: var(--radius-full);
+  transition: background var(--transition-fast);
+}
+.gauge-explore-toggle:hover { background: rgba(0, 165, 168, 0.08); }
+.gauge-explore-toggle svg {
+  width: 16px; height: 16px;
+  transition: transform 0.3s var(--ease);
+}
+.gauge-explore-toggle.open svg { transform: rotate(180deg); }
+.gauge-highlights {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease);
+}
+.gauge-highlights.open { max-height: 300px; }
+.gauge-highlights-inner {
+  padding-top: var(--s4);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.7;
+  text-align: left;
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+/* ===== SECTION HEADERS (shared) ===== */
+.results-section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  margin-bottom: var(--s5);
+}
+.results-section-header h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--text);
+}
+.info-tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px; height: 20px;
+  border-radius: var(--radius-full);
+  background: var(--surface-2);
+  color: var(--text-faint);
+  cursor: help;
+  flex-shrink: 0;
+}
+.info-tooltip svg { width: 12px; height: 12px; }
+.info-tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  color: #fff;
+  font-size: var(--text-xs);
+  padding: var(--s2) var(--s3);
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+  z-index: 10;
+}
+.info-tooltip:hover::after { opacity: 1; }
+
+/* ===== TOP TOXINS GRID ===== */
+.toxin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s4);
+  margin-bottom: var(--s12);
+}
+.toxin-card {
+  background: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-xl);
+  padding: var(--s5) var(--s6);
+  transition: all var(--transition-fast);
+}
+.toxin-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border);
+  transform: translateY(-2px);
+}
+.toxin-category {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  margin-bottom: var(--s1);
+}
+.toxin-name {
+  font-weight: 700;
+  font-size: var(--text-base);
+  color: var(--text);
+  margin-bottom: var(--s3);
+}
+.toxin-value {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s1);
+  margin-bottom: var(--s3);
+}
+.toxin-amount {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--text);
+}
+.toxin-unit {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.toxin-bar-wrap {
+  position: relative;
+  height: 8px;
+  background: var(--surface-2);
+  border-radius: var(--radius-full);
+  overflow: visible;
+  margin-bottom: var(--s1);
+}
+.toxin-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 0;
+}
+.toxin-bar-fill.level-low { background: linear-gradient(90deg, var(--teal), #3DD6A8); }
+.toxin-bar-fill.level-med { background: linear-gradient(90deg, #FBBF24, var(--orange)); }
+.toxin-bar-fill.level-high { background: linear-gradient(90deg, var(--orange), var(--pink)); }
+.toxin-bar-avg {
+  position: absolute;
+  top: -3px;
+  width: 2px;
+  height: 14px;
+  background: var(--text-faint);
+  border-radius: 1px;
+}
+.toxin-bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6rem;
+  color: var(--text-faint);
+}
+.toxin-see-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--s8);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--teal);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.toxin-see-all:hover {
+  background: rgba(0, 165, 168, 0.04);
+  border-color: var(--teal);
+}
+
+@media (max-width: 640px) {
+  .toxin-grid {
+    grid-template-columns: 1fr;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    gap: var(--s3);
+    padding-bottom: var(--s2);
+    margin-inline: calc(-1 * var(--s4));
+    padding-inline: var(--s4);
+  }
+  .toxin-card, .toxin-see-all {
+    min-width: 260px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+}
+
+/* ===== pH SECTION ===== */
+.ph-card {
+  background: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-xl);
+  padding: var(--s6);
+  margin-bottom: var(--s12);
+}
+.ph-bar-container {
+  position: relative;
+  margin: var(--s6) 0 var(--s4);
+}
+.ph-bar {
+  height: 20px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, #EF4444 0%, #F59E0B 25%, #22C55E 42%, #10B981 57%, #06B6D4 72%, #3B82F6 100%);
+}
+.ph-marker {
+  position: absolute;
+  top: -8px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ph-marker-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--teal);
+  margin-bottom: 2px;
+  text-transform: capitalize;
+}
+.ph-marker-dot {
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border: 3px solid var(--teal);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+}
+.ph-marker-line {
+  width: 2px;
+  height: 12px;
+  background: var(--teal);
+  border-radius: 1px;
+}
+.ph-marker-value {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  color: var(--text);
+  margin-top: 2px;
+}
+.ph-scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  padding: 0 var(--s1);
+}
+
+/* ===== MINERALS GRID ===== */
+.minerals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s4);
+  margin-bottom: var(--s12);
+}
+@media (max-width: 480px) {
+  .minerals-grid { grid-template-columns: 1fr; }
+}
+.mineral-card {
+  background: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-xl);
+  padding: var(--s5) var(--s6);
+  transition: all var(--transition-fast);
+}
+.mineral-card:hover {
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+.mineral-name {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--s2);
+}
+.mineral-value {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s1);
+  margin-bottom: var(--s2);
+}
+.mineral-amount {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--text);
+}
+.mineral-unit {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+.mineral-ideal {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--teal);
+  margin-bottom: var(--s2);
+}
+.mineral-bar {
+  height: 6px;
+  background: var(--surface-2);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.mineral-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--cyan), var(--teal));
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 0;
+}
+
+/* ===== YOUR SOLUTION SECTION ===== */
+.solution-panel {
+  background: linear-gradient(135deg, var(--navy) 0%, #0D2240 50%, #0A2A3F 100%);
+  border-radius: var(--radius-2xl);
+  padding: var(--s10);
+  color: #fff;
+}
+.solution-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  margin-bottom: var(--s2);
+  color: #fff;
+}
+.solution-subtitle {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.55);
+  margin-bottom: var(--s8);
+  max-width: 52ch;
+}
+.solution-heading {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: var(--s6);
+}
+.filtration-stages {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s4);
+  margin-bottom: var(--s10);
+}
+@media (max-width: 600px) {
+  .filtration-stages { grid-template-columns: repeat(2, 1fr); }
+}
+.stage-card {
+  text-align: center;
+  padding: var(--s5) var(--s3);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  transition: background var(--transition-fast);
+}
+.stage-card:hover { background: rgba(255,255,255,0.07); }
+.stage-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--s3);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stage-icon svg { width: 24px; height: 24px; }
+.stage-icon.sediment { background: rgba(0, 201, 219, 0.15); color: var(--cyan); }
+.stage-icon.carbon { background: rgba(0, 165, 168, 0.15); color: var(--teal); }
+.stage-icon.ro { background: rgba(0, 102, 204, 0.2); color: #4DA6FF; }
+.stage-icon.mineral { background: rgba(52, 211, 153, 0.15); color: #34D399; }
+.stage-name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: var(--s1);
+}
+.stage-desc {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.5);
+  line-height: 1.4;
+}
+.solution-ctas {
+  display: flex;
+  gap: var(--s4);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.solution-ctas .btn-primary {
+  background: var(--pink);
+  color: #fff;
+  font-weight: 600;
+  font-size: var(--text-base);
+  padding: var(--s4) var(--s8);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.solution-ctas .btn-primary:hover {
+  background: var(--pink-hover);
+  box-shadow: 0 0 24px rgba(232, 67, 154, 0.3);
+}
+.solution-ctas .btn-ghost {
+  background: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: var(--text-base);
+  padding: var(--s4) var(--s8);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.solution-ctas .btn-ghost:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.5);
+}
+
+/* Out of Area message */
+.out-of-area {
+  display: none;
+  text-align: center;
+  padding: var(--s12) var(--s8);
+  background: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-2xl);
+  margin-top: var(--s10);
+}
+.out-of-area.visible { display: block; }
+
+.out-of-area-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--s6);
+  background: var(--surface-2);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.out-of-area-icon svg { width: 32px; height: 32px; color: var(--text-muted); }
+
+.out-of-area h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  margin-bottom: var(--s4);
+}
+
+.out-of-area p {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  max-width: 48ch;
+  margin-inline: auto;
+  line-height: 1.6;
+}
+
+.out-of-area a {
+  color: var(--pink);
+  font-weight: 600;
+  text-decoration: none;
+}
+.out-of-area a:hover { text-decoration: underline; }
+
+/* ============================================================
+   WHY PROFESSIONAL TESTING
+   ============================================================ */
+.testing-section {
+  background: var(--bg-warm);
+}
+
+.testing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s12);
+  margin-top: var(--s12);
+}
+
+@media (max-width: 768px) {
+  .testing-grid { grid-template-columns: 1fr; gap: var(--s8); }
+}
+
+.testing-card {
+  background: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-2xl);
+  padding: var(--s8);
+  position: relative;
+  overflow: hidden;
+}
+
+.testing-card-label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+  margin-bottom: var(--s4);
+}
+
+.testing-card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  margin-bottom: var(--s5);
+  color: var(--text);
+}
+
+.testing-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.testing-card li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s3);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.testing-card li .icon-check,
+.testing-card li .icon-x {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.testing-card li .icon-check { color: var(--teal); }
+.testing-card li .icon-x { color: var(--text-faint); }
+
+.testing-card.pro {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 1px var(--teal);
+}
+
+.testing-card.pro .testing-card-label {
+  color: var(--teal);
+}
+
+.testing-card-badge {
+  position: absolute;
+  top: calc(-1 * var(--s1));
+  right: var(--s6);
+  background: var(--teal);
+  color: #fff;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  padding: var(--s1) var(--s4);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-section { background: var(--surface); }
+
+.faq-list { max-width: 800px; margin: var(--s12) auto 0; display: flex; flex-direction: column; gap: var(--s3); }
+.faq-item { border: 1px solid var(--divider); border-radius: var(--radius-xl); overflow: hidden; background: var(--bg); }
+.faq-question {
+  width: 100%; padding: var(--s5) var(--s6); display: flex; align-items: center;
+  justify-content: space-between; gap: var(--s4); font-size: var(--text-base);
+  font-weight: 600; text-align: left; color: var(--text); cursor: pointer;
+  background: none; border: none; font-family: var(--font-body);
+}
+.faq-question:hover { color: var(--pink); }
+.faq-icon { width: 24px; height: 24px; flex-shrink: 0; transition: transform 0.3s; color: var(--text-muted); }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease); }
+.faq-item.open .faq-answer { max-height: 400px; }
+.faq-answer-inner { padding: 0 var(--s6) var(--s6); font-size: var(--text-sm); color: var(--text-muted); line-height: 1.7; }
+
+/* ============================================================
+   CTA SECTION
+   ============================================================ */
+.cta-section {
+  background: linear-gradient(135deg, var(--navy) 0%, #0D2240 100%);
+  color: #fff;
+  text-align: center;
+}
+.cta-section .section-label { color: var(--cyan); }
+.cta-section .section-title { color: #fff; }
+
+.cta-description {
+  font-size: var(--text-lg);
+  color: rgba(255,255,255,0.6);
+  max-width: 48ch;
+  margin-inline: auto;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 767px) {
+  .wq-hero-title { font-size: clamp(2.8rem, 10vw, 5rem); }
+  .zip-input-wrapper { flex-direction: column; }
+  .zip-submit { width: 100%; text-align: center; justify-content: center; }
+  .wq-hero-watermark { display: none; }
+  .contaminant-top { flex-direction: column; align-items: flex-start; gap: var(--s2); }
+}
+
+@media (max-width: 480px) {
+  .grade-display { width: 100px; height: 100px; }
+  .grade-letter { font-size: 2.8rem; }
+}
+
+/* ============================================================
+   EMAIL CAPTURE MODAL
+   ============================================================ */
+.email-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(10, 22, 40, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s6);
+}
+.email-modal {
+  background: var(--surface);
+  border-radius: var(--radius-2xl);
+  padding: var(--s10);
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  box-shadow: var(--shadow-xl);
+  animation: modalSlideUp 0.4s ease;
+}
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.email-modal-close {
+  position: absolute;
+  top: var(--s4);
+  right: var(--s4);
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+}
+.email-modal-close:hover { background: var(--surface-2); color: var(--text); }
+.email-modal-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--text);
+  margin-bottom: var(--s4);
+  line-height: 1.15;
+}
+.email-modal-desc {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--s8);
+}
+.email-modal-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: var(--s8);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.email-modal-preview-item {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s4) var(--s5);
+  border-bottom: 1px solid var(--divider);
+  color: var(--teal);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+.email-modal-preview-item:last-child { border-bottom: none; }
+.email-modal-preview-item svg {
+  width: 20px; height: 20px; flex-shrink: 0;
+  color: var(--teal);
+}
+.email-modal-preview-item span:last-child {
+  margin-left: auto;
+  color: var(--text-faint);
+  font-size: var(--text-base);
+}
+.email-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+.email-modal-input {
+  padding: var(--s4) var(--s5);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  background: var(--bg);
+  color: var(--text);
+  width: 100%;
+}
+.email-modal-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(232, 67, 154, 0.12);
+}
+.email-modal-submit {
+  padding: var(--s4) var(--s8);
+  background: var(--pink);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--text-base);
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+}
+.email-modal-submit:hover { background: var(--pink-hover); }
+.email-modal-privacy {
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  text-align: center;
+  margin-top: var(--s3);
+}
+</style>
+<!-- Klaviyo.js — Onsite Tracking -->
+<script type="text/javascript">
+!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();
+</script>
+<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=QTCPJF"></script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1450242673555223');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1450242673555223&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+</head>
+
+<body>
+
+<!-- ============================================================
+     HEADER (exact copy from template)
+     ============================================================ -->
+<header class="site-header" id="site-header">
+  <div class="container container--max">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="CrystalFlow Miami Home">
+        <svg class="header-logo-mark" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <path d="M18 3 L28 14 L18 33 L8 14 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M8 14 L28 14" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+          <path d="M12 14 L18 33" stroke="currentColor" stroke-width="1" opacity="0.18"/>
+          <path d="M24 14 L18 33" stroke="currentColor" stroke-width="1" opacity="0.18"/>
+          <path d="M14 16 L18 28 L22 16" stroke="#00C9DB" stroke-width="1.2" fill="none" opacity="0.75"/>
+        </svg>
+        <div class="header-logo-text">
+          <span class="header-logo-name">CrystalFlow</span>
+          <span class="header-logo-sub">Miami</span>
+        </div>
+      </a>
+
+      <nav class="header-nav">
+        <ul class="header-nav-list" role="list">
+          
+          
+          <li><a href="index.html#packages">Packages</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="why-crystalflow.html">Why CrystalFlow</a></li>
+          <li><a href="water-quality.html">Water Quality</a></li>
+          <li><a href="checkout.html">Shop</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="portal.html">My Account</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Language">
+          <button id="lang-en" class="active" aria-label="English">EN</button>
+          <button id="lang-es" aria-label="Espa&ntilde;ol">ES</button>
+        </div>
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <a href="#" class="btn btn-primary header-cta" onclick="openCalendly(event)" data-i18n="cta_book">Book Free Water Test</a>
+        <button class="mobile-toggle" aria-label="Open menu" onclick="toggleMobileNav()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     MOBILE NAV (exact copy from template)
+     ============================================================ -->
+<nav class="mobile-nav" id="mobile-nav">
+  <div class="lang-toggle-mobile">
+    <button class="active" onclick="setLanguage('en')">EN</button>
+    <span style="color: var(--divider);">|</span>
+    <button onclick="setLanguage('es')">ES</button>
+  </div>
+  
+  
+  <a href="index.html#packages" onclick="closeMobileNav()">Packages</a>
+  <a href="how-it-works.html" onclick="closeMobileNav()">How It Works</a>
+  <a href="why-crystalflow.html" onclick="closeMobileNav()">Why CrystalFlow</a>
+  <a href="water-quality.html" onclick="closeMobileNav()">Water Quality</a>
+  <a href="checkout.html" onclick="closeMobileNav()">Shop</a>
+  <a href="faq.html" onclick="closeMobileNav()">FAQ</a>
+  <a href="blog.html" onclick="closeMobileNav()">Blog</a>
+  <a href="portal.html" onclick="closeMobileNav()">My Account</a>
+  
+  
+  <a href="#" class="btn btn-primary" onclick="openCalendly(event)" data-i18n="cta_book">Book Free Water Test</a>
+</nav>
+
+<!-- ============================================================
+     HERO — "What's In Your Water?"
+     ============================================================ -->
+<section class="wq-hero">
+  <div class="container">
+    <div class="wq-hero-content">
+      <p class="wq-hero-label js-reveal">Miami-Dade Water Quality Lookup</p>
+      <h1 class="wq-hero-title js-reveal">What's In <em>Your Water?</em></h1>
+      <p class="wq-hero-subtitle js-reveal">Miami-Dade County water meets federal standards, but that does not mean it is free of contaminants. Enter your ZIP code to see what is commonly found in your local water supply.</p>
+      <div class="zip-lookup js-reveal">
+        <div class="zip-input-wrapper">
+          <input type="text" id="zip-input" class="zip-input" placeholder="Enter your ZIP code" maxlength="5" inputmode="numeric" pattern="[0-9]*" aria-label="ZIP code">
+          <button type="button" id="zip-submit" class="zip-submit" onclick="checkWaterQuality()">Check My Water</button>
+        </div>
+        <p class="zip-hint">Based on Miami-Dade County Water and Sewer Department public data</p>
+      </div>
+    </div>
+  </div>
+  <div class="wq-hero-watermark" aria-hidden="true">H&#8322;O</div>
+</section>
+
+<!-- ============================================================
+     ANIMATED STATS BAR
+     ============================================================ -->
+<section class="wq-stats-bar js-reveal">
+  <div class="container">
+    <div class="wq-stats-grid">
+      <div class="wq-stat-item">
+        <span class="wq-stat-value"><span class="counter" data-target="60">0</span><span class="wq-stat-suffix">+</span></span>
+        <span class="wq-stat-label">Year-Old Pipes</span>
+      </div>
+      <div class="wq-stat-item">
+        <span class="wq-stat-value"><span class="counter" data-target="2.7">0</span><span class="wq-stat-suffix">M</span></span>
+        <span class="wq-stat-label">Residents Served</span>
+      </div>
+      <div class="wq-stat-item">
+        <span class="wq-stat-value"><span class="counter" data-target="12">0</span><span class="wq-stat-suffix">+</span></span>
+        <span class="wq-stat-label">Contaminants Detected</span>
+      </div>
+      <div class="wq-stat-item">
+        <span class="wq-stat-value"><span class="counter" data-target="350">0</span><span class="wq-stat-suffix"> ppm</span></span>
+        <span class="wq-stat-label">Avg Dissolved Solids</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OUT OF AREA MESSAGE
+     ============================================================ -->
+<section class="section-pad" id="out-of-area-section" style="display:none; background: var(--bg);">
+  <div class="container container--narrow">
+    <div class="out-of-area visible">
+      <div class="out-of-area-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      </div>
+      <h3>Outside Our Service Area</h3>
+      <p>We currently serve Greater Miami-Dade County. Call us at <a href="tel:+17869473824">(786) 947-3824</a> to discuss service in your area.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RESULTS PANEL
+     ============================================================ -->
+<section class="results-section section-pad" id="results-section">
+  <div class="container results-container">
+
+    <!-- ===== TOXIN GAUGE ===== -->
+    <div class="gauge-card js-reveal">
+      <p class="gauge-location">Water Quality Report for ZIP <span id="result-zip">33130</span></p>
+      <p class="gauge-utility">Miami-Dade Water and Sewer Authority</p>
+
+      <div class="gauge-svg-wrap">
+        <svg viewBox="0 0 260 150" width="260" height="150">
+          <defs>
+            <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#22C55E"/>
+              <stop offset="40%" stop-color="#FBBF24"/>
+              <stop offset="70%" stop-color="#F97316"/>
+              <stop offset="100%" stop-color="#EF4444"/>
+            </linearGradient>
+          </defs>
+          <path class="gauge-arc-bg" d="M30,130 A100,100 0 0,1 230,130"/>
+          <path class="gauge-arc-fill" id="gaugeArc"
+                d="M30,130 A100,100 0 0,1 230,130"
+                stroke="url(#gaugeGrad)"
+                stroke-dasharray="314"
+                stroke-dashoffset="314"/>
+        </svg>
+        <div class="gauge-center">
+          <div class="gauge-number" id="gaugeNumber">0</div>
+          <div class="gauge-label">toxins found</div>
+        </div>
+      </div>
+
+      <div class="gauge-scale">
+        <span>0</span>
+        <span>4</span>
+        <span>8+</span>
+      </div>
+
+      <button class="gauge-explore-toggle" id="gaugeToggle" onclick="toggleHighlights()">
+        Explore Highlights
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="gauge-highlights" id="gaugeHighlights">
+        <div class="gauge-highlights-inner">
+          Your water supply was tested against federal EPA guidelines and health-based standards set by the EWG. We found 8 contaminants that exceed recommended health limits, including disinfection byproducts, heavy metals, and forever chemicals (PFAS). While the water meets legal minimum requirements, these levels may pose long-term health risks without additional in-home filtration.
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TOP TOXINS ===== -->
+    <div class="results-section-header js-reveal">
+      <h2>Top Toxins</h2>
+      <span class="info-tooltip" data-tip="Based on EPA and EWG health guidelines">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      </span>
+    </div>
+    <div class="toxin-grid">
+
+      <div class="toxin-card js-reveal">
+        <div class="toxin-category">Disinfection Byproducts</div>
+        <div class="toxin-name">Chloroform</div>
+        <div class="toxin-value">
+          <span class="toxin-amount">11</span>
+          <span class="toxin-unit">ppb</span>
+        </div>
+        <div class="toxin-bar-wrap">
+          <div class="toxin-bar-fill level-med" data-width="55%"></div>
+          <div class="toxin-bar-avg" style="left:35%"></div>
+        </div>
+        <div class="toxin-bar-labels"><span>0</span><span>EPA limit: 80</span></div>
+      </div>
+
+      <div class="toxin-card js-reveal">
+        <div class="toxin-category">Forever Chemicals</div>
+        <div class="toxin-name">PFAS (PFOA+PFOS)</div>
+        <div class="toxin-value">
+          <span class="toxin-amount">8</span>
+          <span class="toxin-unit">ppt</span>
+        </div>
+        <div class="toxin-bar-wrap">
+          <div class="toxin-bar-fill level-high" data-width="80%"></div>
+          <div class="toxin-bar-avg" style="left:25%"></div>
+        </div>
+        <div class="toxin-bar-labels"><span>0</span><span>Health guideline: 4</span></div>
+      </div>
+
+      <div class="toxin-card js-reveal">
+        <div class="toxin-category">Disinfection Byproducts</div>
+        <div class="toxin-name">Total Trihalomethanes</div>
+        <div class="toxin-value">
+          <span class="toxin-amount">44</span>
+          <span class="toxin-unit">ppb</span>
+        </div>
+        <div class="toxin-bar-wrap">
+          <div class="toxin-bar-fill level-med" data-width="55%"></div>
+          <div class="toxin-bar-avg" style="left:30%"></div>
+        </div>
+        <div class="toxin-bar-labels"><span>0</span><span>EPA limit: 80</span></div>
+      </div>
+
+      <div class="toxin-card js-reveal">
+        <div class="toxin-category">Disinfection Byproducts</div>
+        <div class="toxin-name">Haloacetic Acids</div>
+        <div class="toxin-value">
+          <span class="toxin-amount">36</span>
+          <span class="toxin-unit">ppb</span>
+        </div>
+        <div class="toxin-bar-wrap">
+          <div class="toxin-bar-fill level-med" data-width="60%"></div>
+          <div class="toxin-bar-avg" style="left:28%"></div>
+        </div>
+        <div class="toxin-bar-labels"><span>0</span><span>EPA limit: 60</span></div>
+      </div>
+
+      <div class="toxin-card js-reveal">
+        <div class="toxin-category">Heavy Metal</div>
+        <div class="toxin-name">Lead</div>
+        <div class="toxin-value">
+          <span class="toxin-amount">2</span>
+          <span class="toxin-unit">ppb</span>
+        </div>
+        <div class="toxin-bar-wrap">
+          <div class="toxin-bar-fill level-med" data-width="40%"></div>
+          <div class="toxin-bar-avg" style="left:20%"></div>
+        </div>
+        <div class="toxin-bar-labels"><span>0</span><span>EPA action: 15</span></div>
+      </div>
+
+      <div class="toxin-card js-reveal">
+        <div class="toxin-category">Heavy Metal</div>
+        <div class="toxin-name">Aluminum</div>
+        <div class="toxin-value">
+          <span class="toxin-amount">14</span>
+          <span class="toxin-unit">ppb</span>
+        </div>
+        <div class="toxin-bar-wrap">
+          <div class="toxin-bar-fill level-low" data-width="28%"></div>
+          <div class="toxin-bar-avg" style="left:15%"></div>
+        </div>
+        <div class="toxin-bar-labels"><span>0</span><span>EPA limit: 200</span></div>
+      </div>
+
+      <div class="toxin-card js-reveal">
+        <div class="toxin-category">Heavy Metal</div>
+        <div class="toxin-name">Chromium-6</div>
+        <div class="toxin-value">
+          <span class="toxin-amount">0.12</span>
+          <span class="toxin-unit">ppb</span>
+        </div>
+        <div class="toxin-bar-wrap">
+          <div class="toxin-bar-fill level-med" data-width="48%"></div>
+          <div class="toxin-bar-avg" style="left:22%"></div>
+        </div>
+        <div class="toxin-bar-labels"><span>0</span><span>Health guideline: 0.02</span></div>
+      </div>
+
+      <div class="toxin-card js-reveal">
+        <div class="toxin-category">Heavy Metal</div>
+        <div class="toxin-name">Arsenic</div>
+        <div class="toxin-value">
+          <span class="toxin-amount">0.5</span>
+          <span class="toxin-unit">ppb</span>
+        </div>
+        <div class="toxin-bar-wrap">
+          <div class="toxin-bar-fill level-low" data-width="22%"></div>
+          <div class="toxin-bar-avg" style="left:12%"></div>
+        </div>
+        <div class="toxin-bar-labels"><span>0</span><span>EPA limit: 10</span></div>
+      </div>
+
+    </div>
+
+    <!-- ===== pH LEVELS ===== -->
+    <div class="results-section-header js-reveal">
+      <h2>pH Levels</h2>
+      <span class="info-tooltip" data-tip="7.0 is neutral; below is acidic, above is alkaline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      </span>
+    </div>
+    <div class="ph-card js-reveal">
+      <div class="ph-bar-container">
+        <div class="ph-bar"></div>
+        <div class="ph-marker" style="left: 53.5%;">
+          <span class="ph-marker-label">alkaline</span>
+          <div class="ph-marker-dot"></div>
+          <div class="ph-marker-line"></div>
+          <span class="ph-marker-value">7.5</span>
+        </div>
+      </div>
+      <div class="ph-scale-labels">
+        <span>0 (Acidic)</span>
+        <span>7 (Neutral)</span>
+        <span>14 (Alkaline)</span>
+      </div>
+    </div>
+
+    <!-- ===== MINERALS ===== -->
+    <div class="results-section-header js-reveal">
+      <h2>Minerals</h2>
+      <span class="info-tooltip" data-tip="Essential minerals naturally present in your water">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      </span>
+    </div>
+    <div class="minerals-grid">
+      <div class="mineral-card js-reveal">
+        <div class="mineral-name">Calcium</div>
+        <div class="mineral-value">
+          <span class="mineral-amount">78</span>
+          <span class="mineral-unit">ppm</span>
+        </div>
+        <div class="mineral-ideal">Within ideal range</div>
+        <div class="mineral-bar"><div class="mineral-bar-fill" data-width="65%"></div></div>
+      </div>
+      <div class="mineral-card js-reveal">
+        <div class="mineral-name">Magnesium</div>
+        <div class="mineral-value">
+          <span class="mineral-amount">12</span>
+          <span class="mineral-unit">ppm</span>
+        </div>
+        <div class="mineral-ideal">Within ideal range</div>
+        <div class="mineral-bar"><div class="mineral-bar-fill" data-width="40%"></div></div>
+      </div>
+      <div class="mineral-card js-reveal">
+        <div class="mineral-name">Sodium</div>
+        <div class="mineral-value">
+          <span class="mineral-amount">37</span>
+          <span class="mineral-unit">ppm</span>
+        </div>
+        <div class="mineral-ideal">Within ideal range</div>
+        <div class="mineral-bar"><div class="mineral-bar-fill" data-width="37%"></div></div>
+      </div>
+      <div class="mineral-card js-reveal">
+        <div class="mineral-name">Potassium</div>
+        <div class="mineral-value">
+          <span class="mineral-amount">1</span>
+          <span class="mineral-unit">ppm</span>
+        </div>
+        <div class="mineral-ideal">Low</div>
+        <div class="mineral-bar"><div class="mineral-bar-fill" data-width="8%"></div></div>
+      </div>
+    </div>
+
+    <!-- ===== YOUR SOLUTION ===== -->
+    <div class="solution-panel js-reveal">
+      <h2 class="solution-title">Your Solution</h2>
+      <p class="solution-subtitle">CrystalFlow's 4-stage filtration system is engineered to remove every contaminant detected in your water supply.</p>
+
+      <p class="solution-heading">What's inside?</p>
+      <div class="filtration-stages">
+        <div class="stage-card">
+          <div class="stage-icon sediment">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+          </div>
+          <div class="stage-name">Sediment Filter</div>
+          <div class="stage-desc">Removes rust, sand, and particles down to 5 microns</div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-icon carbon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <div class="stage-name">Carbon Block</div>
+          <div class="stage-desc">Eliminates chlorine, chloramines, and organic compounds</div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-icon ro">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><ellipse cx="12" cy="12" rx="4" ry="10"/></svg>
+          </div>
+          <div class="stage-name">RO Membrane</div>
+          <div class="stage-desc">Rejects PFAS, lead, arsenic, and dissolved solids at 0.0001 microns</div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-icon mineral">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="stage-name">Remineralizer</div>
+          <div class="stage-desc">Adds back calcium and magnesium for optimal taste and health</div>
+        </div>
+      </div>
+
+      <div class="solution-ctas">
+        <a href="#" class="btn-primary" onclick="openCalendly(event)">Book a Free Water Test</a>
+        <a href="checkout.html" class="btn-ghost">View Our Packages</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY PROFESSIONAL TESTING MATTERS
+     ============================================================ -->
+<section class="testing-section section-pad" id="testing">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: var(--s4);">
+      <p class="section-label js-reveal">Know the Difference</p>
+      <h2 class="section-title js-reveal" style="margin-inline: auto;">Why Professional Testing Matters</h2>
+      <p class="section-subtitle js-reveal" style="margin-inline: auto; margin-top: var(--s4);">The data above is based on county-wide reporting. Your home's water can differ significantly based on your building's plumbing, pipe age, and distance from the treatment plant.</p>
+    </div>
+    <div class="testing-grid">
+      <div class="testing-card js-reveal">
+        <p class="testing-card-label">DIY Home Test Kits</p>
+        <h3 class="testing-card-title">General Indicators Only</h3>
+        <ul role="list">
+          <li>
+            <svg class="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            Tests for 5-10 basic parameters
+          </li>
+          <li>
+            <svg class="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            Approximate readings with color strips
+          </li>
+          <li>
+            <svg class="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            Cannot detect PFAS or microplastics
+          </li>
+          <li>
+            <svg class="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            No personalized treatment recommendation
+          </li>
+          <li>
+            <svg class="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            Results vary based on user technique
+          </li>
+        </ul>
+      </div>
+
+      <div class="testing-card pro js-reveal">
+        <div class="testing-card-badge">Recommended</div>
+        <p class="testing-card-label">CrystalFlow Professional Test</p>
+        <h3 class="testing-card-title">Comprehensive Analysis</h3>
+        <ul role="list">
+          <li>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
+            Tests for 50+ parameters including PFAS
+          </li>
+          <li>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
+            Lab-grade precision with certified equipment
+          </li>
+          <li>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
+            Tests at your specific tap, not city average
+          </li>
+          <li>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
+            Personalized system recommendation for your home
+          </li>
+          <li>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
+            Completely free, no obligation
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: var(--s12);" class="js-reveal">
+      <a href="#" class="btn btn-primary btn-lg" onclick="openCalendly(event)">Schedule Your Free Water Test</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ — MIAMI WATER QUALITY
+     ============================================================ -->
+<section class="faq-section section-pad" id="faq">
+  <div class="container">
+    <div style="text-align: center;">
+      <p class="section-label js-reveal">Common Questions</p>
+      <h2 class="section-title js-reveal">Miami Water Quality FAQ</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item js-reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is Miami tap water safe to drink?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Miami-Dade County water meets all EPA and state regulatory standards, so it is legally considered safe. However, "safe" by federal standards does not mean contaminant-free. The Environmental Working Group (EWG) has identified multiple contaminants in Miami-Dade water that exceed their health guidelines, which are often stricter than federal legal limits. Many residents choose additional treatment for improved taste, reduced chemical exposure, and better protection for their families.</div>
+        </div>
+      </div>
+
+      <div class="faq-item js-reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Why is Miami water so hard?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Miami-Dade's water comes from the Biscayne Aquifer, which sits in a limestone bedrock formation. As water passes through this rock, it dissolves calcium and magnesium minerals, creating very hard water. Typical hardness levels in Miami range from 15-25 grains per gallon, which is classified as "very hard." This causes white scale deposits on fixtures, reduces soap efficiency, and can shorten the lifespan of water heaters and appliances by years.</div>
+        </div>
+      </div>
+
+      <div class="faq-item js-reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What are PFAS and should I be concerned?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">PFAS (per- and polyfluoroalkyl substances) are a class of over 9,000 synthetic chemicals known as "forever chemicals" because they do not break down naturally. They have been detected in Miami-Dade's water supply above the EPA's health advisory levels. The EPA issued new PFAS drinking water standards in 2024, setting legally enforceable limits for the first time. Reverse osmosis is one of the most effective methods for reducing PFAS in drinking water, achieving reduction rates of 90-97%.</div>
+        </div>
+      </div>
+
+      <div class="faq-item js-reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How does a free water test work?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">A CrystalFlow water professional visits your home at a scheduled time convenient for you. The test takes approximately 20 minutes. We collect samples from your primary water source and test on-site for hardness, TDS, chlorine, pH, and other key parameters. For advanced testing (PFAS, heavy metals), samples are sent to a certified lab. You receive a detailed report with your results and a personalized recommendation. There is absolutely no obligation or cost.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+     ============================================================ -->
+<section class="cta-section section-pad-lg" id="cta">
+  <div class="container" style="max-width: 720px;">
+    <p class="section-label js-reveal">Take the Next Step</p>
+    <h2 class="section-title js-reveal" style="color: #fff; margin-bottom: var(--s6);">Know Exactly What Is in Your Water</h2>
+    <p class="cta-description js-reveal" style="margin-bottom: var(--s10);">Our complimentary in-home water test gives you precise, lab-grade results specific to your home. No guesswork, no obligation.</p>
+    <div class="js-reveal">
+      <a href="#" class="btn btn-primary btn-lg" onclick="openCalendly(event)" style="font-size: var(--text-base); padding: var(--s5) var(--s12);">Book Your Free Water Test</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER (exact copy from template)
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <a href="index.html" class="header-logo" aria-label="CrystalFlow Miami Home">
+          <svg class="header-logo-mark" viewBox="0 0 36 36" fill="none" aria-hidden="true" style="color: #fff;">
+            <path d="M18 3 L28 14 L18 33 L8 14 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <path d="M8 14 L28 14" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+            <path d="M12 14 L18 33" stroke="currentColor" stroke-width="1" opacity="0.18"/>
+            <path d="M24 14 L18 33" stroke="currentColor" stroke-width="1" opacity="0.18"/>
+            <path d="M14 16 L18 28 L22 16" stroke="#00C9DB" stroke-width="1.2" fill="none" opacity="0.75"/>
+          </svg>
+          <div class="header-logo-text">
+            <span class="header-logo-name">CrystalFlow</span>
+            <span class="header-logo-sub">Miami</span>
+          </div>
+        </a>
+        <p data-i18n="footer_desc">Own your water. One price. No subscriptions. Premium water treatment for Greater Miami-Dade County.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_links">Quick Links</h4>
+        <ul role="list">
+          
+          
+          
+          <li><a href="index.html#packages">Packages</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="why-crystalflow.html">Why CrystalFlow</a></li>
+          <li><a href="water-quality.html">Water Quality</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="index.html#warranty">Warranty Plans</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_areas">Service Areas</h4>
+        <ul role="list">
+          <li><a href="index.html#map">Coral Gables</a></li>
+          <li><a href="index.html#map">Brickell</a></li>
+          <li><a href="index.html#map">Kendall</a></li>
+          <li><a href="index.html#map">Coconut Grove</a></li>
+          <li><a href="index.html#map">Miami Beach</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_contact">Contact</h4>
+        <ul role="list">
+          <li><a href="tel:+17869473824">(786) 947-3824</a></li>
+          <li><a href="mailto:info@crystalflowmiami.com">info@crystalflowmiami.com</a></li>
+          <li data-i18n="footer_hours">Mon &ndash; Sat, 8 AM &ndash; 5 PM</li>
+          <li data-i18n="footer_location">Miami-Dade County, FL</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-i18n="footer_copyright" data-i18n-html="1">&copy; 2026 CrystalFlow Miami. All rights reserved.</p>
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     EMAIL CAPTURE MODAL
+     ============================================================ -->
+<div class="email-modal-overlay" id="email-modal" style="display:none;">
+  <div class="email-modal">
+    <button class="email-modal-close" onclick="closeEmailModal()">&times;</button>
+    <h2 class="email-modal-title">What you're about to see may surprise you</h2>
+    <p class="email-modal-desc">We aggregate public water system data and combine it with local testing results to show you what is really in your tap water.</p>
+
+    <div class="email-modal-preview">
+      <div class="email-modal-preview-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Water Quality Grade</span>
+        <span class="preview-lock">+</span>
+      </div>
+      <div class="email-modal-preview-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v2H9zM12 5v6"/><rect x="7" y="11" width="10" height="10" rx="1"/><path d="M9 15h2m-2 3h4"/></svg>
+        <span>Top Contaminants</span>
+        <span class="preview-lock">+</span>
+      </div>
+      <div class="email-modal-preview-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2c-3 7-7 9-7 13a7 7 0 0 0 14 0c0-4-4-6-7-13z"/><path d="M9 17h6" opacity="0.5"/></svg>
+        <span>Hardness Level</span>
+        <span class="preview-lock">+</span>
+      </div>
+      <div class="email-modal-preview-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
+        <span>Recommended Solution</span>
+        <span class="preview-lock">+</span>
+      </div>
+    </div>
+
+    <form class="email-modal-form" onsubmit="submitEmailAndShowResults(event)">
+      <input type="email" id="email-input" class="email-modal-input" placeholder="Enter your email address" required>
+      <button type="submit" class="email-modal-submit">See My Results</button>
+    </form>
+
+    <p class="email-modal-privacy">We respect your privacy. No spam, ever.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     INTERCOM
+     ============================================================ -->
+<script>
+  window.intercomSettings = { api_base: "https://api-iam.intercom.io", app_id: "sx0gvmky" };
+</script>
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/sx0gvmky';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+/* ---- Calendly ---- */
+function openCalendly(e) {
+  if (e) e.preventDefault();
+  Calendly.initPopupWidget({ url: 'https://calendly.com/isaiah-pacheco5321/30min' });
+  if (typeof fbq === 'function') { fbq('track', 'Schedule', { content_name: 'Free Water Test' }); }
+  return false;
+}
+
+/* ---- Header scroll ---- */
+const header = document.getElementById('site-header');
+function onScroll() {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* ---- Mobile nav ---- */
+function toggleMobileNav() {
+  document.getElementById('mobile-nav').classList.toggle('open');
+}
+function closeMobileNav() {
+  document.getElementById('mobile-nav').classList.remove('open');
+}
+
+/* ---- Theme toggle ---- */
+document.querySelector('[data-theme-toggle]').addEventListener('click', function() {
+  const current = document.documentElement.getAttribute('data-theme');
+  document.documentElement.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+});
+
+/* ---- Language (stub) ---- */
+function setLanguage(lang) {
+  document.querySelectorAll('.lang-toggle button, .lang-toggle-mobile button').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim() === lang.toUpperCase());
+  });
+}
+
+/* ---- Scroll reveal ---- */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.js-reveal').forEach(el => revealObserver.observe(el));
+
+/* ---- Animated counters ---- */
+function animateCounters() {
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach(counter => {
+    const target = parseFloat(counter.getAttribute('data-target'));
+    const isDecimal = target % 1 !== 0;
+    const duration = 2000;
+    const startTime = performance.now();
+
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = target * eased;
+
+      if (isDecimal) {
+        counter.textContent = current.toFixed(1);
+      } else {
+        counter.textContent = Math.round(current);
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+    requestAnimationFrame(update);
+  });
+}
+
+// Trigger counters when stats bar is visible
+const statsBar = document.querySelector('.wq-stats-bar');
+let countersTriggered = false;
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !countersTriggered) {
+      countersTriggered = true;
+      animateCounters();
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+statsObserver.observe(statsBar);
+
+/* ---- FAQ toggle ---- */
+function toggleFaq(button) {
+  const item = button.parentElement;
+  const isOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  // Open clicked (if it was closed)
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ---- ZIP Code Lookup (email-gated) ---- */
+var pendingZip = null;
+
+function checkWaterQuality() {
+  var input = document.getElementById('zip-input');
+  var zip = input.value.trim();
+
+  if (!zip || zip.length !== 5 || !/^\d{5}$/.test(zip)) {
+    input.focus();
+    input.style.borderColor = 'var(--pink)';
+    setTimeout(function() { input.style.borderColor = ''; }, 2000);
+    return;
+  }
+
+  var isMiamiDade = zip.startsWith('33');
+
+  if (isMiamiDade) {
+    pendingZip = zip;
+    // Check if email already captured
+    if (localStorage.getItem('cf_email_captured')) {
+      showResults(zip);
+    } else {
+      document.getElementById('email-modal').style.display = 'flex';
+    }
+  } else {
+    document.getElementById('results-section').classList.remove('visible');
+    document.getElementById('out-of-area-section').style.display = 'block';
+    setTimeout(function() {
+      document.getElementById('out-of-area-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }
+}
+
+function closeEmailModal() {
+  document.getElementById('email-modal').style.display = 'none';
+}
+
+function submitEmailAndShowResults(e) {
+  e.preventDefault();
+  var emailInput = document.getElementById('email-input');
+  var email = emailInput.value.trim();
+  if (!email) return;
+
+  // Send to Klaviyo
+  fetch('https://a.klaviyo.com/client/subscriptions/?company_id=QTCPJF', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'revision': '2024-10-15'
+    },
+    body: JSON.stringify({
+      data: {
+        type: 'subscription',
+        attributes: {
+          profile: {
+            data: {
+              type: 'profile',
+              attributes: {
+                email: email,
+                properties: {
+                  source: 'water_quality_tool',
+                  zip_code: pendingZip || ''
+                }
+              }
+            }
+          },
+          custom_source: 'Water Quality Tool'
+        },
+        relationships: {
+          list: {
+            data: {
+              type: 'list',
+              id: 'Ys8pcA'
+            }
+          }
+        }
+      }
+    })
+  }).catch(function() {}); // Fire and forget
+
+  localStorage.setItem('cf_email_captured', 'true');
+  closeEmailModal();
+  showResults(pendingZip);
+}
+
+function showResults(zip) {
+  var resultsSection = document.getElementById('results-section');
+  var outOfAreaSection = document.getElementById('out-of-area-section');
+
+  resultsSection.classList.remove('visible');
+  outOfAreaSection.style.display = 'none';
+
+  document.getElementById('result-zip').textContent = zip;
+  resultsSection.classList.add('visible');
+
+  setTimeout(function() {
+    resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    resultsSection.querySelectorAll('.js-reveal').forEach(function(el) {
+      el.classList.remove('is-visible');
+      revealObserver.observe(el);
+    });
+  }, 100);
+}
+
+/* ---- Gauge arc animation ---- */
+function animateGauge() {
+  var toxinCount = 8;
+  var maxToxins = 10;
+  var arc = document.getElementById('gaugeArc');
+  var num = document.getElementById('gaugeNumber');
+  if (!arc || !num) return;
+
+  var totalLength = 314;
+  var targetOffset = totalLength - (toxinCount / maxToxins) * totalLength;
+
+  // Let CSS transition handle the arc stroke animation
+  arc.setAttribute('stroke-dashoffset', targetOffset);
+
+  // Animate the counter number with RAF
+  var duration = 1500;
+  var startTime = performance.now();
+  function step(now) {
+    var elapsed = now - startTime;
+    var progress = Math.min(elapsed / duration, 1);
+    var eased = 1 - Math.pow(1 - progress, 3);
+    num.textContent = Math.round(toxinCount * eased);
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ---- Toxin & mineral bar fill animations ---- */
+function animateBarFills(container) {
+  var bars = container.querySelectorAll('[data-width]');
+  bars.forEach(function(bar) {
+    bar.style.width = bar.getAttribute('data-width');
+  });
+}
+
+/* ---- Toggle gauge highlights ---- */
+function toggleHighlights() {
+  var highlights = document.getElementById('gaugeHighlights');
+  var toggle = document.getElementById('gaugeToggle');
+  if (!highlights) return;
+  var isOpen = highlights.classList.toggle('open');
+  if (toggle) toggle.classList.toggle('open', isOpen);
+}
+
+/* ---- Results animation observer ---- */
+var resultsAnimated = false;
+var resultsObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting && !resultsAnimated) {
+      resultsAnimated = false; // allow re-trigger each time results shown
+      animateGauge();
+      var toxinGrid = document.querySelector('.toxin-grid');
+      if (toxinGrid) animateBarFills(toxinGrid);
+      var mineralsGrid = document.querySelector('.minerals-grid');
+      if (mineralsGrid) animateBarFills(mineralsGrid);
+    }
+  });
+}, { threshold: 0.2 });
+
+/* Hook into showResults to reset and re-trigger animations */
+var _originalShowResults = showResults;
+showResults = function(zip) {
+  resultsAnimated = false;
+  // Reset bar widths
+  document.querySelectorAll('.toxin-bar-fill, .mineral-bar-fill').forEach(function(bar) {
+    bar.style.width = '0%';
+  });
+  // Reset gauge
+  var arc = document.getElementById('gaugeArc');
+  if (arc) arc.setAttribute('stroke-dashoffset', '314');
+  var num = document.getElementById('gaugeNumber');
+  if (num) num.textContent = '0';
+  // Close highlights
+  var highlights = document.getElementById('gaugeHighlights');
+  if (highlights) highlights.classList.remove('open');
+  var toggle = document.getElementById('gaugeToggle');
+  if (toggle) toggle.classList.remove('open');
+
+  _originalShowResults(zip);
+
+  // Observe the gauge card for animation trigger
+  var gaugeCard = document.querySelector('.gauge-card');
+  if (gaugeCard) resultsObserver.observe(gaugeCard);
+};
+
+// Allow Enter key to submit
+document.getElementById('zip-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    checkWaterQuality();
+  }
+});
+
+// Auto-format: only allow numbers
+document.getElementById('zip-input').addEventListener('input', function(e) {
+  this.value = this.value.replace(/[^\d]/g, '').slice(0, 5);
+});
+</script>
+
+
+<!-- Google Ads Conversion Tracking — Calendly Booking -->
+<script>
+window.addEventListener('message', function(e) {
+  if (e.origin === 'https://calendly.com' && 
+      e.data.event === 'calendly.event_scheduled') {
+    gtag('event', 'conversion', {
+      'send_to': 'AW-858419882/Ihe3CJvLv4ccEKrlqZkD',
+      'value': 1.0,
+      'currency': 'USD'
+    });
+    console.log('CrystalFlow: Calendly booking conversion fired');
+  }
+});
+</script>
+</body>
+</html>
