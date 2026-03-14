@@ -528,6 +528,25 @@ a, button, [role="button"] {
 !function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();
 </script>
 <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=QTCPJF"></script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'PIXEL_ID_PLACEHOLDER');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=PIXEL_ID_PLACEHOLDER&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 </head>
 <body>
 
@@ -641,7 +660,7 @@ a, button, [role="button"] {
 
     <p>CrystalFlow Miami offers <strong>free post-storm water testing</strong> for any Miami-Dade homeowner. After a hurricane or major storm event, you can request a complimentary in-home water test to check TDS levels, chlorine and chloramine concentrations, hardness, pH, and indicators of bacterial contamination. There is no obligation to purchase anything &mdash; the test is part of our commitment to helping Miami homeowners make informed decisions about their water.</p>
 
-    <p>To request a free water test after a storm, <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isaiah-pacheco5321/30min'});return false;">book an appointment online</a> or call us directly at <a href="tel:+17869473824">(786) 947-3824</a>
+    <p>To request a free water test after a storm, <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isaiah-pacheco5321/30min'});if(typeof fbq==='function'){fbq('track','Schedule',{content_name:'Free Water Test'});}return false;">book an appointment online</a> or call us directly at <a href="tel:+17869473824">(786) 947-3824</a>
       <a href="/privacy-policy.html">Privacy Policy</a>.</p>
 
     <h2>Your Pre-Storm Water Checklist</h2>
@@ -653,7 +672,7 @@ a, button, [role="button"] {
       <li><strong>Inspect and replace stored water annually</strong> &mdash; rotate your supply at the start of each hurricane season, even if containers appear sealed and undamaged.</li>
       <li><strong>Purchase a bathtub water bladder</strong> &mdash; a WaterBOB or similar product can store up to 100 gallons for non-drinking use.</li>
       <li><strong>Fill all storage containers before a watch is issued</strong> &mdash; do not wait for a hurricane warning. Fill your reserves as soon as a tropical system enters the Gulf or western Atlantic.</li>
-      <li><strong>Test your home's water quality</strong> &mdash; <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isaiah-pacheco5321/30min'});return false;">schedule a free water test with CrystalFlow</a> to establish a baseline before storm season.</li>
+      <li><strong>Test your home's water quality</strong> &mdash; <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isaiah-pacheco5321/30min'});if(typeof fbq==='function'){fbq('track','Schedule',{content_name:'Free Water Test'});}return false;">schedule a free water test with CrystalFlow</a> to establish a baseline before storm season.</li>
       <li><strong>Service your filtration system</strong> &mdash; if you have a whole-home or under-sink filter, replace cartridges and membranes before hurricane season so the system is operating at full capacity when you need it most.</li>
       <li><strong>Know where your main water shutoff valve is</strong> &mdash; if flooding threatens your property, shutting off the main valve prevents contaminated water from entering your plumbing.</li>
       <li><strong>Save emergency contacts</strong> &mdash; store the Miami-Dade Water and Sewer Department emergency line and CrystalFlow's number (<a href="tel:+17869473824">(786) 947-3824</a>) in your phone before you lose power or connectivity.</li>
@@ -713,7 +732,7 @@ a, button, [role="button"] {
     <h2 class="cta-title">Get Prepared Before <em style="font-style:italic;color:var(--pink);">Hurricane Season</em></h2>
     <p class="cta-text">Book a free in-home water test with CrystalFlow Miami. Know your water quality baseline and get expert recommendations for storm-ready filtration.</p>
     <div class="cta-actions">
-      <button class="btn btn-primary btn-lg" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isaiah-pacheco5321/30min'});return false;">Book a Free Water Test</button>
+      <button class="btn btn-primary btn-lg" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isaiah-pacheco5321/30min'});if(typeof fbq==='function'){fbq('track','Schedule',{content_name:'Free Water Test'});}return false;">Book a Free Water Test</button>
       <a href="tel:+17869473824" class="btn btn-white">(786) 947-3824</a>
     </div>
   </div>

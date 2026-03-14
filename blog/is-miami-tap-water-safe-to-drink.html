@@ -528,6 +528,25 @@ a, button, [role="button"] {
 !function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();
 </script>
 <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=QTCPJF"></script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'PIXEL_ID_PLACEHOLDER');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=PIXEL_ID_PLACEHOLDER&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 </head>
 <body>
 
@@ -748,7 +767,7 @@ a, button, [role="button"] {
     <h2 class="cta-title">Ready to Know What's in <em style="font-style:italic;color:var(--pink);">Your</em> Water?</h2>
     <p class="cta-text">Book a free in-home water test with CrystalFlow Miami. Our licensed team will test your water on-site and walk you through your options.</p>
     <div class="cta-actions">
-      <button class="btn btn-primary btn-lg" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isaiah-pacheco5321/30min'});return false;">Book a Free Water Test</button>
+      <button class="btn btn-primary btn-lg" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isaiah-pacheco5321/30min'});if(typeof fbq==='function'){fbq('track','Schedule',{content_name:'Free Water Test'});}return false;">Book a Free Water Test</button>
       <a href="tel:+17869473824" class="btn btn-white">(786) 947-3824</a>
     </div>
   </div>
