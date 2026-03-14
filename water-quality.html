@@ -1313,16 +1313,52 @@ a, button, [role="button"], input, textarea, select {
   color: var(--teal);
   font-size: var(--text-sm);
   font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease;
 }
-.email-modal-preview-item:last-child { border-bottom: none; }
+.email-modal-preview-item:hover {
+  background: rgba(0,165,168,0.04);
+}
+.email-modal-preview-item.active {
+  border-bottom-color: transparent;
+}
 .email-modal-preview-item svg {
   width: 20px; height: 20px; flex-shrink: 0;
   color: var(--teal);
 }
-.email-modal-preview-item span:last-child {
+.preview-toggle {
   margin-left: auto;
   color: var(--text-faint);
-  font-size: var(--text-base);
+  font-size: var(--text-lg);
+  font-weight: 300;
+  transition: transform 0.25s ease;
+  line-height: 1;
+}
+.email-modal-preview-item.active .preview-toggle {
+  transform: rotate(45deg);
+}
+.preview-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 var(--s5);
+  border-bottom: 1px solid var(--divider);
+  background: rgba(0,165,168,0.02);
+}
+.preview-accordion-content.open {
+  max-height: 300px;
+  padding: var(--s3) var(--s5) var(--s4);
+}
+.preview-accordion-content p,
+.preview-accordion-content ul {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+.preview-accordion-content strong {
+  color: var(--text);
 }
 .email-modal-form {
   display: flex;
@@ -2039,25 +2075,43 @@ src="https://www.facebook.com/tr?id=1450242673555223&ev=PageView&noscript=1"
     <p class="email-modal-desc">We aggregate public water system data and combine it with local testing results to show you what is really in your tap water.</p>
 
     <div class="email-modal-preview">
-      <div class="email-modal-preview-item">
+      <div class="email-modal-preview-item" onclick="togglePreviewAccordion(this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         <span>Water Quality Grade</span>
-        <span class="preview-lock">+</span>
+        <span class="preview-toggle">+</span>
       </div>
-      <div class="email-modal-preview-item">
+      <div class="preview-accordion-content">
+        <p>Miami-Dade's tap water scores a <strong style="color:#E8439A;">D+</strong> based on EWG health guidelines. While legally compliant, 7 contaminants exceed recommended health limits -- including PFAS, arsenic, and chromium-6.</p>
+      </div>
+      <div class="email-modal-preview-item" onclick="togglePreviewAccordion(this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v2H9zM12 5v6"/><rect x="7" y="11" width="10" height="10" rx="1"/><path d="M9 15h2m-2 3h4"/></svg>
         <span>Top Contaminants</span>
-        <span class="preview-lock">+</span>
+        <span class="preview-toggle">+</span>
       </div>
-      <div class="email-modal-preview-item">
+      <div class="preview-accordion-content">
+        <ul style="margin:0; padding-left:1.2em; font-size:var(--text-xs); color:var(--text-muted); line-height:1.7;">
+          <li><strong>PFOA:</strong> 16 ppt detected (EPA limit: 4 ppt) -- 4x over</li>
+          <li><strong>PFOS:</strong> 36 ppt detected (EPA limit: 4 ppt) -- 9x over</li>
+          <li><strong>Chromium-6:</strong> 170 ppt (CA guideline: 20 ppt) -- 8.5x over</li>
+          <li><strong>Arsenic:</strong> 2 ppb (EWG guideline: 0.004 ppb)</li>
+          <li><strong>Trihalomethanes:</strong> 63 ppb -- nearing EPA limit of 80 ppb</li>
+        </ul>
+      </div>
+      <div class="email-modal-preview-item" onclick="togglePreviewAccordion(this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2c-3 7-7 9-7 13a7 7 0 0 0 14 0c0-4-4-6-7-13z"/><path d="M9 17h6" opacity="0.5"/></svg>
         <span>Hardness Level</span>
-        <span class="preview-lock">+</span>
+        <span class="preview-toggle">+</span>
       </div>
-      <div class="email-modal-preview-item">
+      <div class="preview-accordion-content">
+        <p>Miami-Dade water averages <strong>~250 ppm</strong> (very hard). The Biscayne Aquifer's limestone bedrock dissolves calcium and magnesium into the supply, causing scale buildup on fixtures, appliances, and plumbing.</p>
+      </div>
+      <div class="email-modal-preview-item" onclick="togglePreviewAccordion(this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
         <span>Recommended Solution</span>
-        <span class="preview-lock">+</span>
+        <span class="preview-toggle">+</span>
+      </div>
+      <div class="preview-accordion-content">
+        <p>An NSF/ANSI 42, 53, and 58 certified under-sink reverse osmosis system removes 99.9% of these contaminants. CrystalFlow Miami installs Waterdrop RO systems starting at <strong>$699</strong> with professional installation included.</p>
       </div>
     </div>
 
@@ -2215,6 +2269,23 @@ function checkWaterQuality() {
     setTimeout(function() {
       document.getElementById('out-of-area-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 100);
+  }
+}
+
+function togglePreviewAccordion(el) {
+  var content = el.nextElementSibling;
+  var isOpen = el.classList.contains('active');
+
+  // Close all others
+  var allItems = el.parentNode.querySelectorAll('.email-modal-preview-item');
+  var allContents = el.parentNode.querySelectorAll('.preview-accordion-content');
+  allItems.forEach(function(item) { item.classList.remove('active'); });
+  allContents.forEach(function(c) { c.classList.remove('open'); });
+
+  // Toggle clicked one
+  if (!isOpen) {
+    el.classList.add('active');
+    content.classList.add('open');
   }
 }
 
