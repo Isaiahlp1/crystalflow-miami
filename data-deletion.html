@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy — CrystalFlow Miami</title>
-<meta name="description" content="CrystalFlow Miami LLC's privacy policy explains how we collect, use, and protect your personal information. Learn about your data rights, cookies, and third-party services.">
+<title>Data Deletion Instructions — CrystalFlow Miami</title>
+<meta name="description" content="Instructions for requesting deletion of your personal data from CrystalFlow Miami LLC. Learn how to remove your information from our systems.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://crystalflowmiami.com/privacy-policy">
+<link rel="canonical" href="https://crystalflowmiami.com/data-deletion">
 
 <!-- Open Graph -->
-<meta property="og:title" content="Privacy Policy — CrystalFlow Miami">
-<meta property="og:description" content="CrystalFlow Miami LLC's privacy policy. How we collect, use, and protect your personal information.">
+<meta property="og:title" content="Data Deletion Instructions — CrystalFlow Miami">
+<meta property="og:description" content="Instructions for requesting deletion of your personal data from CrystalFlow Miami LLC.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://crystalflowmiami.com/privacy-policy">
+<meta property="og:url" content="https://crystalflowmiami.com/data-deletion">
 <meta property="og:locale" content="en_US">
 
 <!-- Fonts -->
@@ -285,49 +285,29 @@ a, button, [role="button"] {
   margin: var(--s10) 0;
 }
 
-/* Info box */
-.info-box {
-  background: var(--surface-2);
-  border-left: 3px solid var(--cyan);
-  padding: var(--s5) var(--s6);
-  border-radius: var(--radius-md);
+/* Step list */
+.step-list { counter-reset: step; list-style: none; padding-left: 0; }
+.step-list li {
+  counter-increment: step;
+  padding-left: var(--s10);
+  position: relative;
   margin-bottom: var(--s5);
 }
-.info-box p { margin-bottom: 0; }
-
-/* Cookie table */
-.cookie-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: var(--s5);
-  font-size: var(--text-sm);
-}
-.cookie-table th,
-.cookie-table td {
-  text-align: left;
-  padding: var(--s3) var(--s4);
-  border-bottom: 1px solid var(--divider);
-}
-.cookie-table th {
-  background: var(--surface-2);
+.step-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 28px;
+  height: 28px;
+  background: var(--cyan);
+  color: #fff;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 700;
-  color: var(--text);
-  font-size: var(--text-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-.cookie-table td { color: var(--text-muted); }
-.cookie-table td strong { color: var(--text); }
-.cookie-table code {
-  font-size: var(--text-xs);
-  background: var(--surface-offset);
-  padding: 0.15em 0.4em;
-  border-radius: var(--radius-sm);
-}
-
-@media (max-width: 640px) {
-  .cookie-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .cookie-table { min-width: 500px; }
+  font-size: var(--text-sm);
 }
 
 /* ============================================================
@@ -431,7 +411,7 @@ src="https://www.facebook.com/tr?id=1450242673555223&ev=PageView&noscript=1"
     <ol class="breadcrumbs-list">
       <li><a href="index.html">Home</a></li>
       <li class="breadcrumbs-sep">/</li>
-      <li class="breadcrumbs-current">Privacy Policy</li>
+      <li class="breadcrumbs-current">Data Deletion Instructions</li>
     </ol>
   </div>
 </nav>
@@ -441,7 +421,7 @@ src="https://www.facebook.com/tr?id=1450242673555223&ev=PageView&noscript=1"
   <div class="container">
     <div class="article-header-inner">
       <div class="article-category">Legal</div>
-      <h1 class="article-title">Privacy Policy</h1>
+      <h1 class="article-title">Data Deletion Instructions</h1>
       <div class="article-meta">
         <span>Effective Date: March 14, 2026</span>
         <span class="article-meta-divider">|</span>
@@ -455,176 +435,112 @@ src="https://www.facebook.com/tr?id=1450242673555223&ev=PageView&noscript=1"
 <main class="article-body">
   <div class="prose">
 
-    <p>CrystalFlow Miami LLC ("CrystalFlow Miami," "we," "us," or "our") is committed to protecting the privacy of our customers and website visitors. This Privacy Policy explains how we collect, use, share, and protect your personal information when you visit our website at crystalflowmiami.com or interact with our services.</p>
+    <p>CrystalFlow Miami LLC respects your right to control your personal data. This page explains what data we may have about you, how to request its deletion, and how to remove tracking data from your own devices.</p>
 
-    <p>CrystalFlow Miami LLC is owned and operated by Isaiah Pacheco and Juan Carlos Valencia in Miami-Dade County, Florida.</p>
+    <h2>What Data We May Have</h2>
 
-    <h2>Information We Collect</h2>
-
-    <h3>Information You Provide Directly</h3>
-
-    <p>We collect personal information that you voluntarily provide when you:</p>
+    <p>Depending on how you have interacted with CrystalFlow Miami, we may have the following information:</p>
 
     <ul>
-      <li><strong>Schedule a water test or service appointment</strong> &mdash; Name, email address, phone number, home address, and preferred appointment times via Calendly</li>
-      <li><strong>Make a purchase</strong> &mdash; Billing information processed through Stripe (we do not store credit card numbers on our servers)</li>
-      <li><strong>Subscribe to our email list</strong> &mdash; Email address and name provided through our Klaviyo-powered signup forms</li>
-      <li><strong>Contact us</strong> &mdash; Any information included in emails, phone calls, or messages you send to our team</li>
-      <li><strong>Leave a review or testimonial</strong> &mdash; Your name and the content of your feedback</li>
+      <li><strong>Calendly booking data</strong> &mdash; Name, email address, phone number, and appointment details provided when scheduling a free water test or service call</li>
+      <li><strong>Email marketing data</strong> &mdash; Email address and engagement history if you subscribed to our newsletter through Klaviyo</li>
+      <li><strong>Website analytics</strong> &mdash; Anonymized browsing data collected through Google Analytics 4 and Meta Pixel, including pages visited, time on site, and device information</li>
+      <li><strong>Payment records</strong> &mdash; Transaction records processed through Stripe if you made a purchase (we do not store credit card numbers)</li>
+      <li><strong>Communication records</strong> &mdash; Emails, phone call records, or messages exchanged with our team</li>
     </ul>
 
-    <h3>Information Collected Automatically</h3>
+    <h2>How to Request Data Deletion</h2>
 
-    <p>When you visit our website, certain information is collected automatically through cookies and similar technologies:</p>
+    <p>To request deletion of your personal data from CrystalFlow Miami's systems, follow these steps:</p>
+
+    <ol class="step-list">
+      <li>
+        <strong>Send a deletion request via email</strong><br>
+        Email <a href="mailto:info@crystalflowmiami.com">info@crystalflowmiami.com</a> with the subject line "Data Deletion Request." Include your full name and the email address associated with your account or booking so we can locate your records.
+      </li>
+      <li>
+        <strong>We will verify your identity</strong><br>
+        To protect your privacy, we may ask you to confirm details about your interaction with CrystalFlow Miami (such as the date of your appointment or the email you used to book).
+      </li>
+      <li>
+        <strong>We will process your request within 30 days</strong><br>
+        Once verified, we will delete your personal data from our active systems within 30 calendar days and send you a confirmation email when the deletion is complete.
+      </li>
+    </ol>
+
+    <h3>What Will Be Deleted</h3>
 
     <ul>
-      <li><strong>Device and browser information</strong> &mdash; Browser type, operating system, screen resolution, and device type</li>
-      <li><strong>Usage data</strong> &mdash; Pages visited, time spent on each page, referral source, click patterns, and scroll depth</li>
-      <li><strong>Location data</strong> &mdash; Approximate geographic location derived from your IP address (city/region level only)</li>
-      <li><strong>Advertising data</strong> &mdash; Ad interactions, conversion events, and campaign attribution through Meta Pixel and Google Ads</li>
+      <li>Contact information (name, email, phone number) from our internal records</li>
+      <li>Calendly booking history associated with your email</li>
+      <li>Klaviyo email marketing profile and engagement data</li>
+      <li>Any notes or correspondence records in our system</li>
     </ul>
 
-    <h2>How We Use Your Information</h2>
+    <h3>What We May Need to Retain</h3>
 
-    <p>We use the information we collect for the following purposes:</p>
+    <p>In certain cases, we may be required to retain limited data for legal or regulatory purposes:</p>
 
     <ul>
-      <li><strong>Provide our services</strong> &mdash; Schedule appointments, process orders, install water treatment systems, and provide customer support</li>
-      <li><strong>Communicate with you</strong> &mdash; Send appointment confirmations, service reminders, order updates, and respond to your inquiries</li>
-      <li><strong>Send marketing communications</strong> &mdash; With your consent, send promotional emails about our products, services, and special offers through Klaviyo</li>
-      <li><strong>Improve our website</strong> &mdash; Analyze how visitors use our site so we can improve content, navigation, and user experience</li>
-      <li><strong>Advertising</strong> &mdash; Measure the effectiveness of our advertising campaigns on Meta (Facebook/Instagram) and Google to reach people who may benefit from our water treatment services</li>
-      <li><strong>Comply with legal obligations</strong> &mdash; Maintain records required by tax, accounting, and other applicable laws</li>
+      <li><strong>Transaction records</strong> &mdash; Payment and invoice records may be retained as required by tax and accounting regulations</li>
+      <li><strong>Warranty records</strong> &mdash; If you have an active warranty or service agreement, we may retain the records necessary to fulfill that agreement</li>
+      <li><strong>Legal obligations</strong> &mdash; Data required to comply with legal proceedings, court orders, or regulatory requirements</li>
     </ul>
 
-    <h2>Meta Marketing API Usage</h2>
+    <p>We will inform you if any of your data falls into these categories when processing your request.</p>
 
-    <div class="info-box">
-      <p>The CrystalFlow Ads Manager application on Meta (Facebook) is used exclusively to manage CrystalFlow Miami's own advertising campaigns. It does not collect, access, or store personal data from Facebook users. The application is used solely for creating and managing ad campaigns, audiences, and performance reports for CrystalFlow Miami's business.</p>
-    </div>
+    <h2>How to Clear Cookies and Tracking Locally</h2>
 
-    <h2>Cookies and Tracking Technologies</h2>
+    <p>In addition to requesting deletion of data from our servers, you can remove tracking cookies and data stored on your own device:</p>
 
-    <p>Our website uses the following cookies and tracking technologies:</p>
-
-    <div class="cookie-table-wrap">
-      <table class="cookie-table">
-        <thead>
-          <tr>
-            <th>Technology</th>
-            <th>Provider</th>
-            <th>Purpose</th>
-            <th>Identifier</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Google Analytics 4</strong></td>
-            <td>Google</td>
-            <td>Website analytics and usage tracking</td>
-            <td><code>G-F0PPFHP0ZT</code></td>
-          </tr>
-          <tr>
-            <td><strong>Google Ads</strong></td>
-            <td>Google</td>
-            <td>Advertising conversion tracking</td>
-            <td><code>AW-858419882</code></td>
-          </tr>
-          <tr>
-            <td><strong>Meta Pixel</strong></td>
-            <td>Meta (Facebook)</td>
-            <td>Advertising conversion tracking and audience building</td>
-            <td><code>1450242673555223</code></td>
-          </tr>
-          <tr>
-            <td><strong>Klaviyo</strong></td>
-            <td>Klaviyo</td>
-            <td>Email marketing and on-site behavior tracking</td>
-            <td><code>QTCPJF</code></td>
-          </tr>
-          <tr>
-            <td><strong>Calendly</strong></td>
-            <td>Calendly</td>
-            <td>Appointment scheduling widget</td>
-            <td>N/A</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p>You can manage your cookie preferences through your browser settings. See our <a href="data-deletion.html">Data Deletion Instructions</a> page for specific steps on clearing cookies and opting out of analytics tracking.</p>
-
-    <h2>Third-Party Services</h2>
-
-    <p>We share your information with the following third-party service providers who help us operate our business. Each provider has its own privacy policy governing how they handle your data:</p>
+    <h3>Clear Browser Cookies</h3>
 
     <ul>
-      <li><strong>Stripe</strong> &mdash; Payment processing. <a href="https://stripe.com/privacy" target="_blank" rel="noopener">Stripe Privacy Policy</a></li>
-      <li><strong>Calendly</strong> &mdash; Appointment scheduling. <a href="https://calendly.com/privacy" target="_blank" rel="noopener">Calendly Privacy Policy</a></li>
-      <li><strong>Klaviyo</strong> &mdash; Email marketing and automation. <a href="https://www.klaviyo.com/legal/privacy" target="_blank" rel="noopener">Klaviyo Privacy Policy</a></li>
-      <li><strong>Meta (Facebook/Instagram)</strong> &mdash; Advertising and analytics. <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta Privacy Policy</a></li>
-      <li><strong>Google</strong> &mdash; Analytics and advertising. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></li>
+      <li><strong>Chrome:</strong> Settings &gt; Privacy and Security &gt; Clear Browsing Data &gt; Cookies and other site data</li>
+      <li><strong>Safari:</strong> Settings &gt; Safari &gt; Clear History and Website Data</li>
+      <li><strong>Firefox:</strong> Settings &gt; Privacy &amp; Security &gt; Cookies and Site Data &gt; Clear Data</li>
+      <li><strong>Edge:</strong> Settings &gt; Privacy, Search, and Services &gt; Clear Browsing Data</li>
     </ul>
 
-    <p>We do not sell your personal information to third parties. We only share information with the service providers listed above as necessary to deliver our services and operate our business.</p>
+    <h3>Opt Out of Google Analytics</h3>
 
-    <h2>Data Retention</h2>
+    <p>Install the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a> to prevent Google Analytics from collecting your browsing data on any website.</p>
 
-    <p>We retain your personal information for as long as necessary to provide our services and fulfill the purposes described in this policy. Specifically:</p>
+    <h3>Manage Meta (Facebook) Ad Preferences</h3>
 
-    <ul>
-      <li><strong>Customer records</strong> &mdash; Retained for the duration of your customer relationship plus 3 years for warranty and service follow-up purposes</li>
-      <li><strong>Transaction records</strong> &mdash; Retained for 7 years as required by tax and accounting regulations</li>
-      <li><strong>Email marketing data</strong> &mdash; Retained until you unsubscribe, at which point your email is suppressed from future sends but retained in the suppression list</li>
-      <li><strong>Website analytics data</strong> &mdash; Retained according to the default retention periods set by Google Analytics (14 months) and Meta (2 years)</li>
-    </ul>
+    <p>Visit your <a href="https://www.facebook.com/settings?tab=ads" target="_blank" rel="noopener">Facebook Ad Preferences</a> to control how Meta uses your data for advertising.</p>
 
-    <p>You may request deletion of your data at any time. See our <a href="data-deletion.html">Data Deletion Instructions</a> for details.</p>
+    <h2>Removing the CrystalFlow Ads Manager App from Facebook</h2>
 
-    <h2>Data Security</h2>
+    <p>If you have connected with the CrystalFlow Ads Manager application through Facebook, you can remove it by following these steps:</p>
 
-    <p>We take reasonable measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. These measures include:</p>
+    <ol class="step-list">
+      <li>
+        <strong>Go to Facebook Settings</strong><br>
+        Log in to Facebook and navigate to <strong>Settings &amp; Privacy</strong> &gt; <strong>Settings</strong>.
+      </li>
+      <li>
+        <strong>Open Apps and Websites</strong><br>
+        In the left sidebar, click <strong>Apps and Websites</strong> (under "Security and login" or "Your information").
+      </li>
+      <li>
+        <strong>Find and remove the app</strong><br>
+        Locate "CrystalFlow Ads Manager" in the list of active apps. Click on it, then select <strong>Remove</strong>. You may also check the box to delete all posts, photos, or activities on Facebook that the app may have published on your behalf.
+      </li>
+    </ol>
 
-    <ul>
-      <li>SSL/TLS encryption on all pages of our website</li>
-      <li>Secure payment processing through Stripe (PCI-DSS compliant)</li>
-      <li>Access controls limiting who can view customer information within our organization</li>
-      <li>Regular review of our data collection and storage practices</li>
-    </ul>
-
-    <p>While we strive to protect your personal information, no method of transmission over the Internet or electronic storage is 100% secure. We cannot guarantee absolute security.</p>
-
-    <h2>Your Rights</h2>
-
-    <p>Under the Florida Digital Bill of Rights (effective July 1, 2024) and other applicable privacy laws, you have the following rights regarding your personal data:</p>
-
-    <ul>
-      <li><strong>Right to know</strong> &mdash; You can request a summary of the personal data we have collected about you</li>
-      <li><strong>Right to delete</strong> &mdash; You can request that we delete your personal data from our systems</li>
-      <li><strong>Right to correct</strong> &mdash; You can request correction of inaccurate personal data</li>
-      <li><strong>Right to opt out</strong> &mdash; You can opt out of the sale or sharing of your personal data, targeted advertising, and certain profiling activities</li>
-      <li><strong>Right to non-discrimination</strong> &mdash; We will not discriminate against you for exercising any of these rights</li>
-    </ul>
-
-    <p>To exercise any of these rights, contact us at <a href="mailto:info@crystalflowmiami.com">info@crystalflowmiami.com</a> or call <a href="tel:+17869473824">(786) 947-3824</a>. We will respond to your request within 45 days.</p>
-
-    <h2>Children's Privacy</h2>
-
-    <p>Our website and services are not directed to individuals under the age of 16. We do not knowingly collect personal information from children. If you believe a child has provided us with personal information, please contact us immediately and we will delete that information.</p>
-
-    <h2>Changes to This Privacy Policy</h2>
-
-    <p>We may update this Privacy Policy from time to time to reflect changes in our practices or applicable laws. When we make changes, we will update the "Last Updated" date at the top of this page. We encourage you to review this policy periodically.</p>
+    <p>The CrystalFlow Ads Manager app is used exclusively to manage CrystalFlow Miami's own advertising campaigns on Meta platforms. It does not collect personal user data directly. Removing the app will revoke any permissions previously granted.</p>
 
     <h2>Contact Us</h2>
 
-    <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
+    <p>If you have any questions about this process or need assistance with a data deletion request, please contact us:</p>
 
     <ul>
       <li><strong>Email:</strong> <a href="mailto:info@crystalflowmiami.com">info@crystalflowmiami.com</a></li>
       <li><strong>Phone:</strong> <a href="tel:+17869473824">(786) 947-3824</a></li>
-      <li><strong>Mail:</strong> CrystalFlow Miami LLC, Miami-Dade County, FL</li>
     </ul>
+
+    <p>For more information about how we handle your data, please review our <a href="privacy-policy.html">Privacy Policy</a>.</p>
 
   </div>
 </main>
@@ -632,11 +548,11 @@ src="https://www.facebook.com/tr?id=1450242673555223&ev=PageView&noscript=1"
 <!-- CTA BANNER -->
 <section class="cta-banner">
   <div class="container" style="max-width:var(--content-default);">
-    <div class="cta-label">Privacy</div>
-    <h2 class="cta-title">Have a Privacy Concern?</h2>
-    <p class="cta-text">We take your privacy seriously. Reach out and we will address your questions or requests promptly.</p>
+    <div class="cta-label">Data Request</div>
+    <h2 class="cta-title">Ready to Submit a Deletion Request?</h2>
+    <p class="cta-text">Send us an email with the subject "Data Deletion Request" and we will process it within 30 days.</p>
     <div class="cta-actions">
-      <a href="mailto:info@crystalflowmiami.com?subject=Privacy%20Inquiry" class="btn btn-primary btn-lg">Email Us</a>
+      <a href="mailto:info@crystalflowmiami.com?subject=Data%20Deletion%20Request" class="btn btn-primary btn-lg">Email Deletion Request</a>
       <a href="tel:+17869473824" class="btn btn-white">(786) 947-3824</a>
     </div>
   </div>
